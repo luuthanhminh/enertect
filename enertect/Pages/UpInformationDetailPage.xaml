@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:views="clr-namespace:enertect.UI.Pages.Base;assembly=enertect.UI"
+    xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+    x:TypeArguments="viewModels:UpInformationDetailViewModel"
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    x:Class="enertect.UI.Pages.UpInformationDetailPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
+                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label  Text="{Binding UpsName}" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <tabView:SfTabView x:Name="tabview"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           BackgroundColor="Aqua"
+                           EnableSwiping="True"
+                           TabHeaderPosition="Top"
+                           DisplayMode="Text">
+                <tabView:SfTabItem Title="Detail" x:Name="tabitem">
+                    <tabView:SfTabItem.Content>
+                        <StackLayout>
+                            <Grid BackgroundColor="BlueViolet"  />
+                        </StackLayout>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem Title="View" x:Name="tabitem1">
+                    <tabView:SfTabItem.Content>
+                        <StackLayout>
+                            <Grid BackgroundColor="Green" />
+                        </StackLayout>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+            </tabView:SfTabView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>

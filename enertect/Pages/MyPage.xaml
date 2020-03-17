@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="enertect.UI.Pages.MyPage">
+    <ContentView.Content>
+        <Label MinimumWidthRequest="100"
+                               Grid.Column="0" 
+                                BackgroundColor="Aqua"
+                               VerticalTextAlignment="Center"
+                               FontSize="Medium" 
+                               Text="Title"
+                               HorizontalOptions="StartAndExpand" />
+    </ContentView.Content>
+
+</ContentView>

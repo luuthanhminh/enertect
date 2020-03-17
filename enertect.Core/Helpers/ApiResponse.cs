@@ -15,6 +15,6 @@ namespace enertect.Core.Helpers
 
         public T ResponseObject { get; set; }
 
-        public IList<T> ResponseListObject { get; set; }
+        public List<T> ResponseListObject { get; set; }
     }
 }

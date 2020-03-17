@@ -74,7 +74,7 @@ namespace enertect.Core.Services
             ApiResponse<T> result = null;
             try
             {
-                var res = await url.GetJsonAsync<IList<T>>();
+                var res = await url.GetJsonAsync<List<T>>();
 
                 result = new ApiResponse<T>()
                 {
