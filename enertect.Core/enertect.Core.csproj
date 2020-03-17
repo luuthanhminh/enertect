@@ -22,5 +22,7 @@
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Data\DialogViewModels\" />
     <Folder Include="Data\Models\" />
+    <Folder Include="Data\Models\Ups\" />
+    <Folder Include="Data\ItemViewModels\" />
   </ItemGroup>
 </Project>

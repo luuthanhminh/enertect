@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:enertect.UI.Controls.Popups.Resources"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    x:Class="enertect.UI.Controls.Popups.CustomActionSheet">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:DialogsResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation
+			PositionIn="Bottom"
+			PositionOut="Bottom" />
+    </pages:PopupPage.Animation>
+
+    <Grid
+		Style="{ StaticResource CustomActionSheetStyle }"
+		VerticalOptions="{ StaticResource CustomActionSheetPositioning }"
+		HeightRequest="200"
+		RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition
+				Height="54" />
+            <RowDefinition
+				Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TITLE-->
+        <Grid
+			Grid.Row="0"
+			Padding="20,0">
+
+            <!-- TITLE -->
+            <Label
+				Style="{ StaticResource CustomActionSheetTitleStyle }"
+				Text="{ Binding Title }"
+				VerticalTextAlignment="Center" />
+
+        </Grid>
+
+
+        <!-- CONTENT -->
+        <syncfusion:SfListView
+			Grid.Row="1"
+			ItemsSource="{ Binding Actions }"
+			ItemSize="40"
+            DragStartMode="None"
+            x:Name="lvActions"
+                                   BackgroundColor="Transparent" 
+                                   SelectionMode="None"
+                                   
+                                   SelectionBackgroundColor="Transparent"
+			ItemSpacing="10">
+
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid
+							Padding="20,0"
+							ColumnSpacing="20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+									Width="Auto" />
+                                <ColumnDefinition
+									Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- ICON -->
+                            <Label
+								HorizontalOptions="Start"
+								Text="{ Binding Icon }"
+								Style="{ StaticResource CustomActionSheetIconStyle }"
+                                 FontSize="20"
+								VerticalTextAlignment="Center" />
+
+                            <!-- LABEL -->
+                            <Label
+								Grid.Column="1"
+								Text="{ Binding Label }"
+								Style="{ StaticResource CustomActionSheetLabelStyle }"
+                               
+								VerticalTextAlignment="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+
+        </syncfusion:SfListView>
+
+    </Grid>
+</pages:PopupPage>

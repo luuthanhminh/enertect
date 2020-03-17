@@ -16,6 +16,7 @@
     <PackageReference Include="MvvmCross" Version="6.4.2" />
     <PackageReference Include="MvvmCross.Forms" Version="6.4.2" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.55" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\enertect.Core\enertect.Core.csproj" />
@@ -25,5 +26,8 @@
     <Folder Include="Pages\Base\" />
     <Folder Include="Services\" />
     <Folder Include="Presenter\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Controls\Popups\" />
+    <Folder Include="Controls\Popups\Resources\" />
   </ItemGroup>
 </Project>

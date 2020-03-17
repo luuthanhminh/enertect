@@ -8,10 +8,10 @@ namespace enertect.Core.Services.Interfaces
     {
         Task<bool> ShowMessage(string title, string message, string buttonConfirmText, string buttonCancelText);
 
-        //Task<string> ShowMultipleSelection(string title, DialogAction[] options);
+        Task<string> ShowMultipleSelection(string title, DialogAction[] options);
 
-        //Task ShowMessage(string title, string message, string buttonCloseText);
+        Task ShowMessage(string title, string message, string buttonCloseText);
 
-        //Task ShowMessage(string message);
+        Task ShowMessage(string message);
     }
 }

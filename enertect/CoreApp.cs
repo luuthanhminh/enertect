@@ -17,7 +17,7 @@ namespace enertect.UI
         {
             base.Initialize();
 
-            RegisterCustomAppStart<CustomMvxAppStart<SignInViewModel>>();
+            RegisterCustomAppStart<CustomMvxAppStart<UpsInformationViewModel>>();
 
             FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(20));
 

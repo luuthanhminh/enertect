@@ -42,5 +42,9 @@ namespace enertect.Core.ViewModels
         }
 
         #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

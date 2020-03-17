@@ -14,5 +14,7 @@ namespace enertect.Core.Helpers
         public int ResponseStatusCode { get; set; }
 
         public T ResponseObject { get; set; }
+
+        public IList<T> ResponseListObject { get; set; }
     }
 }
