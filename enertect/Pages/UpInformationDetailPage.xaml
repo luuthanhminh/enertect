@@ -7,7 +7,8 @@
     x:TypeArguments="viewModels:UpInformationDetailViewModel"
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
     xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
-    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
     x:Class="enertect.UI.Pages.UpInformationDetailPage">
     <ContentPage.Content>
         <Grid RowSpacing="10">
@@ -304,9 +305,124 @@
 
                 <tabView:SfTabItem Title="Battery Details" x:Name="tabitem1">
                     <tabView:SfTabItem.Content>
-                        <StackLayout>
-                            <Grid BackgroundColor="Green" />
+                        <ScrollView>
+                            <StackLayout >
+                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" Text="Resitance, Voltage, Temperature Dashboard - 18 March 2020" TextColor="Black"/>
+                            <chart:SfChart x:Name="Chart" HeightRequest="300" VerticalOptions="Center" HorizontalOptions="Center">
+                                <chart:SfChart.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness" WinPhone="0,0,15,0" />
+                                </chart:SfChart.Margin>
+                                <!--<chart:SfChart.Title>
+                                    <chart:ChartTitle TextAlignment="Center" Margin="16" Text="Resitance, Voltage, Temperature Dashboard - 18 March 2020"  />
+                                </chart:SfChart.Title>-->
+                                <!--<chart:SfChart.BindingContext>
+                                     <viewModels:UpInformationDetailViewModel></viewModels:UpInformationDetailViewModel>
+                                </chart:SfChart.BindingContext>-->
+                                <chart:SfChart.ChartBehaviors>
+                                    <chart:ChartTooltipBehavior BackgroundColor="#404041" />
+                                </chart:SfChart.ChartBehaviors>
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="false">
+                                    </chart:CategoryAxis>
+                                </chart:SfChart.PrimaryAxis>
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis Maximum="30" Minimum="0" Interval="10">
+                                        <chart:NumericalAxis.AxisLineStyle>
+                                            <chart:ChartLineStyle StrokeWidth="0">
+                                            </chart:ChartLineStyle>
+                                        </chart:NumericalAxis.AxisLineStyle>
+                                        <chart:NumericalAxis.MajorTickStyle>
+                                            <chart:ChartAxisTickStyle TickSize="0" />
+                                        </chart:NumericalAxis.MajorTickStyle>
+                                        <chart:NumericalAxis.LabelStyle>
+                                            <chart:ChartAxisLabelStyle x:Name="secondaryAxisLabelStyle"/>
+                                        </chart:NumericalAxis.LabelStyle>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+                                <chart:SfChart.Legend>
+                                    <chart:ChartLegend DockPosition="Bottom" ToggleSeriesVisibility="True" IconWidth="14" IconHeight="14" />
+                                </chart:SfChart.Legend>
+                                <chart:SfChart.ColorModel>
+                                    <chart:ChartColorModel Palette="Natural" />
+                                </chart:SfChart.ColorModel>
+                                <chart:SfChart.Series>
+                                    <chart:SplineSeries Color="#00bdae"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Resitance" StrokeWidth="2" Label="Resitance" LegendIcon="SeriesType" >
+                                        <chart:SplineSeries.DataMarker>
+                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#00bdae" MarkerBorderWidth="2" MarkerColor="#00bdae">
+                                                <chart:ChartDataMarker.MarkerWidth>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
+                                                </chart:ChartDataMarker.MarkerWidth>
+                                                <chart:ChartDataMarker.MarkerHeight>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
+                                                </chart:ChartDataMarker.MarkerHeight>
+                                            </chart:ChartDataMarker>
+                                        </chart:SplineSeries.DataMarker>
+                        
+                                    </chart:SplineSeries>
+                                    <chart:SplineSeries Color="#98C862"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Temperature" StrokeWidth="2" Label="Temperature" LegendIcon="SeriesType" >
+                                        <chart:SplineSeries.DataMarker>
+                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#98C862" MarkerBorderWidth="2" MarkerColor="#98C862">
+                                                <chart:ChartDataMarker.MarkerWidth>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
+                                                </chart:ChartDataMarker.MarkerWidth>
+                                                <chart:ChartDataMarker.MarkerHeight>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
+                                                </chart:ChartDataMarker.MarkerHeight>
+                                            </chart:ChartDataMarker>
+                                        </chart:SplineSeries.DataMarker>
+                        
+                                    </chart:SplineSeries>
+                                    <chart:SplineSeries Color="#F3584F"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Voltage" StrokeWidth="2" Label="Voltage" LegendIcon="SeriesType" >
+                                        <chart:SplineSeries.DataMarker>
+                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#F3584F" MarkerBorderWidth="2" MarkerColor="#F3584F">
+                                                <chart:ChartDataMarker.MarkerWidth>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
+                                                </chart:ChartDataMarker.MarkerWidth>
+                                                <chart:ChartDataMarker.MarkerHeight>
+                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
+                                                </chart:ChartDataMarker.MarkerHeight>
+                                            </chart:ChartDataMarker>
+                                        </chart:SplineSeries.DataMarker>
+                        
+                                    </chart:SplineSeries>
+                    
+                                </chart:SfChart.Series>
+                            </chart:SfChart>
+                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,0" HorizontalOptions="Center" FontSize="Medium" Text="Battery No" TextColor="Gray"/>
+                            <Frame 
+                                        HasShadow="False"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Margin="0,4"
+                                        CornerRadius="0.5">
+                                <Grid Padding="2"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                                    <Grid.ColumnDefinitions>
+                                         <ColumnDefinition Width="*"/>
+                                         <ColumnDefinition Width="*"/>
+                                         <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="15.00" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="10.80" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="2" TextColor="White" FontSize="Small" Text="IR" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="8.50" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="0.00" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="35.0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="15.0" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </Grid>
+                            </Frame>
                         </StackLayout>
+                        </ScrollView>
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
             </tabView:SfTabView>

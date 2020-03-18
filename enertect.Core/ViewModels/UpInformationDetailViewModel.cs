@@ -7,6 +7,8 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System.Linq;
 using enertect.Core.Data.Models.Ups;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace enertect.Core.ViewModels
 {
@@ -15,9 +17,25 @@ namespace enertect.Core.ViewModels
         readonly IApiService _apiService;
         UpsItemViewModel _upsItemViewModel;
 
+        public void UpdateData()
+        {
+            if (_upsItemViewModel != null)
+            {
+                var item = _upsItemViewModel.UpsInformation;
+                if (item.Items.Count > 0)
+                {
+                    _ups.Clear();
+                    foreach (UpsInformation up in item.Items.First().Items)
+                    {
+                        _ups.Add(up);
+                    }
+                }
+            }
+        }
+
         public UpInformationDetailViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IApiService apiService) : base(navigationService, dialogService)
         {
-            this._apiService = apiService;
+            this._apiService = apiService; 
         }
 
         public override async Task Initialize()
@@ -50,9 +68,24 @@ namespace enertect.Core.ViewModels
                 _maxTempItem = up.Items.OrderBy(i => i.Temperature).LastOrDefault();
                 _avgTemp = (up.Items.Select(c => c.Temperature).Sum() / up.Items.Count).ToString();
             }
+            
+            
         }
 
         #region Properties
+
+        private ObservableCollection<UpsInformation> _ups = new ObservableCollection<UpsInformation>();
+        public ObservableCollection<UpsInformation> Ups
+        {
+            get
+            {
+                return _ups;
+            }
+            set
+            {
+                SetProperty(ref _ups, value);
+            }
+        }
 
         private string _upsName;
         public string UpsName

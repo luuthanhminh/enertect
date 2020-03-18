@@ -16,6 +16,10 @@ namespace enertect.UI.Pages
         protected override void OnViewModelSet()
         {
             base.OnViewModelSet();
+
+            var viewModel = (UpInformationDetailViewModel)this.DataContext;
+            viewModel.UpdateData();
+            this.Chart.BindingContext = viewModel;
         }
     }
 }

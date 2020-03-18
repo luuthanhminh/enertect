@@ -19,6 +19,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.4.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.55" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\enertect.Core\enertect.Core.csproj" />

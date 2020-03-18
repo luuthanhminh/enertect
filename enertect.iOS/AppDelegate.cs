@@ -27,6 +27,7 @@ namespace enertect.iOS
             LoadApplication(new App());
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();
             Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
+            Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }
