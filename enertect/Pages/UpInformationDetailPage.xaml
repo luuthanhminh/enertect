@@ -6,6 +6,8 @@
     xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
     x:TypeArguments="viewModels:UpInformationDetailViewModel"
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     x:Class="enertect.UI.Pages.UpInformationDetailPage">
     <ContentPage.Content>
         <Grid RowSpacing="10">
@@ -22,19 +24,285 @@
                 <tabView:SfTabView x:Name="tabview"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
                            AbsoluteLayout.LayoutFlags="All"
-                           BackgroundColor="Aqua"
                            EnableSwiping="True"
                            TabHeaderPosition="Top"
+                           VisibleHeaderCount="2"
                            DisplayMode="Text">
-                <tabView:SfTabItem Title="Detail" x:Name="tabitem">
+                <tabView:SfTabItem Title="String Overview" x:Name="tabitem">
                     <tabView:SfTabItem.Content>
+                        <ScrollView>
                         <StackLayout>
-                            <Grid BackgroundColor="BlueViolet"  />
+                            <StackLayout>
+                                <Grid  Padding="0,0,0,0" Margin="8" HeightRequest="40">
+                                    <Label  Text="String Voltage" FontSize="Subtitle" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                                <gauge:SfCircularGauge
+                                    WidthRequest="240"
+                                    HeightRequest="240"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    
+                                    >
+
+                                    <gauge:SfCircularGauge.Headers>
+                                        <gauge:Header Text="{Binding SumVol, StringFormat='{0:F2} V'}" ForegroundColor="Black" TextSize="15" />
+                                    </gauge:SfCircularGauge.Headers>
+            
+                                    <gauge:SfCircularGauge.Scales>
+                                          <gauge:Scale
+                                              StartValue="0"
+                                              EndValue="1000"
+                                              Interval="140"
+                                              ShowRim="False"
+                                              ShowTicks="False"
+                                          >
+                    
+                                            <gauge:Scale.Ranges>
+                                                <gauge:Range StartValue="0" EndValue="280" Color="Red"/>
+                                                <gauge:Range StartValue="280" EndValue="700" Color="Yellow"/>
+                                                <gauge:Range StartValue="700" EndValue="1000" Color="Green"/>
+                                            </gauge:Scale.Ranges>
+
+                    
+                                            <gauge:Scale.Pointers >
+                                                <gauge:NeedlePointer  Value="{Binding SumVol}" />
+                                            </gauge:Scale.Pointers>
+                    
+                                           </gauge:Scale>
+                
+                                     </gauge:SfCircularGauge.Scales>
+
+                                 </gauge:SfCircularGauge>
+                                <Label  Text="String Voltage/Current" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label  Text="{Binding SumVol, StringFormat='Voltage: {0:F2} V | Current:-0.3 A '}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                            </StackLayout>
+                        
+                            <StackLayout>
+                                <Grid  Padding="0,0,0,0" Margin="8" HeightRequest="40">
+                                    <Label  Text="VOLT STATS" FontSize="Subtitle" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                                <Frame BorderColor="#6696E9"
+                                        Padding="0,0"
+                                        HasShadow="False"
+                                        Margin="8,0,8,8"
+                                        CornerRadius="1">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Vol BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinVolItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill"/>
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Voltage:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinVolItem.Voltage}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Vol BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxVolItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Voltage:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxVolItem.Voltage}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Avg Deviation(mV):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AvgVol}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Deviation(mV):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxVol}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+
+                                            
+                                        </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <Grid  Padding="0,0,0,0" Margin="8" HeightRequest="40">
+                                    <Label  Text="IR STATS" FontSize="Subtitle" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                                <Frame BorderColor="#6696E9"
+                                        Padding="0,0"
+                                        HasShadow="False"
+                                        Margin="8,0,8,8"
+                                        CornerRadius="1">
+                                    <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min IR BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1"  HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinIRItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min IR:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinIRItem.Resitance}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max IR BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxIRItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max IR:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxIRItem.Resitance}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Avg Deviation(mΩ):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AvgIR}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Deviation(mΩ):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="0" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+
+                                            
+                                        </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Grid  Padding="0,0,0,0" Margin="8" HeightRequest="40">
+                                    <Label  Text="TEMP STATS" FontSize="Subtitle" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                                <Frame BorderColor="#6696E9"
+                                        Padding="0,0"
+                                        HasShadow="False"
+                                        Margin="8,0,8,8"
+                                        CornerRadius="1">
+                                    <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Temp BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinTempItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+
+                                            <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Temp:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinTempItem.Temperature}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Temp BattNo:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxTempItem.StringName}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Temp:" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxTempItem.Temperature}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Avg Deviation(°c):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AvgTemp}" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+                                        <Grid VerticalOptions="FillAndExpand" HeightRequest="40"  Margin="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Deviation(°c):" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="0" TextColor="#6696E9"/>
+                                            </Grid>
+                                            <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
+
+                                            
+                                        </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+
                         </StackLayout>
+                         </ScrollView>
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
-                <tabView:SfTabItem Title="View" x:Name="tabitem1">
+                <tabView:SfTabItem Title="Battery Details" x:Name="tabitem1">
                     <tabView:SfTabItem.Content>
                         <StackLayout>
                             <Grid BackgroundColor="Green" />

@@ -34,7 +34,7 @@
                                        Padding="5,2"
                                        HasShadow="False"
                                        
-                                       CornerRadius="7.5">
+                                       CornerRadius="1">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding Path=BindingContext.TapItemCommand,
@@ -64,7 +64,7 @@
                                                     <ColumnDefinition Width="120"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label WidthRequest="120" VerticalOptions="Center" FontSize="Small" Text="StringName:" TextColor="#6696E9"/>
+                                                <Label WidthRequest="120" VerticalOptions="Center" FontSize="Small" Text="No of Strings:" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding StringName}" TextColor="#6696E9"/>
                                             </Grid>
                                             
