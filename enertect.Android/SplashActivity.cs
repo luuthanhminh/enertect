@@ -11,7 +11,7 @@ namespace enertect.Droid
 {
 
     [Activity(
-         Label = "APIIndia"
+         Label = "Enertect"
          , MainLauncher = true
          , Icon = "@mipmap/icon"
          , Theme = "@style/Theme.Splash"

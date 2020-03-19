@@ -12,26 +12,14 @@ using System.Collections.Generic;
 
 namespace enertect.Core.ViewModels
 {
+    public interface ICallsView
+    {
+        void BindingChart(UpInformationDetailViewModel viewModel);
+    }
+
     public class UpInformationDetailViewModel : BaseWithObjectViewModel<UpsItemViewModel>
     {
         readonly IApiService _apiService;
-        UpsItemViewModel _upsItemViewModel;
-
-        public void UpdateData()
-        {
-            if (_upsItemViewModel != null)
-            {
-                var item = _upsItemViewModel.UpsInformation;
-                if (item.Items.Count > 0)
-                {
-                    _ups.Clear();
-                    foreach (UpsInformation up in item.Items.First().Items)
-                    {
-                        _ups.Add(up);
-                    }
-                }
-            }
-        }
 
         public UpInformationDetailViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IApiService apiService) : base(navigationService, dialogService)
         {
@@ -46,33 +34,46 @@ namespace enertect.Core.ViewModels
 
         public override void Prepare(UpsItemViewModel parameter)
         {
-            _upsItemViewModel = parameter;
+            _dateNow = DateTime.Now;
             _upsName = parameter.UpsInformation.UpsName;
             var item = parameter.UpsInformation;
             if (item.Items.Count > 0)
             {
                 var up = item.Items.First();
+                var totalitems = up.Items.Count;
                 var totalvoltage = up.Items.Select(c => c.Voltage).Sum();
+                var averageVoltage = totalvoltage / totalitems;
                 _sumVol = totalvoltage.ToString();
 
                 _minVolItem = up.Items.OrderBy(i => i.Voltage).FirstOrDefault();
                 _maxVolItem = up.Items.OrderBy(i => i.Voltage).LastOrDefault();
-                _avgVol = ((Convert.ToDecimal(_maxVolItem.Voltage) - Convert.ToDecimal(totalvoltage/ up.Items.Count))/1000).ToString();
-                _maxVol = ((Convert.ToDecimal(_maxVolItem.Voltage) - Convert.ToDecimal(_minVolItem.Voltage))/1000).ToString();
+                _avgVol = Convert.ToDecimal(((Convert.ToDecimal(_maxVolItem.Voltage) - Convert.ToDecimal(averageVoltage / totalitems))/1000)).ToString("0.###");
+                _maxVol = ((Convert.ToDecimal(_maxVolItem.Voltage) - Convert.ToDecimal(_minVolItem.Voltage))/1000).ToString("0.###");
 
                 _minIRItem = up.Items.OrderBy(i => i.Resitance).FirstOrDefault();
                 _maxIRItem = up.Items.OrderBy(i => i.Resitance).LastOrDefault();
-                _avgIR = (up.Items.Select(c => c.Resitance).Sum()/up.Items.Count).ToString();
+                var totalRI = up.Items.Select(c => c.Resitance).Sum();
+                var averageRI = totalRI / totalitems;
+                _avgIR = Convert.ToDecimal(((Convert.ToDecimal(_maxIRItem.Resitance) - Convert.ToDecimal(averageRI / totalitems)) / 1000)).ToString("0.###");
+                _maxIR = ((Convert.ToDecimal(_maxIRItem.Resitance) - Convert.ToDecimal(_minIRItem.Resitance)) / 1000).ToString("0.###");
 
                 _minTempItem = up.Items.OrderBy(i => i.Temperature).FirstOrDefault();
                 _maxTempItem = up.Items.OrderBy(i => i.Temperature).LastOrDefault();
-                _avgTemp = (up.Items.Select(c => c.Temperature).Sum() / up.Items.Count).ToString();
+                var totalTemp = up.Items.Select(c => c.Temperature).Sum();
+                var averageTemp = totalTemp / totalitems;
+                _avgTemp = Convert.ToDecimal(((Convert.ToDecimal(_maxTempItem.Temperature) - Convert.ToDecimal(averageTemp / totalitems)) / 1000)).ToString("0.###");
+                _maxTemp = ((Convert.ToDecimal(_maxTempItem.Temperature) - Convert.ToDecimal(_minTempItem.Temperature)) / 1000).ToString("0.###");
+
+                foreach (UpsInformation upInformation in up.Items)
+                {
+                    _ups.Add(upInformation);
+                }
             }
-            
-            
         }
 
         #region Properties
+
+        public ICallsView View { get; set; }
 
         private ObservableCollection<UpsInformation> _ups = new ObservableCollection<UpsInformation>();
         public ObservableCollection<UpsInformation> Ups
@@ -84,6 +85,19 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _ups, value);
+            }
+        }
+
+        private DateTimeOffset _dateNow;
+        public DateTimeOffset DateNow
+        {
+            get
+            {
+                return _dateNow;
+            }
+            set
+            {
+                SetProperty(ref _dateNow, value);
             }
         }
 
@@ -149,6 +163,30 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _avgIR, value);
+            }
+        }
+        private string _maxIR;
+        public string MaxIR
+        {
+            get
+            {
+                return _maxIR;
+            }
+            set
+            {
+                SetProperty(ref _maxIR, value);
+            }
+        }
+        private string _maxTemp;
+        public string MaxTemp
+        {
+            get
+            {
+                return _maxTemp;
+            }
+            set
+            {
+                SetProperty(ref _maxTemp, value);
             }
         }
 

@@ -11,7 +11,7 @@
     xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
     x:Class="enertect.UI.Pages.UpInformationDetailPage">
     <ContentPage.Content>
-        <Grid RowSpacing="10">
+        <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
@@ -29,7 +29,7 @@
                            TabHeaderPosition="Top"
                            VisibleHeaderCount="2"
                            DisplayMode="Text">
-                <tabView:SfTabItem Title="String Overview" x:Name="tabitem">
+                <tabView:SfTabItem Title="String Overview" TitleFontSize="Medium" x:Name="tabitem">
                     <tabView:SfTabItem.Content>
                         <ScrollView>
                         <StackLayout>
@@ -86,7 +86,7 @@
                                 <Frame BorderColor="#6696E9"
                                         Padding="0,0"
                                         HasShadow="False"
-                                        Margin="8,0,8,8"
+                                        Margin="24,0,24,8"
                                         CornerRadius="1">
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
 
@@ -159,7 +159,7 @@
                                 <Frame BorderColor="#6696E9"
                                         Padding="0,0"
                                         HasShadow="False"
-                                        Margin="8,0,8,8"
+                                        Margin="24,0,24,8"
                                         CornerRadius="1">
                                     <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
 
@@ -215,7 +215,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Deviation(mΩ):" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="0" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxIR}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
 
@@ -231,7 +231,7 @@
                                 <Frame BorderColor="#6696E9"
                                         Padding="0,0"
                                         HasShadow="False"
-                                        Margin="8,0,8,8"
+                                        Margin="24,0,24,8"
                                         CornerRadius="1">
                                     <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
 
@@ -287,7 +287,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Deviation(°c):" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="0" TextColor="#6696E9"/>
+                                                <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxTemp}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
 
@@ -303,11 +303,11 @@
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
-                <tabView:SfTabItem Title="Battery Details" x:Name="tabitem1">
+                <tabView:SfTabItem Title="Battery Details" TitleFontSize="Medium" x:Name="tabitem1">
                     <tabView:SfTabItem.Content>
                         <ScrollView>
                             <StackLayout >
-                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" Text="Resitance, Voltage, Temperature Dashboard - 18 March 2020" TextColor="Black"/>
+                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" Text="{Binding DateNow, StringFormat='Resitance, Voltage, Temperature Dashboard - {0:dd MMM yyyy}'}" TextColor="Black"/>
                             <chart:SfChart x:Name="Chart" HeightRequest="300" VerticalOptions="Center" HorizontalOptions="Center">
                                 <chart:SfChart.Margin>
                                     <OnPlatform x:TypeArguments="Thickness" WinPhone="0,0,15,0" />
@@ -326,7 +326,7 @@
                                     </chart:CategoryAxis>
                                 </chart:SfChart.PrimaryAxis>
                                 <chart:SfChart.SecondaryAxis>
-                                    <chart:NumericalAxis Maximum="30" Minimum="0" Interval="10">
+                                    <chart:NumericalAxis Maximum="30" Minimum="0" Interval="5">
                                         <chart:NumericalAxis.AxisLineStyle>
                                             <chart:ChartLineStyle StrokeWidth="0">
                                             </chart:ChartLineStyle>
@@ -388,14 +388,8 @@
                     
                                 </chart:SfChart.Series>
                             </chart:SfChart>
-                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,0" HorizontalOptions="Center" FontSize="Medium" Text="Battery No" TextColor="Gray"/>
-                            <Frame 
-                                        HasShadow="False"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="CenterAndExpand"
-                                   Margin="0,4"
-                                        CornerRadius="0.5">
-                                <Grid Padding="2"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                            <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0" HorizontalOptions="Center" FontSize="Medium" Text="Battery No" TextColor="Gray"/>
+                            <Grid Padding="2" WidthRequest="240"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                                     <Grid.ColumnDefinitions>
                                          <ColumnDefinition Width="*"/>
                                          <ColumnDefinition Width="*"/>
@@ -410,17 +404,16 @@
                                     <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="15.00" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="10.80" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding MaxVolItem.Voltage}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding MinVolItem.Voltage}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="2" TextColor="White" FontSize="Small" Text="IR" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="8.50" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="0.00" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding MaxIRItem.Resitance}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding MinIRItem.Resitance}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="35.0" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="15.0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MaxTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MinTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
-                                </Grid>
-                            </Frame>
+                            </Grid>
                         </StackLayout>
                         </ScrollView>
                     </tabView:SfTabItem.Content>
