@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using enertect.Core.Data.Models;
+using enertect.Core.Helpers;
 using enertect.Core.Services;
 using enertect.Core.Services.Interfaces;
 using enertect.Core.ViewModels;
@@ -8,6 +10,8 @@ using Flurl.Http;
 using MvvmCross;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace enertect.UI
 {
@@ -17,7 +21,16 @@ namespace enertect.UI
         {
             base.Initialize();
 
-            RegisterCustomAppStart<CustomMvxAppStart<UpsInformationViewModel>>();
+            var user_pre= Preferences.Get(AppConstant.USER_TOKEN, "");
+            User user = JsonConvert.DeserializeObject<User>(user_pre);
+            if (user == null)
+            {
+                RegisterCustomAppStart<CustomMvxAppStart<SignInViewModel>>();
+            }
+            else
+            {
+                RegisterCustomAppStart<CustomMvxAppStart<UpsInformationViewModel>>();
+            }
 
             FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(20));
 

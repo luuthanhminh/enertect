@@ -15,7 +15,9 @@
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
                 <Label  Text="Ups Informations" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0"  Text="Sign Out" FontSize="Small" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"/>
             </Grid>
+
             
             <syncfusion:SfListView x:Name="lsVoucher"
                                    Grid.Row="1"
@@ -77,8 +79,9 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-            <Label Grid.RowSpan="1" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding HasNoData}"/>
-
+            
+            <Label Grid.Row="1" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            
             <ActivityIndicator
                 Grid.RowSpan="2"
                

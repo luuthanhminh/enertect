@@ -14,6 +14,7 @@ namespace enertect.Core.Helpers
             {
                 ParentViewModel = viewModel,
                 UpsName = item.UpsName,
+                UpsId = item.UpsId,
                 StringName = item.UpsId.ToString(),
                 UpsInformation = item,
             };

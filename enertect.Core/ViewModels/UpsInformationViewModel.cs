@@ -105,6 +105,15 @@ namespace enertect.Core.ViewModels
 
         #region Commands
 
+        public IMvxAsyncCommand SignOutCommand => new MvxAsyncCommand(SignOut);
+
+        private async Task SignOut()
+        {
+            Preferences.Set(AppConstant.USER_TOKEN, "");
+
+            await ClearStackAndNavigateToPage<SignInViewModel>();
+        }
+
         public IMvxAsyncCommand<UpsItemViewModel> TapItemCommand => new MvxAsyncCommand<UpsItemViewModel>(GoToDetail);
 
         async Task GoToDetail(UpsItemViewModel vmItem)

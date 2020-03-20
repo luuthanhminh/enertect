@@ -7,7 +7,7 @@
     x:TypeArguments="viewModels:SignInViewModel"
     x:Class="enertect.UI.Pages.SignInPage">
     <ContentPage.Content>
-        <Grid RowSpacing="20">
+        <Grid RowSpacing="20" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="44"/>
@@ -17,8 +17,44 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="White" Padding="0,30,0,0">
-                <Label Text="{Binding UserName}" FontSize="Title" TextColor="Purple" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Text="Sign In" FontSize="Title" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
+            
+            <StackLayout Grid.Row="1" Margin="20,0">
+                <Entry
+				    Placeholder="Username"
+                    TextColor="Black"
+                    Text="{Binding UserName}"
+				    FontSize="16"
+				    HeightRequest="44" />
+                
+            </StackLayout>
+            <StackLayout Grid.Row="2" Margin="20,0">
+                <Entry
+                    IsPassword="True"
+                    FontSize="16"
+                    TextColor="Black"
+                    Placeholder="Password"
+                    Text="{Binding Password}"
+				    HeightRequest="44" />
+            </StackLayout>
+            <StackLayout Grid.Row="3" Margin="20,0">
+                <Button BackgroundColor="#6696E9" Margin="16,0,16,0"
+                        TextColor="White" HeightRequest="40"
+                        WidthRequest="120"
+                        Text="Sign In"
+                        Command="{Binding SignInCommand}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="4" Margin="20,0">
+                <ActivityIndicator
+                Grid.RowSpan="3"
+               
+                               Color="#6696E9"  
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               IsVisible="{Binding IsLoading}" 
+                               IsRunning="{Binding IsLoading}"/>
+            </StackLayout>
          </Grid>
     </ContentPage.Content>
 </views:BasePage>

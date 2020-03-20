@@ -9,6 +9,7 @@ using System.Linq;
 using enertect.Core.Data.Models.Ups;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace enertect.Core.ViewModels
 {
@@ -30,12 +31,15 @@ namespace enertect.Core.ViewModels
         {
             await base.Initialize();
 
+            GetUpLimit(this.UpID);
+
         }
 
         public override void Prepare(UpsItemViewModel parameter)
         {
             _dateNow = DateTime.Now;
             _upsName = parameter.UpsInformation.UpsName;
+            this.UpID = parameter.UpsId;
             var item = parameter.UpsInformation;
             if (item.Items.Count > 0)
             {
@@ -74,6 +78,21 @@ namespace enertect.Core.ViewModels
         #region Properties
 
         public ICallsView View { get; set; }
+
+        public int UpID { get; set; }
+
+        private UpLimit _upLimit;
+        public UpLimit UpLimit
+        {
+            get
+            {
+                return _upLimit;
+            }
+            set
+            {
+                SetProperty(ref _upLimit, value);
+            }
+        }
 
         private ObservableCollection<UpsInformation> _ups = new ObservableCollection<UpsInformation>();
         public ObservableCollection<UpsInformation> Ups
@@ -285,10 +304,40 @@ namespace enertect.Core.ViewModels
 
         #endregion
 
+        #region Methods
+
+        async Task GetUpLimit(int UpId)
+        {
+            try
+            {
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    var res = await _apiService.getUpLimit(UpId);
+
+                    if (res.IsSuccess)
+                    {
+                        this.UpLimit = res.ResponseObject;
+                    }
+                    else
+                    {
+                        await _dialogService.ShowMessage("Error", String.Join(Environment.NewLine, res.Errors), "Close");
+                    }
+                }
+                else
+                {
+                    await _dialogService.ShowMessage("Error", "No internet access", "Close");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowMessage("Error", ex.Message, "Close");
+            }
+
+        }
+        #endregion
+
         #region Commands
-
-
-
         #endregion
     }
 }

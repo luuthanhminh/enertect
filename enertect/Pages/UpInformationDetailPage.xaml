@@ -404,11 +404,11 @@
                                     <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding MaxVolItem.Voltage}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding MinVolItem.Voltage}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="2" TextColor="White" FontSize="Small" Text="IR" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding MaxIRItem.Resitance}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding MinIRItem.Resitance}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MaxTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MinTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
