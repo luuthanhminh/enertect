@@ -1,5 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="enertect.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             mc:Ignorable="d"
+             x:Class="enertect.App">
     <Application.Resources>
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>       
+             <chart:ChartColorCollection x:Key="ChartColors">
+                <Color>#99b433</Color>
+                <Color>#00a300</Color>
+                <Color>#1e7145</Color>
+                 <Color>#ff0097</Color>
+                 <Color>#9f00a7</Color>
+                 <Color>#7e3878</Color>
+                 <Color>#603cba</Color>
+                 <Color>#00aba9</Color> 
+                 <Color>#eff4a1</Color>
+                 <Color>#2d89ef</Color>
+                 <Color>#2b5797</Color>
+                 <Color>#ffc40d</Color>
+                 <Color>#e3a21a</Color>
+                 <Color>#da532c</Color>
+                 <Color>#ee1111</Color>
+                 <Color>#b91d47</Color>
+            
+                 <Color>#DACB96</Color>
+                <Color>#38C1A4</Color>
+                <Color>#EB9A7F</Color>
+                <Color>#CDA17A</Color>
+                <Color>#B24B48</Color>
+                <Color>#F95C46</Color>
+                <Color>#E63737</Color>
+                <Color>#D7C3CE</Color>
+                <Color>#CD776D</Color>
+                <Color>#B47C89</Color>
+                <Color>#826B85</Color>
+                <Color>#7BA2CB</Color>
+            
+                 <Color>#6A4A82</Color>
+                <Color>#544684</Color>
+                <Color>#425484</Color>
+                <Color>#532846</Color>
+                <Color>#71C4E0</Color>
+                <Color>#4991AF</Color>
+                <Color>#2788AE</Color>
+                <Color>#264CA4</Color>
+                <Color>#2055A0</Color>
+                <Color>#DAC8B6</Color>
+                <Color>#5D8C87</Color>
+                <Color>#436F87</Color>
+                
+            </chart:ChartColorCollection>
+         </ResourceDictionary>
     </Application.Resources>
 </Application>

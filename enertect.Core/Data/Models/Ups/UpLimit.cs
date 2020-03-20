@@ -9,5 +9,7 @@ namespace enertect.Core.Data.Models.Ups
         public double VolDown { get; set; }
         public double IrUp { get; set; }
         public double IrDown { get; set; }
+        public double TempUp { get; set; }
+        public double TempDown { get; set; }
     }
 }

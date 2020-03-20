@@ -10,6 +10,7 @@ using enertect.Core.Data.Models.Ups;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Xamarin.Essentials;
+using enertect.Core.Helpers;
 
 namespace enertect.Core.ViewModels
 {
@@ -32,7 +33,6 @@ namespace enertect.Core.ViewModels
             await base.Initialize();
 
             GetUpLimit(this.UpID);
-
         }
 
         public override void Prepare(UpsItemViewModel parameter)
@@ -316,7 +316,11 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        this.UpLimit = res.ResponseObject;
+                        this.UpLimit = res.ResponseObject.ToUpLimit();
+                        if (this.View != null)
+                        {
+                            this.View.BindingChart(this);
+                        }
                     }
                     else
                     {

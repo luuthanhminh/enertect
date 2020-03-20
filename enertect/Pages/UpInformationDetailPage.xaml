@@ -340,52 +340,12 @@
                                     </chart:NumericalAxis>
                                 </chart:SfChart.SecondaryAxis>
                                 <chart:SfChart.Legend>
-                                    <chart:ChartLegend DockPosition="Bottom" ToggleSeriesVisibility="True" IconWidth="14" IconHeight="14" />
+                                    <chart:ChartLegend OverflowMode="Wrap" DockPosition="Bottom" ToggleSeriesVisibility="True" IconWidth="14" IconHeight="14" />
                                 </chart:SfChart.Legend>
                                 <chart:SfChart.ColorModel>
                                     <chart:ChartColorModel Palette="Natural" />
                                 </chart:SfChart.ColorModel>
                                 <chart:SfChart.Series>
-                                    <chart:SplineSeries Color="#00bdae"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Resitance" StrokeWidth="2" Label="Resitance" LegendIcon="SeriesType" >
-                                        <chart:SplineSeries.DataMarker>
-                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#00bdae" MarkerBorderWidth="2" MarkerColor="#00bdae">
-                                                <chart:ChartDataMarker.MarkerWidth>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
-                                                </chart:ChartDataMarker.MarkerWidth>
-                                                <chart:ChartDataMarker.MarkerHeight>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
-                                                </chart:ChartDataMarker.MarkerHeight>
-                                            </chart:ChartDataMarker>
-                                        </chart:SplineSeries.DataMarker>
-                        
-                                    </chart:SplineSeries>
-                                    <chart:SplineSeries Color="#98C862"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Temperature" StrokeWidth="2" Label="Temperature" LegendIcon="SeriesType" >
-                                        <chart:SplineSeries.DataMarker>
-                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#98C862" MarkerBorderWidth="2" MarkerColor="#98C862">
-                                                <chart:ChartDataMarker.MarkerWidth>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
-                                                </chart:ChartDataMarker.MarkerWidth>
-                                                <chart:ChartDataMarker.MarkerHeight>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
-                                                </chart:ChartDataMarker.MarkerHeight>
-                                            </chart:ChartDataMarker>
-                                        </chart:SplineSeries.DataMarker>
-                        
-                                    </chart:SplineSeries>
-                                    <chart:SplineSeries Color="#F3584F"  ItemsSource="{Binding Ups}" XBindingPath="StringName" YBindingPath="Voltage" StrokeWidth="2" Label="Voltage" LegendIcon="SeriesType" >
-                                        <chart:SplineSeries.DataMarker>
-                                            <chart:ChartDataMarker ShowLabel="false" ShowMarker="true" MarkerBorderColor="#F3584F" MarkerBorderWidth="2" MarkerColor="#F3584F">
-                                                <chart:ChartDataMarker.MarkerWidth>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4"/>
-                                                </chart:ChartDataMarker.MarkerWidth>
-                                                <chart:ChartDataMarker.MarkerHeight>
-                                                    <OnPlatform x:TypeArguments="x:Double" Android="4" iOS="4" />
-                                                </chart:ChartDataMarker.MarkerHeight>
-                                            </chart:ChartDataMarker>
-                                        </chart:SplineSeries.DataMarker>
-                        
-                                    </chart:SplineSeries>
-                    
                                 </chart:SfChart.Series>
                             </chart:SfChart>
                             <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0" HorizontalOptions="Center" FontSize="Medium" Text="Battery No" TextColor="Gray"/>
@@ -410,8 +370,8 @@
                                     <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MaxTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding MinTempItem.Temperature}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding UpLimit.TempUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding UpLimit.TempDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                             </Grid>
                         </StackLayout>

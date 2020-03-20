@@ -19,5 +19,13 @@ namespace enertect.Core.Helpers
                 UpsInformation = item,
             };
         }
+
+        public static UpLimit ToUpLimit(this UpLimit item)
+        {
+            UpLimit limit = item;
+            limit.TempUp = AppConstant.TEMP_UP;
+            limit.TempDown = AppConstant.TEMP_DOWN;
+            return limit;
+        }
     }
 }
