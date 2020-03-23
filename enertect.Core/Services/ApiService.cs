@@ -54,6 +54,17 @@ namespace enertect.Core.Services
             return await DoGetList<UpsInformation>($"{EndPoint}{UPSIN_ENDPOINT}");
         }
 
+        public async Task<ApiResponse<UpLimit>> getUpLimitHistory(int upID, DateTimeOffset start, DateTimeOffset end)
+        {
+            var url = $"{EndPoint}{LIMIT_ENDPOINT}".SetQueryParams(new
+            {
+                date = start.ToString("MM/dd/yyyy"),
+                endDate = end.ToString("MM/dd/yyyy"),
+                upsId = upID
+            });
+            return await DoGet<UpLimit>(url);
+        }
+
         public async Task<ApiResponse<UpLimit>> getUpLimit(int upID)
         {
             return await DoGet<UpLimit>($"{EndPoint}{LIMIT_ENDPOINT}{upID}");

@@ -17,6 +17,8 @@ namespace enertect.Core.ViewModels
     public interface ICallsViewHistory
     {
         void BindingChart(IList<UpsInformation> datas);
+        void ShowStartDate();
+        void ShowEndDate();
     }
 
     public class HistoryUpInformationViewModel : BaseWithObjectViewModel<UpsItemViewModel>
@@ -31,15 +33,15 @@ namespace enertect.Core.ViewModels
         public override async Task Initialize()
         {
             await base.Initialize();
-            
-            GetHistory(this.UpID, DateTime.Now.AddMonths(-3), DateTime.Now);
-            GetUpLimit(this.UpID);
+            LoadData(StartDate, EndDate);
         }
 
         public override void Prepare(UpsItemViewModel parameter)
         {
             this.UpID = parameter.UpsId;
             _hasNoData = true;
+            StartDate = DateTime.Now.AddDays(-7);
+            EndDate = DateTime.Now;
 
         }
 
@@ -48,6 +50,32 @@ namespace enertect.Core.ViewModels
         public ICallsViewHistory View { get; set; }
 
         public int UpID { get; set; }
+
+        private DateTime _startDate;
+        public DateTime StartDate
+        {
+            get
+            {
+                return _startDate;
+            }
+            set
+            {
+                SetProperty(ref _startDate, value);
+            }
+        }
+
+        private DateTime _endDate;
+        public DateTime EndDate
+        {
+            get
+            {
+                return _endDate;
+            }
+            set
+            {
+                SetProperty(ref _endDate, value);
+            }
+        }
 
         private bool _hasNoData;
         public bool HasNoData
@@ -145,13 +173,21 @@ namespace enertect.Core.ViewModels
 
         #region Methods
 
-        async Task GetUpLimit(int UpId)
+        void LoadData(DateTime start, DateTime end)
+        {
+           StartDate = start;
+           EndDate = end;
+           GetHistory(this.UpID, StartDate, EndDate);
+           GetUpLimit(this.UpID, StartDate, EndDate);
+        }
+
+        async Task GetUpLimit(int UpId, DateTimeOffset start, DateTimeOffset end)
         {
             try
             {
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    var res = await _apiService.getUpLimit(UpId);
+                    var res = await _apiService.getUpLimitHistory(UpId, start, end);
 
                     if (res.IsSuccess)
                     {
@@ -230,27 +266,53 @@ namespace enertect.Core.ViewModels
 
         #region Commands
 
-        public IMvxAsyncCommand TapOneWeekCommand => new MvxAsyncCommand(GetWeekHistory);
+        public IMvxCommand TapOneWeekCommand => new MvxCommand(GetWeekHistory);
 
-        async Task GetWeekHistory()
+        void GetWeekHistory()
         {
-            await GetHistory(this.UpID, DateTime.Now.AddDays(-7), DateTime.Now);
+            LoadData(DateTime.Now.AddDays(-7), DateTime.Now);
         }
 
-        public IMvxAsyncCommand TapOneMonthCommand => new MvxAsyncCommand(GetMonthHistory);
+        public IMvxCommand TapOneMonthCommand => new MvxCommand(GetMonthHistory);
 
-        async Task GetMonthHistory()
+        void GetMonthHistory()
         {
-            await GetHistory(this.UpID, DateTime.Now.AddMonths(-1), DateTime.Now);
+            LoadData(DateTime.Now.AddMonths(-1), DateTime.Now);
         }
 
-        public IMvxAsyncCommand TapThreeMonthCommand => new MvxAsyncCommand(GetThreeHistory);
+        public IMvxCommand TapThreeMonthCommand => new MvxCommand(GetThreeHistory);
 
-        async Task GetThreeHistory()
+        void GetThreeHistory()
         {
-            await GetHistory(this.UpID, DateTime.Now.AddMonths(-3), DateTime.Now);
+            LoadData(DateTime.Now.AddMonths(-3), DateTime.Now);
         }
 
+        public IMvxCommand TapLoadHistoryCommand => new MvxCommand(GetLoadHistory);
+
+        void GetLoadHistory()
+        {
+            LoadData(StartDate, EndDate);
+        }
+
+        public IMvxCommand TapDobStartCommand => new MvxCommand(showDoBStartDate);
+
+        void showDoBStartDate()
+        {
+            if(View != null)
+            {
+                View.ShowStartDate();
+            }
+        }
+
+        public IMvxCommand TapDobEndCommand => new MvxCommand(showDoBEndDate);
+
+        void showDoBEndDate()
+        {
+            if (View != null)
+            {
+                View.ShowEndDate();
+            }
+        }
 
         #endregion
     }

@@ -93,5 +93,25 @@ namespace enertect.UI.Pages
             base.OnViewModelSet();
             this.ViewModel.View = this;
         }
+
+        public void ShowStartDate()
+        {
+            DoBStartPicker.IsVisible |= Device.RuntimePlatform == Device.Android;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                DoBStartPicker.Focus();
+                DoBStartPicker.IsVisible = false;
+            });
+        }
+
+        public void ShowEndDate()
+        {
+            DoBEndPicker.IsVisible |= Device.RuntimePlatform == Device.Android;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                DoBEndPicker.Focus();
+                DoBEndPicker.IsVisible = false;
+            });
+        }
     }
 }

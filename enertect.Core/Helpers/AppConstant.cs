@@ -8,5 +8,6 @@ namespace enertect.Core.Helpers
         public const string USER_TOKEN = "USER_TOKEN";
         public const double TEMP_UP = 35;
         public const double TEMP_DOWN = 15;
+        public const double ONE_WEEK = 15;
     }
 }

@@ -14,6 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
@@ -33,15 +34,67 @@
 
                 </Grid>
             </StackLayout>
+            <StackLayout Grid.Row="2" Margin="20,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="From Date:" TextColor="#6D757D" FontSize="14"/>
+                    <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <DatePicker
+                            IsVisible="false"
+                            Date="{Binding StartDate}"
+                            x:Name="DoBStartPicker"
+                            BackgroundColor="Transparent"
+                            Opacity="0" />
+                        <Button Command="{Binding TapDobStartCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                            TextColor="#6D757D" HeightRequest="30" WidthRequest="120" Text="{Binding StartDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="End Date:" TextColor="#6D757D" FontSize="14"/>
+                    <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <DatePicker
+                            IsVisible="false"
+                            Date="{Binding EndDate}"
+                            x:Name="DoBEndPicker"
+                            BackgroundColor="Transparent"
+                            Opacity="0"/>
+                        <Button Command="{Binding TapDobEndCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                            TextColor="#6D757D" HeightRequest="30" WidthRequest="120" Text="{Binding EndDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                    </Grid>
+                </Grid>
+                <Button Command="{Binding TapLoadHistoryCommand}" BackgroundColor="#60B760" Margin="0, 8" HorizontalOptions="Center"
+                            TextColor="White" HeightRequest="24" WidthRequest="140" Text="Load History"/>
+                <BoxView HeightRequest="0.5" BackgroundColor="#6D757D"/>
+                
+            </StackLayout>
             <ActivityIndicator
-                Grid.Row="2"
+                Grid.Row="3"
                 Color="#6696E9"  
                 HorizontalOptions="Center" 
                 VerticalOptions="Center" 
                 IsVisible="{Binding IsLoading}" 
                 IsRunning="{Binding IsLoading}"/>
-            <Label Grid.Row="2" Text="No records found for the selected Date" TextColor="Gray" FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
-            <ScrollView Grid.Row="2" IsVisible="{Binding HasData}" BackgroundColor="White">
+            <Label Grid.Row="3" Text="No records found for the selected Date" TextColor="Gray" FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <ScrollView Grid.Row="3" IsVisible="{Binding HasData}" BackgroundColor="White">
                 <StackLayout >
                     <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center"/>
