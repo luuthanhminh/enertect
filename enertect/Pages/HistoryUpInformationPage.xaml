@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:enertect.UI.Pages.Base;assembly=enertect.UI"
+    xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+    x:TypeArguments="viewModels:HistoryUpInformationViewModel"
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+                x:Class="enertect.UI.Pages.HistoryUpInformationPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="10" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
+                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label  Text="Battery Trends" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <ScrollView Grid.Row="1">
+                <StackLayout >
+                    <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                    <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center">
+                                
+                    </chart:SfChart>
+                    <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                    <chart:SfChart x:Name="ResChart" VerticalOptions="Center" HorizontalOptions="Center">
+                                
+                    </chart:SfChart>
+                    <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                    <chart:SfChart x:Name="TempChart" VerticalOptions="Center" HorizontalOptions="Center">
+                                
+                    </chart:SfChart>
+
+                 </StackLayout>
+
+            </ScrollView>
+            
+         </Grid>
+    </ContentPage.Content>
+</views:BasePage>

@@ -14,7 +14,7 @@ namespace enertect.UI.Pages
             InitializeComponent();
         }
 
-        public void BindingChart(UpInformationDetailViewModel viewModel)
+        public void BindingChart()
         {
             if(this.Chart != null)
             {
@@ -36,7 +36,7 @@ namespace enertect.UI.Pages
 
                     FastLineSeries columnSeries = new FastLineSeries()
                     {
-                        ItemsSource = viewModel.Ups,
+                        ItemsSource = ViewModel.Ups,
                         XBindingPath = "StringName",
                         YBindingPath = value,
                         Color = color,

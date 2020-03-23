@@ -9,7 +9,8 @@ namespace enertect.Core.Services.Interfaces
     public interface IApiService
     {
         Task<ApiResponse<UpsInformation>> getUpsInfornations();
-        Task<ApiResponse<User>> SignIn(String username, String password);
+        Task<ApiResponse<UpsInformation>> getHistoryUpsInfornations(int upID, DateTimeOffset start, DateTimeOffset end);
+        Task<ApiResponse<User>> SignIn(string username, string password);
         Task<ApiResponse<UpLimit>> getUpLimit(int upID);
     }
 }

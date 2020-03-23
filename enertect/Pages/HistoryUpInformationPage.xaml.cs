@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using enertect.Core.Data.Models.Ups;
+using enertect.Core.ViewModels;
+using enertect.UI.Pages.Base;
+using Syncfusion.SfChart.XForms;
+using Xamarin.Forms;
+
+namespace enertect.UI.Pages
+{
+    public partial class HistoryUpInformationPage : BasePage<HistoryUpInformationViewModel>, ICallsViewHistory
+    {
+        public HistoryUpInformationPage()
+        {
+            InitializeComponent();
+        }
+
+        public void BindingChart(IList<UpsInformation> datas)
+        {
+            ChartColorCollection colors = (ChartColorCollection)App.Current.Resources["ChartColors"];
+            RenderChart(VolChart, datas, colors, "Voltage", 13.6, 13.44, 0.02);
+            RenderChart(ResChart, datas, colors, "Resitance", 7, 0, 1);
+            RenderChart(TempChart, datas, colors, "Temperature", 29, 20, 1);
+        }
+
+        void RenderChart(SfChart chart, IList<UpsInformation> datas, ChartColorCollection colors, string value,
+            double max, double min, double interval)
+        {
+            if (chart != null)
+            {
+                chart.HeightRequest = 400;
+                for (int i = 0; i < datas.Count; i++)
+                {
+                    Color color = colors[i];
+                    //string value = "Voltage";
+                    FastLineSeries columnSeries = new FastLineSeries()
+                    {
+                        ItemsSource = datas[i].UpsHistoryTrendings,
+                        XBindingPath = "DateValue",
+                        YBindingPath = value,
+                        Color = color,
+                        StrokeWidth = 1,
+                        Label = i.ToString(),
+                        LegendIcon = ChartLegendIcon.Rectangle,
+                        DataMarker = new ChartDataMarker()
+                        {
+                            ShowMarker = true,
+                            ShowLabel = false,
+                            MarkerBorderColor = color,
+                            MarkerBorderWidth = 0,
+                            MarkerColor = color,
+                            MarkerWidth = 3,
+                            MarkerHeight = 3
+                        }
+                    };
+                    chart.PrimaryAxis = new CategoryAxis()
+                    {
+                        LabelPlacement = LabelPlacement.BetweenTicks,
+                        ShowMajorGridLines = false
+                    };
+                    chart.SecondaryAxis = new NumericalAxis()
+                    {
+                        Maximum = max,
+                        Minimum = min,
+                        Interval = interval,
+                        AxisLineStyle = new ChartLineStyle()
+                        {
+                            StrokeWidth = 0
+                        },
+                        MajorTickStyle = new ChartAxisTickStyle()
+                        {
+                            TickSize = 0
+                        }
+                    };
+                    chart.Legend = new ChartLegend()
+                    {
+                        OverflowMode = ChartLegendOverflowMode.Wrap,
+                        DockPosition = LegendPlacement.Top,
+                        IconHeight = 10,
+                        IconWidth = 10,
+                        ToggleSeriesVisibility = true
+                    };
+                    chart.Series.Add(columnSeries);
+                }
+
+            }
+        }
+
+        protected override void OnViewModelSet()
+        {
+            base.OnViewModelSet();
+            this.ViewModel.View = this;
+        }
+    }
+}

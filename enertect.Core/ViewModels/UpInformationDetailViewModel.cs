@@ -16,7 +16,7 @@ namespace enertect.Core.ViewModels
 {
     public interface ICallsView
     {
-        void BindingChart(UpInformationDetailViewModel viewModel);
+        void BindingChart();
     }
 
     public class UpInformationDetailViewModel : BaseWithObjectViewModel<UpsItemViewModel>
@@ -25,21 +25,22 @@ namespace enertect.Core.ViewModels
 
         public UpInformationDetailViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IApiService apiService) : base(navigationService, dialogService)
         {
-            this._apiService = apiService; 
+            _apiService = apiService; 
         }
 
         public override async Task Initialize()
         {
             await base.Initialize();
 
-            GetUpLimit(this.UpID);
+            GetUpLimit(UpID);
         }
 
         public override void Prepare(UpsItemViewModel parameter)
         {
             _dateNow = DateTime.Now;
+            _itemViewModel = parameter;
             _upsName = parameter.UpsInformation.UpsName;
-            this.UpID = parameter.UpsId;
+            UpID = parameter.UpsId;
             var item = parameter.UpsInformation;
             if (item.Items.Count > 0)
             {
@@ -80,6 +81,19 @@ namespace enertect.Core.ViewModels
         public ICallsView View { get; set; }
 
         public int UpID { get; set; }
+
+        private UpsItemViewModel _itemViewModel;
+        public UpsItemViewModel ItemViewModel
+        {
+            get
+            {
+                return _itemViewModel;
+            }
+            set
+            {
+                SetProperty(ref _itemViewModel, value);
+            }
+        }
 
         private UpLimit _upLimit;
         public UpLimit UpLimit
@@ -316,10 +330,10 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        this.UpLimit = res.ResponseObject.ToUpLimit();
-                        if (this.View != null)
+                        UpLimit = res.ResponseObject.ToUpLimit();
+                        if (View != null)
                         {
-                            this.View.BindingChart(this);
+                            View.BindingChart();
                         }
                     }
                     else
@@ -339,9 +353,19 @@ namespace enertect.Core.ViewModels
             }
 
         }
+
         #endregion
 
         #region Commands
+
+        public IMvxAsyncCommand TapHistoryCommand => new MvxAsyncCommand(GoToHistory);
+
+        async Task GoToHistory()
+        {
+            await _navigationService.Navigate<HistoryUpInformationViewModel, UpsItemViewModel>(ItemViewModel);
+        }
+
+
         #endregion
     }
 }

@@ -5,6 +5,7 @@ using enertect.Core.Data.Models;
 using enertect.Core.Data.Models.Ups;
 using enertect.Core.Helpers;
 using enertect.Core.Services.Interfaces;
+using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
@@ -21,6 +22,7 @@ namespace enertect.Core.Services
         #region EndPoints
         const string UPSIN_ENDPOINT = "Upsinformations/Get";
         const string LIMIT_ENDPOINT = "upsinformations/GetUpsLimits?upsId=";
+        const string HISTORY_ENDPOINT = "upsinformations/GetTrendingHistory?date=01/12/2019&endDate=01/03/2020&upsId=1";
         const string SIGN_IN_ENDPOINT = AppConstant.API_ENDPOINT + "auth/login";
         #endregion
 
@@ -32,6 +34,18 @@ namespace enertect.Core.Services
                 this.User = JsonConvert.DeserializeObject<User>(userPre);
                 this.EndPoint = User.ApiEndpoint;
             }
+        }
+
+        public async Task<ApiResponse<UpsInformation>> getHistoryUpsInfornations(int upID, DateTimeOffset start, DateTimeOffset end)
+        {
+            var url = $"{EndPoint}{HISTORY_ENDPOINT}".SetQueryParams(new
+            {
+                date = "12/23/2019",
+                endDate = "03/23/2020",
+                upsId = 1
+            });
+
+            return await DoGetList<UpsInformation>(url);
         }
 
         public async Task<ApiResponse<UpsInformation>> getUpsInfornations()
