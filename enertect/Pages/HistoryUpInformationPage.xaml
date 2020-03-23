@@ -19,24 +19,74 @@
                 <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
                 <Label  Text="Battery Trends" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
-            <ScrollView Grid.Row="1">
+            <ActivityIndicator
+                Grid.Row="1"
+                Color="#6696E9"  
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" 
+                IsVisible="{Binding IsLoading}" 
+                IsRunning="{Binding IsLoading}"/>
+            <ScrollView Grid.Row="1" IsVisible="{Binding HasNoData}" BackgroundColor="White">
                 <StackLayout >
                     <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
-                    <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center">
-                                
-                    </chart:SfChart>
-                    <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
-                    <chart:SfChart x:Name="ResChart" VerticalOptions="Center" HorizontalOptions="Center">
-                                
-                    </chart:SfChart>
-                    <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
-                    <chart:SfChart x:Name="TempChart" VerticalOptions="Center" HorizontalOptions="Center">
-                                
-                    </chart:SfChart>
+                    <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Grid Padding="2" WidthRequest="240"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                       </Grid>
+                    <Label Text="{Binding ResistanceHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                    <chart:SfChart x:Name="ResChart" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Grid Padding="2" WidthRequest="240"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Resitance" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                       </Grid>
+                    <Label Text="{Binding TemperatureHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                    <chart:SfChart x:Name="TempChart" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Grid Padding="2" WidthRequest="240" Margin="0,0,0,40"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="35" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="15" VerticalOptions="Center" HorizontalOptions="Center"/>
+                       </Grid>
 
                  </StackLayout>
 
             </ScrollView>
+            
             
          </Grid>
     </ContentPage.Content>

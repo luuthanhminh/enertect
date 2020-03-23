@@ -19,7 +19,7 @@ namespace enertect.UI.Pages
         public void BindingChart(IList<UpsInformation> datas)
         {
             ChartColorCollection colors = (ChartColorCollection)App.Current.Resources["ChartColors"];
-            RenderChart(VolChart, datas, colors, "Voltage", 13.6, 13.44, 0.02);
+            RenderChart(VolChart, datas, colors, "Voltage", 13.6, 13.4, 0.02);
             RenderChart(ResChart, datas, colors, "Resitance", 7, 0, 1);
             RenderChart(TempChart, datas, colors, "Temperature", 29, 20, 1);
         }

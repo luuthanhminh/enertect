@@ -38,11 +38,12 @@ namespace enertect.Core.Services
 
         public async Task<ApiResponse<UpsInformation>> getHistoryUpsInfornations(int upID, DateTimeOffset start, DateTimeOffset end)
         {
+        
             var url = $"{EndPoint}{HISTORY_ENDPOINT}".SetQueryParams(new
             {
-                date = "12/23/2019",
-                endDate = "03/23/2020",
-                upsId = 1
+                date = start.ToString("MM/dd/yyyy"),
+                endDate = end.ToString("MM/dd/yyyy"),
+                upsId = upID
             });
 
             return await DoGetList<UpsInformation>(url);
