@@ -21,16 +21,16 @@
                 <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
                 <Label  Text="Battery Trends History" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
-            <StackLayout Grid.Row="1" Margin="8, 0">
+            <StackLayout Grid.Row="1" Margin="8, 0" BackgroundColor="White">
                 <Grid ColumnSpacing="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneWeekCommand}"  Text="One Week" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
-                    <Button Grid.Column="1" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneMonthCommand}"  Text="One Month" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
-                    <Button Grid.Column="2" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapThreeMonthCommand}" Text="Three Months" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+                    <Button BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneWeekCommand}"  Text="One Week" FontSize="13" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+                    <Button Grid.Column="1" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneMonthCommand}"  Text="One Month" FontSize="13" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+                    <Button Grid.Column="2" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapThreeMonthCommand}" Text="Three Months" FontSize="13" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
 
                 </Grid>
             </StackLayout>
@@ -41,9 +41,9 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="From Date:" TextColor="#6D757D" FontSize="14"/>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="From Date:" TextColor="#6D757D" FontSize="16"/>
                     <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -54,8 +54,8 @@
                             x:Name="DoBStartPicker"
                             BackgroundColor="Transparent"
                             Opacity="0" />
-                        <Button Command="{Binding TapDobStartCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
-                            TextColor="#6D757D" HeightRequest="30" WidthRequest="120" Text="{Binding StartDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                        <Button BackgroundColor="Transparent" Command="{Binding TapDobStartCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                            TextColor="#6D757D" WidthRequest="120" Text="{Binding StartDate, StringFormat='{0:MM/dd/yyyy}'}"/>
                     </Grid>
                 </Grid>
                 <Grid>
@@ -64,9 +64,9 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="End Date:" TextColor="#6D757D" FontSize="14"/>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="End Date:" TextColor="#6D757D" FontSize="16"/>
                     <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -77,12 +77,12 @@
                             x:Name="DoBEndPicker"
                             BackgroundColor="Transparent"
                             Opacity="0"/>
-                        <Button Command="{Binding TapDobEndCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
-                            TextColor="#6D757D" HeightRequest="30" WidthRequest="120" Text="{Binding EndDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                        <Button BackgroundColor="Transparent" Command="{Binding TapDobEndCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                            TextColor="#6D757D" WidthRequest="120" Text="{Binding EndDate, StringFormat='{0:MM/dd/yyyy}'}"/>
                     </Grid>
                 </Grid>
                 <Button Command="{Binding TapLoadHistoryCommand}" BackgroundColor="#60B760" Margin="0, 8" HorizontalOptions="Center"
-                            TextColor="White" HeightRequest="24" WidthRequest="140" Text="Load History"/>
+                            TextColor="White" WidthRequest="140" Text="Load History"/>
                 <BoxView HeightRequest="0.5" BackgroundColor="#6D757D"/>
                 
             </StackLayout>
@@ -93,6 +93,13 @@
                 VerticalOptions="Center" 
                 IsVisible="{Binding IsLoading}" 
                 IsRunning="{Binding IsLoading}"/>
+            <ActivityIndicator
+                Grid.Row="3"
+                Color="#6696E9"  
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" 
+                IsVisible="{Binding HasData}" 
+                IsRunning="{Binding HasData}"/>
             <Label Grid.Row="3" Text="No records found for the selected Date" TextColor="Gray" FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
             <ScrollView Grid.Row="3" IsVisible="{Binding HasData}" BackgroundColor="White">
                 <StackLayout >
