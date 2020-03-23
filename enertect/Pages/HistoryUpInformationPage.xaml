@@ -13,20 +13,35 @@
         <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
                 <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <Label  Text="Battery Trends" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label  Text="Battery Trends History" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
+            <StackLayout Grid.Row="1" Margin="8, 0">
+                <Grid ColumnSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneWeekCommand}"  Text="One Week" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+                    <Button Grid.Column="1" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapOneMonthCommand}"  Text="One Month" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+                    <Button Grid.Column="2" BackgroundColor="#6D757D"  HeightRequest="40"  Command="{Binding TapThreeMonthCommand}" Text="Three Months" FontSize="Small" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center"/>
+
+                </Grid>
+            </StackLayout>
             <ActivityIndicator
-                Grid.Row="1"
+                Grid.Row="2"
                 Color="#6696E9"  
                 HorizontalOptions="Center" 
                 VerticalOptions="Center" 
                 IsVisible="{Binding IsLoading}" 
                 IsRunning="{Binding IsLoading}"/>
-            <ScrollView Grid.Row="1" IsVisible="{Binding HasNoData}" BackgroundColor="White">
+            <Label Grid.Row="2" Text="No records found for the selected Date" TextColor="Gray" FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <ScrollView Grid.Row="2" IsVisible="{Binding HasData}" BackgroundColor="White">
                 <StackLayout >
                     <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center"/>

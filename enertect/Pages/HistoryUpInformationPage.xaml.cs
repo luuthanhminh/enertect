@@ -30,6 +30,7 @@ namespace enertect.UI.Pages
             if (chart != null)
             {
                 chart.HeightRequest = 400;
+                chart.Series.Clear();
                 for (int i = 0; i < datas.Count; i++)
                 {
                     Color color = colors[i];

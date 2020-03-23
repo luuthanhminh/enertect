@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using System.Linq;
 using enertect.Core.Helpers;
 using System.Collections.Generic;
+using MvvmCross.Commands;
 
 namespace enertect.Core.ViewModels
 {
@@ -38,6 +39,7 @@ namespace enertect.Core.ViewModels
         public override void Prepare(UpsItemViewModel parameter)
         {
             this.UpID = parameter.UpsId;
+            _hasNoData = true;
 
         }
 
@@ -56,7 +58,21 @@ namespace enertect.Core.ViewModels
             }
             set
             {
+                HasData = !value;
                 SetProperty(ref _hasNoData, value);
+            }
+        }
+
+        private bool _hasData;
+        public bool HasData
+        {
+            get
+            {
+                return _hasData;
+            }
+            set
+            {
+                SetProperty(ref _hasData, value);
             }
         }
 
@@ -168,7 +184,7 @@ namespace enertect.Core.ViewModels
             {
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    HasNoData = false;
+                    HasNoData = true;
                     ShowLoading();
                     var res = await _apiService.getHistoryUpsInfornations(UpId, start, end);
 
@@ -176,7 +192,6 @@ namespace enertect.Core.ViewModels
                     {
                         if (res.ResponseListObject.Count > 0)
                         {
-                            HasNoData = true;
                             UpInfoHistory = new ObservableCollection<UpsInformation>(res.ResponseListObject[0].UpsHistoryTrendings.Select(v=>v.ConvertDate()));
                             foreach (UpsInformation up in UpInfoHistory)
                             {
@@ -186,9 +201,8 @@ namespace enertect.Core.ViewModels
                             {
                                 View.BindingChart(UpInfoHistory);
                             }
-
+                            HasNoData = false;
                         }
-                        
                     }
                     else
                     {
@@ -207,10 +221,36 @@ namespace enertect.Core.ViewModels
             }
             finally
             {
-                //HideLoading();
+                HideLoading();
             }
 
         }
+
+        #endregion
+
+        #region Commands
+
+        public IMvxAsyncCommand TapOneWeekCommand => new MvxAsyncCommand(GetWeekHistory);
+
+        async Task GetWeekHistory()
+        {
+            await GetHistory(this.UpID, DateTime.Now.AddDays(-7), DateTime.Now);
+        }
+
+        public IMvxAsyncCommand TapOneMonthCommand => new MvxAsyncCommand(GetMonthHistory);
+
+        async Task GetMonthHistory()
+        {
+            await GetHistory(this.UpID, DateTime.Now.AddMonths(-1), DateTime.Now);
+        }
+
+        public IMvxAsyncCommand TapThreeMonthCommand => new MvxAsyncCommand(GetThreeHistory);
+
+        async Task GetThreeHistory()
+        {
+            await GetHistory(this.UpID, DateTime.Now.AddMonths(-3), DateTime.Now);
+        }
+
 
         #endregion
     }

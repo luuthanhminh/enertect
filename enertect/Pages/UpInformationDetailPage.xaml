@@ -374,7 +374,7 @@
                                     <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding UpLimit.TempDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                             </Grid>
-                            <Button BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapHistoryCommand}" Margin="0, 8"  Text="Battery Trends" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Button BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapHistoryCommand}" Margin="0, 8"  Text="Battery Trends" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </StackLayout>
                         </ScrollView>
                     </tabView:SfTabItem.Content>
