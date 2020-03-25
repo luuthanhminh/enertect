@@ -9,5 +9,6 @@ namespace enertect.Core.Helpers
         public const double TEMP_UP = 35;
         public const double TEMP_DOWN = 15;
         public const double ONE_WEEK = 15;
+        public const int PAGE_SIZE = 20;
     }
 }

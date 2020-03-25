@@ -11,18 +11,22 @@
         <Grid RowSpacing="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
                 <Label  Text="Ups Informations" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Button BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0"  Text="Sign Out" FontSize="Small" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"/>
             </Grid>
-
+            <Grid Grid.Row="1" Margin="4,0">
+                <Button BackgroundColor="Transparent" Command="{Binding AlarmDetailCommand}" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center"/>
+            </Grid>
             
             <syncfusion:SfListView x:Name="lsVoucher"
-                                   Grid.Row="1"
+                                   Grid.Row="2"
                                    ItemSize="60"
-                                   ItemSpacing="10"
+                                   ItemSpacing="5"
                                    DragStartMode="None"
                                    BackgroundColor="Transparent"
                                    SelectionMode="Single"
@@ -80,16 +84,16 @@
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
             
-            <Label Grid.Row="1" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <Label Grid.Row="2" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
             
             <ActivityIndicator
-                Grid.RowSpan="2"
-               
+                Grid.Row="2"
                                Color="#6696E9"  
                                HorizontalOptions="Center" 
                                VerticalOptions="Center" 
                                IsVisible="{Binding IsLoading}" 
                                IsRunning="{Binding IsLoading}"/>
+            
 
         </Grid>
     </ContentPage.Content>

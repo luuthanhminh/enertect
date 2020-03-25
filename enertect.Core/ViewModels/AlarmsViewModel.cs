@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ using Xamarin.Essentials;
 
 namespace enertect.Core.ViewModels
 {
-    public class UpsInformationViewModel : BaseViewModel
+    public class AlarmsViewModel: BaseWithObjectViewModel<UpsViewModel>
     {
         readonly IApiService _apiService;
 
-        public UpsInformationViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IApiService apiService) : base(navigationService, dialogService)
+        public AlarmsViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IApiService apiService) : base(navigationService, dialogService)
         {
             this._apiService = apiService;
         }
@@ -24,22 +25,41 @@ namespace enertect.Core.ViewModels
         public override async Task Initialize()
         {
             await base.Initialize();
-
             LoadData();
+        }
+
+        public override void Prepare(UpsViewModel parameter)
+        {
+            Ups = parameter.Ups.ToList();
         }
 
         #region Properties
 
-        private ObservableCollection<UpsItemViewModel> _ups = new ObservableCollection<UpsItemViewModel>();
-        public ObservableCollection<UpsItemViewModel> Ups
+        public IList<UpsItemViewModel> Ups { get; set; }
+
+        private ObservableCollection<AlarmItemViewModel> _alarmDatas = new ObservableCollection<AlarmItemViewModel>();
+        public ObservableCollection<AlarmItemViewModel> AlarmDatas
         {
             get
             {
-                return _ups;
+                return _alarmDatas;
             }
             set
             {
-                SetProperty(ref _ups, value);
+                SetProperty(ref _alarmDatas, value);
+            }
+        }
+
+        private ObservableCollection<AlarmItemViewModel> _alarms = new ObservableCollection<AlarmItemViewModel>();
+        public ObservableCollection<AlarmItemViewModel> Alarms
+        {
+            get
+            {
+                return _alarms;
+            }
+            set
+            {
+                SetProperty(ref _alarms, value);
             }
         }
 
@@ -69,15 +89,16 @@ namespace enertect.Core.ViewModels
                 {
                     // Connection to internet is available
                     HasNoData = false;
-                    this.Ups.Clear();
+                    this.Alarms.Clear();
                     ShowLoading();
 
-                    var res = await _apiService.getUpsInfornations();
+                    var res = await _apiService.getAlarms();
 
                     if (res.IsSuccess)
                     {
-                        var ups = res.ResponseListObject;
-                        this.Ups = new ObservableCollection<UpsItemViewModel>(ups.Select(v => v.ToItemViewModel(this)));
+                        var alarms = res.ResponseObject.Data.OrderByDescending(e=>e.AlarmDate);
+                        AlarmDatas = new ObservableCollection<AlarmItemViewModel>(alarms.Select(v => v.ToAlarmItemViewModel(Ups)));
+                        Alarms = new ObservableCollection<AlarmItemViewModel>(AlarmDatas.Take(AppConstant.PAGE_SIZE));
                     }
                     else
                     {
@@ -88,7 +109,7 @@ namespace enertect.Core.ViewModels
                 {
                     await _dialogService.ShowMessage("Error", "No internet access", "Close");
                 }
-                HasNoData = this.Ups.Count == 0;
+                HasNoData = this.Alarms.Count == 0;
 
             }
             catch (Exception ex)
@@ -98,7 +119,6 @@ namespace enertect.Core.ViewModels
             finally
             {
                 HideLoading();
-                
             }
 
         }
@@ -106,32 +126,22 @@ namespace enertect.Core.ViewModels
 
         #region Commands
 
-        public IMvxAsyncCommand SignOutCommand => new MvxAsyncCommand(SignOut);
+        public IMvxCommand LoadMoreItemsCommand => new MvxCommand(LoadMoreItems);
 
-        private async Task SignOut()
+        private void LoadMoreItems()
         {
-            Preferences.Set(AppConstant.USER_TOKEN, "");
+            if (AlarmDatas.Any())
+            {
+                var start = Alarms.Count - 1;
+                var lenght = start + AppConstant.PAGE_SIZE < AlarmDatas.Count ? start + AppConstant.PAGE_SIZE : AlarmDatas.Count;
+                for (int i = start; i < lenght; i++)
+                {
+                    Alarms.Add(AlarmDatas[i]);
+                }
 
-            await ClearStackAndNavigateToPage<SignInViewModel>();
+            }
+            
         }
-
-        public IMvxAsyncCommand<UpsItemViewModel> TapItemCommand => new MvxAsyncCommand<UpsItemViewModel>(GoToDetail);
-
-        async Task GoToDetail(UpsItemViewModel vmItem)
-        {
-            await _navigationService.Navigate<UpInformationDetailViewModel, UpsItemViewModel>(vmItem);
-
-        }
-
-        public IMvxAsyncCommand AlarmDetailCommand => new MvxAsyncCommand(GoToAlarm);
-
-        private async Task GoToAlarm()
-        {
-            var ViewModel = new UpsViewModel() { Ups = this.Ups };
-            await _navigationService.Navigate<AlarmsViewModel, UpsViewModel>(ViewModel);
-        }
-
         #endregion
-
     }
 }

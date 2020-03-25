@@ -16,7 +16,7 @@ namespace enertect.Core.ViewModels
 {
     public interface ICallsViewHistory
     {
-        void BindingChart(IList<UpsInformation> datas);
+        void BindingChart(IList<UpsItemViewModel> datas);
         void ShowStartDate();
         void ShowEndDate();
     }
@@ -104,8 +104,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpLimit _upLimit;
-        public UpLimit UpLimit
+        private UpLimitViewModel _upLimit;
+        public UpLimitViewModel UpLimit
         {
             get
             {
@@ -117,8 +117,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private ObservableCollection<UpsInformation> _upInfoHistory = new ObservableCollection<UpsInformation>();
-        public ObservableCollection<UpsInformation> UpInfoHistory
+        private ObservableCollection<UpsItemViewModel> _upInfoHistory = new ObservableCollection<UpsItemViewModel>();
+        public ObservableCollection<UpsItemViewModel> UpInfoHistory
         {
             get
             {
@@ -191,7 +191,7 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        UpLimit = res.ResponseObject.ToUpLimit();
+                        UpLimit = res.ResponseObject.ToUpLimitViewModel();
                     }
                     else
                     {
@@ -226,13 +226,9 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        if (res.ResponseListObject.Count > 0)
+                        if (res.ResponseListObject.Any())
                         {
-                            UpInfoHistory = new ObservableCollection<UpsInformation>(res.ResponseListObject[0].UpsHistoryTrendings.Select(v=>v.ConvertDate()));
-                            foreach (UpsInformation up in UpInfoHistory)
-                            {
-                                up.UpsHistoryTrendings.Select(v => v.ConvertDate());
-                            }
+                            UpInfoHistory = new ObservableCollection<UpsItemViewModel>(res.ResponseListObject.First().UpsHistoryTrendings.Select(v=>v.ToItemViewModel()));
                             if (View != null)
                             {
                                 View.BindingChart(UpInfoHistory);

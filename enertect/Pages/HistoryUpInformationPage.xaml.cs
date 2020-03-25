@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using enertect.Core.Data.ItemViewModels;
 using enertect.Core.Data.Models.Ups;
 using enertect.Core.ViewModels;
 using enertect.UI.Pages.Base;
@@ -16,7 +17,7 @@ namespace enertect.UI.Pages
             InitializeComponent();
         }
 
-        public void BindingChart(IList<UpsInformation> datas)
+        public void BindingChart(IList<UpsItemViewModel> datas)
         {
             ChartColorCollection colors = (ChartColorCollection)App.Current.Resources["ChartColors"];
             RenderChart(VolChart, datas, colors, "Voltage", 13.6, 13.4, 0.02);
@@ -24,7 +25,7 @@ namespace enertect.UI.Pages
             RenderChart(TempChart, datas, colors, "Temperature", 29, 20, 1);
         }
 
-        void RenderChart(SfChart chart, IList<UpsInformation> datas, ChartColorCollection colors, string value,
+        void RenderChart(SfChart chart, IList<UpsItemViewModel> datas, ChartColorCollection colors, string value,
             double max, double min, double interval)
         {
             if (chart != null)

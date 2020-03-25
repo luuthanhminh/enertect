@@ -39,12 +39,11 @@ namespace enertect.Core.ViewModels
         {
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
-            _upsName = parameter.UpsInformation.UpsName;
+            _upsName = parameter.UpsName;
             UpID = parameter.UpsId;
-            var item = parameter.UpsInformation;
-            if (item.Items.Count > 0)
+            if (parameter.Items.Count > 0)
             {
-                var up = item.Items.First();
+                var up = parameter.Items.First();
                 var totalitems = up.Items.Count;
                 var totalvoltage = up.Items.Select(c => c.Voltage).Sum();
                 var averageVoltage = totalvoltage / totalitems;
@@ -69,7 +68,7 @@ namespace enertect.Core.ViewModels
                 _avgTemp = Convert.ToDecimal(((Convert.ToDecimal(_maxTempItem.Temperature) - Convert.ToDecimal(averageTemp / totalitems)) / 1000)).ToString("0.###");
                 _maxTemp = ((Convert.ToDecimal(_maxTempItem.Temperature) - Convert.ToDecimal(_minTempItem.Temperature)) / 1000).ToString("0.###");
 
-                foreach (UpsInformation upInformation in up.Items)
+                foreach (UpsItemViewModel upInformation in up.Items)
                 {
                     _ups.Add(upInformation);
                 }
@@ -95,8 +94,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpLimit _upLimit;
-        public UpLimit UpLimit
+        private UpLimitViewModel _upLimit;
+        public UpLimitViewModel UpLimit
         {
             get
             {
@@ -108,8 +107,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private ObservableCollection<UpsInformation> _ups = new ObservableCollection<UpsInformation>();
-        public ObservableCollection<UpsInformation> Ups
+        private ObservableCollection<UpsItemViewModel> _ups = new ObservableCollection<UpsItemViewModel>();
+        public ObservableCollection<UpsItemViewModel> Ups
         {
             get
             {
@@ -236,8 +235,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _minVolItem;
-        public UpsInformation MinVolItem
+        private UpsItemViewModel _minVolItem;
+        public UpsItemViewModel MinVolItem
         {
             get
             {
@@ -249,8 +248,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _maxVolItem;
-        public UpsInformation MaxVolItem
+        private UpsItemViewModel _maxVolItem;
+        public UpsItemViewModel MaxVolItem
         {
             get
             {
@@ -262,8 +261,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _minIRItem;
-        public UpsInformation MinIRItem
+        private UpsItemViewModel _minIRItem;
+        public UpsItemViewModel MinIRItem
         {
             get
             {
@@ -275,8 +274,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _maxIRItem;
-        public UpsInformation MaxIRItem
+        private UpsItemViewModel _maxIRItem;
+        public UpsItemViewModel MaxIRItem
         {
             get
             {
@@ -288,8 +287,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _minTempItem;
-        public UpsInformation MinTempItem
+        private UpsItemViewModel _minTempItem;
+        public UpsItemViewModel MinTempItem
         {
             get
             {
@@ -301,8 +300,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private UpsInformation _maxTempItem;
-        public UpsInformation MaxTempItem
+        private UpsItemViewModel _maxTempItem;
+        public UpsItemViewModel MaxTempItem
         {
             get
             {
@@ -330,7 +329,7 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        UpLimit = res.ResponseObject.ToUpLimit();
+                        UpLimit = res.ResponseObject.ToUpLimitViewModel();
                         if (View != null)
                         {
                             View.BindingChart();

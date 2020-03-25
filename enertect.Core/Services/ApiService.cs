@@ -23,6 +23,7 @@ namespace enertect.Core.Services
         const string UPSIN_ENDPOINT = "Upsinformations/Get";
         const string LIMIT_ENDPOINT = "upsinformations/GetUpsLimits?upsId=";
         const string HISTORY_ENDPOINT = "upsinformations/GetTrendingHistory?date=01/12/2019&endDate=01/03/2020&upsId=1";
+        const string ALARM_ENDPOINT = "alarms/Get";
         const string SIGN_IN_ENDPOINT = AppConstant.API_ENDPOINT + "auth/login";
         #endregion
 
@@ -70,7 +71,7 @@ namespace enertect.Core.Services
             return await DoGet<UpLimit>($"{EndPoint}{LIMIT_ENDPOINT}{upID}");
         }
 
-        public async Task<ApiResponse<User>> SignIn(String username, String password)
+        public async Task<ApiResponse<User>> SignIn(string username, string password)
         {
             var body = new Dictionary<string, string>
             {
@@ -78,6 +79,11 @@ namespace enertect.Core.Services
                 { "Password", password }
             };
             return await DoPost<User>(SIGN_IN_ENDPOINT, body);
+        }
+
+        public async Task<ApiResponse<AlarmsInfo>> getAlarms()
+        {
+            return await DoGet<AlarmsInfo>($"{EndPoint}{ALARM_ENDPOINT}");
         }
 
         #region Methods
@@ -221,6 +227,8 @@ namespace enertect.Core.Services
 
             return result;
         }
+
+        
         #endregion
     }
 }

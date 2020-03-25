@@ -4,6 +4,8 @@ using System.Linq;
 using enertect.UI;
 using Foundation;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
 using UIKit;
 
 namespace enertect.iOS
@@ -25,6 +27,8 @@ namespace enertect.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();
             Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();

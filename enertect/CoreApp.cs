@@ -41,7 +41,6 @@ namespace enertect.UI
 
             #endregion
 
-
         }
     }
 
