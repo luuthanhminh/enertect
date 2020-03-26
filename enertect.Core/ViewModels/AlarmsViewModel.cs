@@ -39,6 +39,8 @@ namespace enertect.Core.ViewModels
             UpsName = "";
             AlertValue = "";
             ResolveValue = "";
+            AlarmDateValue = "";
+            ResolvedDateValue = "";
             LoadData();
         }
 
@@ -64,9 +66,10 @@ namespace enertect.Core.ViewModels
             {
                 if(_searchValue != value)
                 {
-                    FilterData(value.Trim().ToLower());
+                    
                 }
                 SetProperty(ref _searchValue, value);
+                FilterData();
             }
         }
 
@@ -137,20 +140,21 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _alarmDate, value);
-                AlertDateValue = _alarmDate.ToString("dd-MM-yyyy");
+                AlarmDateValue = _alarmDate.ToString("dd-MM-yyyy");
             }
         }
 
-        private string _alertDateValue;
-        public string AlertDateValue
+        private string _alarmDateValue;
+        public string AlarmDateValue
         {
             get
             {
-                return _alertDateValue;
+                return _alarmDateValue;
             }
             set
             {
-                SetProperty(ref _alertDateValue, value);
+                SetProperty(ref _alarmDateValue, value);
+                FilterData();
             }
         }
 
@@ -177,6 +181,7 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _resolvedDateValue, value);
+                FilterData();
             }
         }
 
@@ -266,33 +271,28 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        void FilterData(string key = "")
+        void FilterData()
         {
             if (OriginalDatas != null && OriginalDatas.Any())
             {
-                var FilterData = new List<AlarmItemViewModel>();
-                if (String.IsNullOrEmpty(key))
-                {
-                    FilterData = OriginalDatas.Where(e => e.AlertType.ToLower().Contains(AlertType.ToLower())
+                var key = SearchValue.Trim().ToLower();
+                var FilterData = OriginalDatas.Where(e => e.AlertType.ToLower().Contains(AlertType.ToLower())
                    && e.UpsName.ToLower().Contains(UpsName.ToLower())
                    && e.AlertValue.ToString().Contains(AlertValue)
-                   && e.ResolveValue.ToString().Contains(ResolveValue)).ToList();
-                }
-                else
-                {
-                    FilterData = OriginalDatas.Where(e => e.AlertType.ToLower().Contains(key)
+                   && e.AlarmDate.Contains(AlarmDateValue)
+                   && e.ResolvedDate.ToString().Contains(ResolvedDateValue)
+                   && e.ResolveValue.ToString().Contains(ResolveValue)
+                   && (e.AlertType.ToLower().Contains(key)
                     || e.UpsName.ToLower().Contains(key)
                     || e.StringName.ToLower().Contains(key)
                     || e.AlertValue.ToString().Contains(key)
-                    || e.ResolveValue.ToString().Contains(key)).ToList();
-                }
+                    || e.ResolveValue.ToString().Contains(key))
+                   ).ToList();
 
                 AlarmDatas = new ObservableCollection<AlarmItemViewModel>(FilterData);
                 Alarms = new ObservableCollection<AlarmItemViewModel>(AlarmDatas.Take(AlarmDatas.Count > AppConstant.PAGE_SIZE ? AppConstant.PAGE_SIZE : AlarmDatas.Count));
             } 
         }
-
-
 
         #endregion
 

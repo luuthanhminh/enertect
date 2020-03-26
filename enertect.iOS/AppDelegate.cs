@@ -6,6 +6,7 @@ using Foundation;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.EffectsView;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
 namespace enertect.iOS
@@ -29,6 +30,7 @@ namespace enertect.iOS
             LoadApplication(new App());
             SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
+            SfTextInputLayoutRenderer.Init();
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();
             Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
