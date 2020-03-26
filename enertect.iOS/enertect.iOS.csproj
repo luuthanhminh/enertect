@@ -118,6 +118,10 @@
     <ImageAsset Include="Assets.xcassets\ic_calendar.imageset\baseline_event_black_36dp-1.png" />
     <ImageAsset Include="Assets.xcassets\ic_calendar.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_calendar.imageset\ic_calendar.png" />
+    <ImageAsset Include="Assets.xcassets\ic_fillter.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_fillter.imageset\ic_filter.png" />
+    <ImageAsset Include="Assets.xcassets\ic_fillter.imageset\ic_filter-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_fillter.imageset\ic_filter-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -147,6 +151,7 @@
   <ItemGroup>
     <Folder Include="Presenter\" />
     <Folder Include="Assets.xcassets\ic_calendar.imageset\" />
+    <Folder Include="Assets.xcassets\ic_fillter.imageset\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

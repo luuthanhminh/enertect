@@ -55,6 +55,19 @@ namespace enertect.Core.ViewModels
         public IList<UpsItemViewModel> Ups { get; set; }
         public IList<AlarmItemViewModel> OriginalDatas { get; set; }
 
+        private bool _ssFilter;
+        public bool IsFilter
+        {
+            get
+            {
+                return _ssFilter;
+            }
+            set
+            {
+                SetProperty(ref _ssFilter, value);
+            }
+        }
+
         private string _searchValue;
         public string SearchValue
         {
@@ -333,6 +346,13 @@ namespace enertect.Core.ViewModels
             {
                 View.ShowResolvedDate();
             }
+        }
+
+        public IMvxCommand TapFilterCommand => new MvxCommand(ShowFilter);
+
+        void ShowFilter()
+        {
+            IsFilter = !IsFilter;
         }
 
         #endregion

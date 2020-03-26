@@ -16,15 +16,17 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-        <Grid RowSpacing="10" BackgroundColor="White">
+        <Grid RowSpacing="4" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="0"  Text="Back" FontSize="14" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0"  Text="Back" FontSize="14" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
                 <Label  Text="Alarm Details" FontSize="16" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button HorizontalOptions="End" Margin="0,0,16,0" BackgroundColor="Transparent" Command="{Binding TapFilterCommand}" 
+                                TextColor="#6D757D" WidthRequest="20" HeightRequest="20" ImageSource="ic_fillter"/>
             </Grid>
 
             <StackLayout Grid.Row="1" Margin="4,0">
@@ -41,8 +43,8 @@
 
                     </Entry>
                 </inputLayout:SfTextInputLayout>
-                <StackLayout Grid.Row="2" Margin="0">
-                    <Grid>
+                <StackLayout Grid.Row="2" Margin="0" IsVisible="{Binding IsFilter}">
+                    <Grid RowSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -68,7 +70,7 @@
                             TextColor="#6D757D" WidthRequest="120" Text="{Binding AlarmDateValue}"/>
                         </inputLayout:SfTextInputLayout>
                         <Button HorizontalOptions="End" Margin="4" BackgroundColor="Transparent" Command="{Binding TapDoBAlarmCommand}" 
-                            TextColor="#6D757D" WidthRequest="24" HeightRequest="24" ImageSource="ic_calendar"/>
+                            TextColor="#6D757D" WidthRequest="20" HeightRequest="20" ImageSource="ic_calendar"/>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="0">
                         <DatePicker
@@ -84,7 +86,7 @@
                                 TextColor="#6D757D" WidthRequest="120" Text="{Binding ResolvedDateValue}"/>
                                 </inputLayout:SfTextInputLayout>
                             <Button HorizontalOptions="End" Margin="4" BackgroundColor="Transparent" Command="{Binding TapDoBResolvedCommand}" 
-                                TextColor="#6D757D" WidthRequest="24" HeightRequest="24" ImageSource="ic_calendar"/>
+                                TextColor="#6D757D" WidthRequest="20" HeightRequest="20" ImageSource="ic_calendar"/>
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1">
                         
