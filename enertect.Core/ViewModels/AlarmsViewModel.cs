@@ -137,6 +137,20 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _alarmDate, value);
+                AlertDateValue = _alarmDate.ToString("dd-MM-yyyy");
+            }
+        }
+
+        private string _alertDateValue;
+        public string AlertDateValue
+        {
+            get
+            {
+                return _alertDateValue;
+            }
+            set
+            {
+                SetProperty(ref _alertDateValue, value);
             }
         }
 
@@ -150,6 +164,19 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _resolvedDate, value);
+                ResolvedDateValue = _resolvedDate.ToString("dd-MM-yyyy");
+            }
+        }
+        private string _resolvedDateValue;
+        public string ResolvedDateValue
+        {
+            get
+            {
+                return _resolvedDateValue;
+            }
+            set
+            {
+                SetProperty(ref _resolvedDateValue, value);
             }
         }
 

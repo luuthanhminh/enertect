@@ -31,10 +31,10 @@
 				    Placeholder="Search..."
                     TextColor="Black"
                     Text="{Binding SearchValue}"
-				    FontSize="16"
+				    FontSize="14"
                     Keyboard="Plain"
                     ClearButtonVisibility="WhileEditing"
-				    HeightRequest="44">
+				    HeightRequest="40">
                 </Entry>
                 <StackLayout Grid.Row="2" Margin="4,0">
                     <Grid HeightRequest="30">
@@ -53,8 +53,10 @@
                                 x:Name="DoBAlarmPicker"
                                 BackgroundColor="Transparent"
                                 Opacity="0" />
-                            <Button FontSize="Small" BackgroundColor="Transparent" Command="{Binding TapDoBAlarmCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
-                                TextColor="#6D757D" WidthRequest="120" Text="{Binding AlarmDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                            <Entry FontSize="Small" BackgroundColor="Transparent" Margin="0"
+                                TextColor="#6D757D" WidthRequest="120" Text="{Binding AlertDateValue}"/>
+                            <Button HorizontalOptions="End" Margin="4" BackgroundColor="Transparent" Command="{Binding TapDoBAlarmCommand}" 
+                                TextColor="#6D757D" WidthRequest="24" HeightRequest="24" ImageSource="ic_calendar"/>
                         </Grid>
                     </Grid>
                     <Grid HeightRequest="30">
@@ -73,8 +75,10 @@
                                 Date="{Binding ResolvedDate}"
                                 BackgroundColor="Transparent"
                                 Opacity="0" />
-                            <Button FontSize="Small" BackgroundColor="Transparent" Command="{Binding TapDoBResolvedCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
-                                TextColor="#6D757D" WidthRequest="120" Text="{Binding ResolvedDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                            <Entry FontSize="Small" BackgroundColor="Transparent" Margin="0"
+                                TextColor="#6D757D" WidthRequest="120" Text="{Binding ResolvedDateValue}"/>
+                            <Button HorizontalOptions="End" Margin="4" BackgroundColor="Transparent" Command="{Binding TapDoBResolvedCommand}" 
+                                TextColor="#6D757D" WidthRequest="24" HeightRequest="24" ImageSource="ic_calendar"/>
                         </Grid>
                     </Grid>
                     <Grid HeightRequest="30">
@@ -90,9 +94,8 @@
                             Text="{Binding AlertType}"
 				            FontSize="Small"
                             Keyboard="Plain"
-                            HorizontalTextAlignment="Center"
                             ClearButtonVisibility="WhileEditing"
-				            HeightRequest="44">
+				            HeightRequest="30">
                         </Entry>
                     </Grid>
                     <Grid HeightRequest="30">
@@ -103,14 +106,13 @@
                         <Label Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="UPSName:" TextColor="#6D757D" FontSize="Small"/>
                         <Entry
                             Grid.Column="1"
-				            Placeholder="UPSNAME..."
+				            Placeholder="UpsName..."
                             TextColor="Black"
                             Text="{Binding UpsName}"
 				            FontSize="Small"
                             Keyboard="Plain"
-                            HorizontalTextAlignment="Center"
                             ClearButtonVisibility="WhileEditing"
-				            HeightRequest="44">
+				            HeightRequest="30">
                         </Entry>
                     </Grid>
                     <Grid HeightRequest="30">
@@ -126,9 +128,8 @@
                             Text="{Binding AlertValue}"
 				            FontSize="Small"
                             Keyboard="Numeric"
-                            HorizontalTextAlignment="Center"
                             ClearButtonVisibility="WhileEditing"
-				            HeightRequest="44">
+				            HeightRequest="30">
                         </Entry>
                     </Grid>
                     <Grid HeightRequest="30">
@@ -144,9 +145,8 @@
                             Text="{Binding ResolveValue}"
 				            FontSize="Small"
                             Keyboard="Numeric"
-                            HorizontalTextAlignment="Center"
                             ClearButtonVisibility="WhileEditing"
-				            HeightRequest="44">
+				            HeightRequest="30">
                         </Entry>
                     </Grid>
                     
