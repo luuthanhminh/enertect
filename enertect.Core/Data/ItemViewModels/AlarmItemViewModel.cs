@@ -5,6 +5,19 @@ namespace enertect.Core.Data.ItemViewModels
     {
         public bool Initilaze { get; set; }
 
+        private string _color;
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                SetProperty(ref _color, value);
+            }
+        }
+
         private string _alarmDate;
         public string AlarmDate
         {
@@ -67,6 +80,19 @@ namespace enertect.Core.Data.ItemViewModels
             set
             {
                 SetProperty(ref _alertValue, value);
+            }
+        }
+
+        private double? _resolveValue;
+        public double? ResolveValue
+        {
+            get
+            {
+                return _resolveValue;
+            }
+            set
+            {
+                SetProperty(ref _resolveValue, value);
             }
         }
 

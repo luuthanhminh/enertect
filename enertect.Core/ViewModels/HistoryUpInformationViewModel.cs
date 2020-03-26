@@ -38,7 +38,7 @@ namespace enertect.Core.ViewModels
 
         public override void Prepare(UpsItemViewModel parameter)
         {
-            this.UpID = parameter.UpsId;
+            UpID = parameter.UpsId;
             _hasNoData = true;
             StartDate = DateTime.Now.AddDays(-7);
             EndDate = DateTime.Now;

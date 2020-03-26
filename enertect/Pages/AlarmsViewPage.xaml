@@ -18,6 +18,7 @@
         <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
@@ -25,8 +26,137 @@
                 <Label  Text="Alarm Details" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
 
+            <StackLayout Grid.Row="1" Margin="4,0">
+                <Entry
+				    Placeholder="Search..."
+                    TextColor="Black"
+                    Text="{Binding SearchValue}"
+				    FontSize="16"
+                    Keyboard="Plain"
+                    ClearButtonVisibility="WhileEditing"
+				    HeightRequest="44">
+                </Entry>
+                <StackLayout Grid.Row="2" Margin="4,0">
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="Alarm Date:" TextColor="#6D757D" FontSize="Small"/>
+                        <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <DatePicker
+                                IsVisible="false"
+                                Date="{Binding AlarmDate}"
+                                x:Name="DoBAlarmPicker"
+                                BackgroundColor="Transparent"
+                                Opacity="0" />
+                            <Button FontSize="Small" BackgroundColor="Transparent" Command="{Binding TapDoBAlarmCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                                TextColor="#6D757D" WidthRequest="120" Text="{Binding AlarmDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="Problem Resolved Date:" TextColor="#6D757D" FontSize="Small"/>
+                        <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <DatePicker
+                                IsVisible="false"
+                                x:Name="DoBResolvedPicker"
+                                Date="{Binding ResolvedDate}"
+                                BackgroundColor="Transparent"
+                                Opacity="0" />
+                            <Button FontSize="Small" BackgroundColor="Transparent" Command="{Binding TapDoBResolvedCommand}" BorderColor="#6D757D" BorderWidth="0.5" Margin="0"
+                                TextColor="#6D757D" WidthRequest="120" Text="{Binding ResolvedDate, StringFormat='{0:MM/dd/yyyy}'}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="Alert Type:" TextColor="#6D757D" FontSize="Small"/>
+                        <Entry
+                            Grid.Column="1"
+				            Placeholder="Alert Type..."
+                            TextColor="Black"
+                            Text="{Binding AlertType}"
+				            FontSize="Small"
+                            Keyboard="Plain"
+                            HorizontalTextAlignment="Center"
+                            ClearButtonVisibility="WhileEditing"
+				            HeightRequest="44">
+                        </Entry>
+                    </Grid>
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="UPSName:" TextColor="#6D757D" FontSize="Small"/>
+                        <Entry
+                            Grid.Column="1"
+				            Placeholder="UPSNAME..."
+                            TextColor="Black"
+                            Text="{Binding UpsName}"
+				            FontSize="Small"
+                            Keyboard="Plain"
+                            HorizontalTextAlignment="Center"
+                            ClearButtonVisibility="WhileEditing"
+				            HeightRequest="44">
+                        </Entry>
+                    </Grid>
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="Alert Value:" TextColor="#6D757D" FontSize="Small"/>
+                        <Entry
+                            Grid.Column="1"
+				            Placeholder="Alert Value..."
+                            TextColor="Black"
+                            Text="{Binding AlertValue}"
+				            FontSize="Small"
+                            Keyboard="Numeric"
+                            HorizontalTextAlignment="Center"
+                            ClearButtonVisibility="WhileEditing"
+				            HeightRequest="44">
+                        </Entry>
+                    </Grid>
+                    <Grid HeightRequest="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Text="Resolve Value:" TextColor="#6D757D" FontSize="Small"/>
+                        <Entry
+                            Grid.Column="1"
+				            Placeholder="Resolve Value..."
+                            TextColor="Black"
+                            Text="{Binding ResolveValue}"
+				            FontSize="Small"
+                            Keyboard="Numeric"
+                            HorizontalTextAlignment="Center"
+                            ClearButtonVisibility="WhileEditing"
+				            HeightRequest="44">
+                        </Entry>
+                    </Grid>
+                    
+                    <BoxView HeightRequest="0.5" BackgroundColor="#6D757D"/>
+                
+                </StackLayout>
+            </StackLayout>
+
             <syncfusion:SfListView x:Name="lsAlarm"
-                                   Grid.Row="1"
+                                   Grid.Row="2"
                                    ItemSize="240"
                                    ItemSpacing="5"
                                    IsBusy="False"
@@ -51,7 +181,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Frame BorderColor="#6696E9"
+                                <Frame BorderColor="#869AA8"
                                        Padding="5,2"
                                        HasShadow="False"
                                        
@@ -75,8 +205,8 @@
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alarm Date:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlarmDate}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alarm Date:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlarmDate}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             
                                             <Grid VerticalOptions="FillAndExpand" >
@@ -84,47 +214,47 @@
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alert Type:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlertType}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alert Type:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlertType}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="UPSNameName:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding UpsName}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="UPSNameName:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding UpsName}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="StringName:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding StringName}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="StringName:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding StringName}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alert Value:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlertValue}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Alert Value:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding AlertValue}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Status:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding Status}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Status:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding Status}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Action Taken:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Action Taken:" TextColor="#869AA8"/>
                                                 <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding ActionTaken}" TextColor="#6696E9"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
@@ -132,16 +262,24 @@
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" FontSize="Small" Text="Problem Resolved Date:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding ProblemResolvedDate}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Problem Resolved Date:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding ProblemResolvedDate}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             <Grid VerticalOptions="FillAndExpand" >
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label  VerticalOptions="Center" FontSize="Small" Text="Brand:" TextColor="#6696E9"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding Brand}" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" FontSize="Small" Text="Resolved Value:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding ResolveValue}" TextColor="{Binding Color}"/>
+                                            </Grid>
+                                            <Grid VerticalOptions="FillAndExpand" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="160"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label  VerticalOptions="Center" FontSize="Small" Text="Brand:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding Brand}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             
                                         </StackLayout>
@@ -154,10 +292,10 @@
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
             
-            <Label Grid.Row="1" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <Label Grid.Row="2" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
             
             <ActivityIndicator
-                Grid.RowSpan="2"
+                Grid.Row="2"
                 Color="#6696E9"  
                 HorizontalOptions="Center" 
                 VerticalOptions="Center" 

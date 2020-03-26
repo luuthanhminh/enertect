@@ -21,8 +21,8 @@ namespace enertect.Core.ViewModels
         }
 
         #region Properties
-        private String _username;
-        public String UserName
+        private string _username;
+        public string UserName
         {
             get
             {
@@ -34,8 +34,8 @@ namespace enertect.Core.ViewModels
             }
         }
 
-        private String _password;
-        public String Password
+        private string _password;
+        public string Password
         {
             get
             {

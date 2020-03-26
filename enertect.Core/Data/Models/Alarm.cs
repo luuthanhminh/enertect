@@ -18,7 +18,7 @@ namespace enertect.Core.Data.Models
         //public int BatteryConfigId { get; set; }
         //public int ErrorType { get; set; }
         public double AlertValue { get; set; }
-        //public double TrueValue { get; set; }
+        public double? TrueValue { get; set; }
         public string ActionTaken { get; set; }
     }
 }
