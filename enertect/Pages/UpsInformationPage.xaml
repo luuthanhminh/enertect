@@ -7,6 +7,21 @@
     x:TypeArguments="viewModels:UpsInformationViewModel"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     x:Class="enertect.UI.Pages.UpsInformationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--<OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="materialdesignicons-webfont" />
+                <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>-->
+            <x:String x:Key="Play">&#xf10b;</x:String>
+            <OnPlatform x:TypeArguments="x:String"
+                    x:Key="IconFont">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android"
+                    Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="10">
             <Grid.RowDefinitions>

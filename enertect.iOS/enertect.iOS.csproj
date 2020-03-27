@@ -153,5 +153,8 @@
     <Folder Include="Assets.xcassets\ic_calendar.imageset\" />
     <Folder Include="Assets.xcassets\ic_fillter.imageset\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\materialdesignicons-webfont.ttf" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
