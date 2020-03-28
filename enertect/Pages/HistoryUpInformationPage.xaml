@@ -9,6 +9,16 @@
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
                 x:Class="enertect.UI.Pages.HistoryUpInformationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String"
+                    x:Key="IconFont">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android"
+                    Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
@@ -18,7 +28,15 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0"  Text="Back" FontSize="Medium" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,8,0" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf004d;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
                 <Label  Text="Battery Trends History" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
             <StackLayout Grid.Row="1" Margin="8, 0" BackgroundColor="White">

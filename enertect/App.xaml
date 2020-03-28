@@ -8,7 +8,9 @@
              x:Class="enertect.App">
     <Application.Resources>
         <!-- Application resource dictionary -->
-        <ResourceDictionary>       
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
              <chart:ChartColorCollection x:Key="ChartColors">
                 <Color>#99b433</Color>
                 <Color>#00a300</Color>

@@ -9,11 +9,6 @@
     x:Class="enertect.UI.Pages.UpsInformationPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--<OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="materialdesignicons-webfont" />
-                <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
-            </OnPlatform>-->
-            <x:String x:Key="Play">&#xf10b;</x:String>
             <OnPlatform x:TypeArguments="x:String"
                     x:Key="IconFont">
                 <On Platform="iOS" Value="Material Design Icons" />
@@ -32,7 +27,15 @@
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
                 <Label  Text="Ups Informations" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0"  Text="Sign Out" FontSize="Small" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf0fc5;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
             </Grid>
             <Grid Grid.Row="1" Margin="4,0">
                 <Button BackgroundColor="Transparent" Command="{Binding AlarmDetailCommand}" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center"/>
