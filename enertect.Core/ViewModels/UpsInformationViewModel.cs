@@ -119,7 +119,19 @@ namespace enertect.Core.ViewModels
 
         async Task GoToDetail(UpsItemViewModel vmItem)
         {
-            await _navigationService.Navigate<UpInformationDetailViewModel, UpsItemViewModel>(vmItem);
+            if(vmItem.Items != null)
+            {
+                if (vmItem.Items.Any()  && vmItem.Items.Count > 1)
+                {
+                    await _navigationService.Navigate<UpsStringViewModel, UpsItemViewModel>(vmItem);
+                }
+                else
+                {
+                    await _navigationService.Navigate<UpInformationDetailViewModel, UpsItemViewModel>(vmItem.Items.First());
+                }
+
+            }
+            
 
         }
 

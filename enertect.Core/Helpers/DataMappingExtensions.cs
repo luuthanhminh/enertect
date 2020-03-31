@@ -13,9 +13,9 @@ namespace enertect.Core.Helpers
         public static UpsItemViewModel ToItemViewModel(this UpsInformation item, BaseViewModel viewModel = null)
         {
             string StringName = item.StringName;
-            if (item.Items != null  && item.Items.Any())
+            if (item.Items != null  && item.Items.Any() && item.UpsName == StringName)
             {
-                StringName = item.Items.First().StringName;
+                StringName = item.Items.Count().ToString();
             }
             var ItemViewModel = new UpsItemViewModel()
             {

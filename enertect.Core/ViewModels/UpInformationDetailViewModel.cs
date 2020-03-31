@@ -39,11 +39,15 @@ namespace enertect.Core.ViewModels
         {
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
-            _upsName = parameter.UpsName;
+            _upsName = parameter.StringName.ToUpper();
             UpID = parameter.UpsId;
             if (parameter.Items.Count > 0)
             {
-                var up = parameter.Items.First();
+                var up = parameter;
+                //if(up.Items == null || !up.Items.Any())
+                //{
+                //    up = parameter;
+                //}
                 var totalitems = up.Items.Count;
                 var totalvoltage = up.Items.Select(c => c.Voltage).Sum();
                 var averageVoltage = totalvoltage / totalitems;
