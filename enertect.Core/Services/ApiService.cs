@@ -24,6 +24,7 @@ namespace enertect.Core.Services
         const string LIMIT_ENDPOINT = "upsinformations/GetUpsLimits?upsId=";
         const string HISTORY_ENDPOINT = "upsinformations/GetTrendingHistory?date=01/12/2019&endDate=01/03/2020&upsId=1";
         const string ALARM_ENDPOINT = "alarms/Get";
+        const string SITE_DETAIL_ENDPOINT = "upsinformations/GetSiteDetails";
         const string SIGN_IN_ENDPOINT = AppConstant.API_ENDPOINT + "auth/login";
         #endregion
 
@@ -35,6 +36,11 @@ namespace enertect.Core.Services
                 this.User = JsonConvert.DeserializeObject<User>(userPre);
                 this.EndPoint = User.ApiEndpoint;
             }
+        }
+
+        public async Task<ApiResponse<Site>> getSiteDetail()
+        {
+            return await DoGet<Site>($"{EndPoint}{SITE_DETAIL_ENDPOINT}");
         }
 
         public async Task<ApiResponse<UpsInformation>> getHistoryUpsInfornations(int upID, DateTimeOffset start, DateTimeOffset end)
@@ -228,7 +234,6 @@ namespace enertect.Core.Services
             return result;
         }
 
-        
         #endregion
     }
 }
