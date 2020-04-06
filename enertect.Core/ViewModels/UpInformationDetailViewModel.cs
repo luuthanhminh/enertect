@@ -39,7 +39,7 @@ namespace enertect.Core.ViewModels
         {
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
-            _upsName = parameter.StringName;
+            _upsName = $"{parameter.StringName} -> Dashboard";
             _homeTitle = $"{parameter.UpsName}";
             UpID = parameter.UpsId;
             if (parameter.Items.Count > 0)
@@ -135,19 +135,6 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _dateNow, value);
-            }
-        }
-
-        private string _siteName;
-        public string SiteName
-        {
-            get
-            {
-                return _siteName;
-            }
-            set
-            {
-                SetProperty(ref _siteName, value);
             }
         }
 

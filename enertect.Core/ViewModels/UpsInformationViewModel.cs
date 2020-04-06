@@ -24,11 +24,25 @@ namespace enertect.Core.ViewModels
         public override async Task Initialize()
         {
             await base.Initialize();
-
+            _siteName = "";
             LoadData();
+            GetSiteName();
         }
 
         #region Properties
+
+        private string _siteName;
+        public string SiteName
+        {
+            get
+            {
+                return _siteName;
+            }
+            set
+            {
+                SetProperty(ref _siteName, value);
+            }
+        }
 
         private ObservableCollection<UpsItemViewModel> _ups = new ObservableCollection<UpsItemViewModel>();
         public ObservableCollection<UpsItemViewModel> Ups
@@ -99,6 +113,36 @@ namespace enertect.Core.ViewModels
             {
                 HideLoading();
                 
+            }
+
+        }
+
+        async Task GetSiteName()
+        {
+            try
+            {
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    var res = await _apiService.getSiteDetail();
+
+                    if (res.IsSuccess)
+                    {
+                        SiteName = res.ResponseObject.SiteName;
+                    }
+                    else
+                    {
+                        await _dialogService.ShowMessage("Error", String.Join(Environment.NewLine, res.Errors), "Close");
+                    }
+                }
+                else
+                {
+                    await _dialogService.ShowMessage("Error", "No internet access", "Close");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowMessage("Error", ex.Message, "Close");
             }
 
         }

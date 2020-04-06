@@ -24,7 +24,6 @@
         <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
@@ -50,8 +49,8 @@
                 <Label Grid.Column="2"  Text="{Binding UpsName}" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
 
             </Grid>
-            <Label Grid.Row="1" TextColor="Black"  Text="{Binding UpsName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Center" VerticalOptions="Center"/>
-            <Grid Grid.Row="2">
+           
+            <Grid Grid.Row="1">
                 <tabView:SfTabView x:Name="tabview"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
                            AbsoluteLayout.LayoutFlags="All"

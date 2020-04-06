@@ -33,7 +33,7 @@
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
-                <Label  Text="{Binding UpsName}" FontSize="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label  Text="{Binding UpsName}" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
             <syncfusion:SfListView x:Name="lsVoucher"
                                    Grid.Row="1"

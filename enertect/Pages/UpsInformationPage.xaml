@@ -22,6 +22,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 
             </Grid.RowDefinitions>
@@ -37,12 +38,13 @@
                     </Button.ImageSource>
                 </Button>
             </Grid>
-            <Grid Grid.Row="1" Margin="4,0">
+            <Label Grid.Row="1" Margin="4,0" TextColor="Black"  Text="{Binding SiteName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Grid Grid.Row="2" Margin="4,0">
                 <Button BackgroundColor="Transparent" Command="{Binding AlarmDetailCommand}" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center"/>
             </Grid>
             
             <syncfusion:SfListView x:Name="lsVoucher"
-                                   Grid.Row="2"
+                                   Grid.Row="3"
                                    ItemSize="80"
                                    ItemSpacing="5"
                                    DragStartMode="None"
@@ -102,10 +104,10 @@
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
             
-            <Label Grid.Row="2" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <Label Grid.Row="3" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
             
             <ActivityIndicator
-                Grid.Row="2"
+                Grid.Row="3"
                                Color="#6696E9"  
                                HorizontalOptions="Center" 
                                VerticalOptions="Center" 

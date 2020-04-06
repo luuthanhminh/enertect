@@ -30,16 +30,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button BackgroundColor="Transparent" WidthRequest="50" Command="{Binding CloseCommand}" Margin="8,0" HorizontalOptions="Start" VerticalOptions="Center">
+                <Button TextColor="White" Text="Home" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
-                        Glyph="&#xf004d;"
+                        Glyph="&#xf0141;"
                         Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
-                <Label  Text="Alarm Details" FontSize="16" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label  Text="Alarm Info" FontSize="16" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Button HorizontalOptions="End" Margin="0,0,16,0" BackgroundColor="Transparent" Command="{Binding TapFilterCommand}" 
                                 TextColor="Black" WidthRequest="24" HeightRequest="24">
                     <Button.ImageSource>

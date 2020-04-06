@@ -40,6 +40,8 @@ namespace enertect.Core.ViewModels
         {
             UpID = parameter.UpsId;
             _hasNoData = true;
+            _upsName = $"{parameter.StringName} -> History";
+            _homeTitle = $"{parameter.UpsName}";
             StartDate = DateTime.Now.AddDays(-7);
             EndDate = DateTime.Now;
 
@@ -50,6 +52,32 @@ namespace enertect.Core.ViewModels
         public ICallsViewHistory View { get; set; }
 
         public int UpID { get; set; }
+
+        private string _homeTitle;
+        public string HomeTitle
+        {
+            get
+            {
+                return _homeTitle;
+            }
+            set
+            {
+                SetProperty(ref _homeTitle, value);
+            }
+        }
+
+        private string _upsName;
+        public string UpsName
+        {
+            get
+            {
+                return _upsName;
+            }
+            set
+            {
+                SetProperty(ref _upsName, value);
+            }
+        }
 
         private DateTime _startDate;
         public DateTime StartDate
