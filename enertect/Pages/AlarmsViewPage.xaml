@@ -52,8 +52,6 @@
                 </Button>
             </Grid>
 
-            
-
             <StackLayout Grid.Row="1" Margin="4,0">
                 <inputLayout:SfTextInputLayout
                     Hint="Search"
@@ -331,8 +329,8 @@
                                                     <ColumnDefinition Width="160"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label  VerticalOptions="Center" FontSize="14" Text="Brand:" TextColor="#869AA8"/>
-                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="14"  LineBreakMode="TailTruncation" Text="{Binding Brand}" TextColor="{Binding Color}"/>
+                                                <Label  VerticalOptions="Center" FontSize="14" Text="Alarm Time:" TextColor="#869AA8"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" FontSize="14"  LineBreakMode="TailTruncation" Text="{Binding AlarmTime}" TextColor="{Binding Color}"/>
                                             </Grid>
                                             
                                         </StackLayout>

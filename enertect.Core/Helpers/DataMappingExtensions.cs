@@ -85,7 +85,8 @@ namespace enertect.Core.Helpers
               Status = item.ProblemResolved ? "Normal" : "Alarm",
               Color = item.ProblemResolved ? "#869AA8" : "#E53E4E",
               Brand = "Rocket",
-              ProblemResolvedDate = String.IsNullOrEmpty(item.ProblemResolvedDate) ? "" : DateTime.Parse(item.ProblemResolvedDate).ToString("dd-MM-yyyy hh:mm:ss")
+              ProblemResolvedDate = String.IsNullOrEmpty(item.ProblemResolvedDate) ? "" : DateTime.Parse(item.ProblemResolvedDate).ToString("dd-MM-yyyy hh:mm:ss"),
+              AlarmTime = String.IsNullOrEmpty(item.ProblemResolvedDate) ? "" : Utils.RelativeDate(DateTime.Parse(item.ProblemResolvedDate), DateTime.Parse(item.AlarmDate))
             };
         }
 

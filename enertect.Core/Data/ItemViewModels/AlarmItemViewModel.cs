@@ -18,6 +18,19 @@ namespace enertect.Core.Data.ItemViewModels
             }
         }
 
+        private string _alarmTime;
+        public string AlarmTime
+        {
+            get
+            {
+                return _alarmTime;
+            }
+            set
+            {
+                SetProperty(ref _alarmTime, value);
+            }
+        }
+
         private string _alarmDate;
         public string AlarmDate
         {
