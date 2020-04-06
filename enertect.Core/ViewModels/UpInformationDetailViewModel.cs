@@ -39,7 +39,8 @@ namespace enertect.Core.ViewModels
         {
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
-            _upsName = parameter.StringName.ToUpper();
+            _upsName = parameter.StringName;
+            _homeTitle = $"{parameter.UpsName}";
             UpID = parameter.UpsId;
             if (parameter.Items.Count > 0)
             {
@@ -134,6 +135,32 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _dateNow, value);
+            }
+        }
+
+        private string _siteName;
+        public string SiteName
+        {
+            get
+            {
+                return _siteName;
+            }
+            set
+            {
+                SetProperty(ref _siteName, value);
+            }
+        }
+
+        private string _homeTitle;
+        public string HomeTitle
+        {
+            get
+            {
+                return _homeTitle;
+            }
+            set
+            {
+                SetProperty(ref _homeTitle, value);
             }
         }
 

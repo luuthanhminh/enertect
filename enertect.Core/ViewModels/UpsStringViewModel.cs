@@ -26,7 +26,7 @@ namespace enertect.Core.ViewModels
         public override void Prepare(UpsItemViewModel parameter)
         {
             _itemViewModel = parameter;
-            _upsName = parameter.UpsName;
+            _upsName = $"{parameter.UpsName}";
             _ups = parameter.Items;
         }
 

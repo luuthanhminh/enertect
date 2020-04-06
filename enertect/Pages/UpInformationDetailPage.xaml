@@ -24,22 +24,34 @@
         <Grid RowSpacing="10" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button BackgroundColor="Transparent" WidthRequest="50" Command="{Binding CloseCommand}" Margin="8,0,8,0" HorizontalOptions="Start" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                 <Button TextColor="White" Text="" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,0,0" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
-                        Glyph="&#xf004d;"
-                        Size="24"
+                        Glyph="&#xf0141;"
+                        Size="20"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
-                <Label  Text="{Binding UpsName}" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="1"  Text="{Binding HomeTitle}" FontSize="Small" TextColor="White" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}" NumberOfTapsRequired="1" />
+                      </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Column="2"  Text="{Binding UpsName}" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
 
             </Grid>
-            <Grid Grid.Row="1">
+            <Label Grid.Row="1" TextColor="Black"  Text="{Binding UpsName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid Grid.Row="2">
                 <tabView:SfTabView x:Name="tabview"
                            AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
                            AbsoluteLayout.LayoutFlags="All"
@@ -123,7 +135,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Voltage:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Voltage(V):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinVolItem.Voltage}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
@@ -141,7 +153,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Voltage:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Voltage(V):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxVolItem.Voltage}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
@@ -196,7 +208,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min IR:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min IR(Ω):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinIRItem.Resitance}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
@@ -214,7 +226,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max IR:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max IR(Ω):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxIRItem.Resitance}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
@@ -268,7 +280,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Temp:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Min Temp(°c):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MinTempItem.Temperature}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
@@ -286,7 +298,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Temp:" TextColor="#6696E9"/>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" FontSize="Small" Text="Max Temp(°c):" TextColor="#6696E9"/>
                                                 <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small"  LineBreakMode="TailTruncation" Text="{Binding MaxTempItem.Temperature}" TextColor="#6696E9"/>
                                             </Grid>
                                             <BoxView BackgroundColor="#6696E9" HeightRequest="0.5" VerticalOptions="Fill" Margin="0"/>
