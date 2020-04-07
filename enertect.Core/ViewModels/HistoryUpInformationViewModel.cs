@@ -39,8 +39,9 @@ namespace enertect.Core.ViewModels
         public override void Prepare(UpsItemViewModel parameter)
         {
             UpID = parameter.UpsId;
+            StringName = parameter.StringName;
             _hasNoData = true;
-            _upsName = $"{parameter.StringName} -> History";
+            _upsName = $"{StringName} -> History";
             _homeTitle = $"{parameter.UpsName}";
             StartDate = DateTime.Now.AddDays(-7);
             EndDate = DateTime.Now;
@@ -52,6 +53,8 @@ namespace enertect.Core.ViewModels
         public ICallsViewHistory View { get; set; }
 
         public int UpID { get; set; }
+
+        public string StringName { get; set; }
 
         private string _homeTitle;
         public string HomeTitle
@@ -256,12 +259,16 @@ namespace enertect.Core.ViewModels
                     {
                         if (res.ResponseListObject.Any())
                         {
-                            UpInfoHistory = new ObservableCollection<UpsItemViewModel>(res.ResponseListObject.First().UpsHistoryTrendings.Select(v=>v.ToItemViewModel()));
-                            if (View != null)
+                            var historyObject = res.ResponseListObject.Where(t => t.StringName == StringName).FirstOrDefault();
+                            if(historyObject != null)
                             {
-                                View.BindingChart(UpInfoHistory);
+                                UpInfoHistory = new ObservableCollection<UpsItemViewModel>(historyObject.UpsHistoryTrendings.Select(v => v.ToItemViewModel()));
+                                if (View != null)
+                                {
+                                    View.BindingChart(UpInfoHistory);
+                                }
+                                HasNoData = false;
                             }
-                            HasNoData = false;
                         }
                     }
                     else
