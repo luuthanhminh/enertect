@@ -20,6 +20,7 @@ namespace enertect.Core.Helpers
             var ItemViewModel = new UpsItemViewModel()
             {
                 UpsName = item.UpsName,
+
                 UpsId = item.UpsId,
                 BatteryId = item.BatteryId,
                 StringName = StringName,
@@ -43,6 +44,7 @@ namespace enertect.Core.Helpers
                     var subItemViewModel = ToItemViewModel(up);
                     DateTime parsedDate = DateTime.Parse(up.DateTime);
                     subItemViewModel.DateValue = parsedDate.ToString("MM/dd");
+                    subItemViewModel.DateOfTime = parsedDate.ToString("MM/dd/yyyy");
                     ItemViewModel.UpsHistoryTrendings.Add(subItemViewModel);
                 }
             }

@@ -33,12 +33,12 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                 <Button TextColor="White" Text="" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,0,0" HorizontalOptions="Start" VerticalOptions="Center">
+                 <Button TextColor="White" Text="" WidthRequest="24" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,0,0" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
                         Glyph="&#xf0141;"
-                        Size="20"
+                        Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
@@ -405,21 +405,24 @@
 
                             </Grid>
                             <Button Grid.Column="1"  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapHistoryCommand}" Margin="0, 8"  Text="Battery Trends" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <StackLayout Margin="16, 8, 16, 50">
+
+                                
                             <Grid>
                                 <Button  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapViewTabularCommand}" Margin="0, 0, 0, 8"  Text="View Tabular Data" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Button TextColor="Black" Text="Excel" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,16,0" HorizontalOptions="End" VerticalOptions="Center">
+                                <Button TextColor="Black" Text="" IsVisible="{Binding IsViewTabular}" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,8,0" HorizontalOptions="End" VerticalOptions="Center">
                                     <Button.ImageSource>
                                         <FontImageSource
                                         FontFamily="{DynamicResource IconFont}"
-                                        Glyph="&#xf0225;"
+                                        Glyph="&#xf021b;"
                                         Size="30"
                                         Color="Green" />
                                     </Button.ImageSource>
                                 </Button>
                             </Grid>
-                            <Label Grid.Column="2"  Text="{Binding StringName, StringFormat = '{0:F0} Resitance, Voltage, Temperature'}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <syncfusion:SfDataGrid x:Name="TabularGrid"
-                                        Margin="16, 8, 16, 50"
+                            <Label x:Name="lbTitle" HorizontalTextAlignment="Center" IsVisible="{Binding IsViewTabular}" Grid.Column="2"  Text="{Binding StringName, StringFormat = '{0:F0} Resitance, Voltage, Temperature'}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <syncfusion:SfDataGrid IsVisible="{Binding IsViewTabular}" x:Name="TabularGrid"
+                                        Margin="16, 8, 16, 8"
                                         ColumnSizer="Star"
                                         AutoGenerateColumns="False"
                                         ItemsSource="{Binding Ups}">
@@ -435,6 +438,8 @@
                                                                MappingName="Temperature" />
                                 </syncfusion:SfDataGrid.Columns>
                             </syncfusion:SfDataGrid>
+
+                            </StackLayout>
                         </StackLayout>
                         </ScrollView>
                     </tabView:SfTabItem.Content>

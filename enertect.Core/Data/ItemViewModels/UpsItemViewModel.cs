@@ -61,6 +61,19 @@ namespace enertect.Core.Data.ItemViewModels
             }
         }
 
+        private string _dateOfTime;
+        public string DateOfTime
+        {
+            get
+            {
+                return _dateOfTime;
+            }
+            set
+            {
+                SetProperty(ref _dateOfTime, value);
+            }
+        }
+
         private double _voltage;
         public double Voltage
         {

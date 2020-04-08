@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using enertect.Core.Data.ItemViewModels;
 using enertect.Core.Data.Models.Ups;
 using enertect.Core.ViewModels;
 using enertect.UI.Pages.Base;
+using enertect.UI.Services.Interfaces;
 using Syncfusion.SfChart.XForms;
+using Syncfusion.SfDataGrid.XForms.Exporting;
 using Xamarin.Forms;
 
 namespace enertect.UI.Pages
@@ -87,6 +91,24 @@ namespace enertect.UI.Pages
                 }
 
             }
+        }
+
+        public async Task<bool> ExportExcel()
+        {
+            DataGridExcelExportingController excelExport = new DataGridExcelExportingController();
+            var excelEngine = excelExport.ExportToExcel(this.TabularGrid);
+            var workbook = excelEngine.Excel.Workbooks[0];
+            MemoryStream stream = new MemoryStream();
+            workbook.SaveAs(stream);
+            workbook.Close();
+            excelEngine.Dispose();
+            var fileName = $"{lbTitle.Text.ToLower().Replace(" ", "_").Replace(",", "")}_{DateTime.Now.ToString("HH_mm_MMM_dd_yyyy")}.xlsx";
+            return await DependencyService.Get<IExportToExcelService>().ExportAsExcel(fileName, "application/msexcel", stream);
+        }
+
+        public void ExportPDF()
+        {
+
         }
 
         protected override void OnViewModelSet()

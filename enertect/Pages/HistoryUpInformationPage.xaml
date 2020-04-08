@@ -7,6 +7,7 @@
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
     xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
     xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
                 x:Class="enertect.UI.Pages.HistoryUpInformationPage">
     <ContentPage.Resources>
@@ -33,12 +34,12 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                 <Button TextColor="White" Text="" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,0,0" HorizontalOptions="Start" VerticalOptions="Center">
+                 <Button TextColor="White" WidthRequest="24" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="8,0,0,0" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
                         Glyph="&#xf0141;"
-                        Size="20"
+                        Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
@@ -129,11 +130,11 @@
                 IsVisible="{Binding HasData}" 
                 IsRunning="{Binding HasData}"/>
             <Label Grid.Row="3" Text="No records found for the selected Date" TextColor="Gray" FontSize="Small" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
-            <ScrollView Grid.Row="3" IsVisible="{Binding HasData}" BackgroundColor="White">
+            <ScrollView Grid.Row="3" IsVisible="{Binding HasData}" BackgroundColor="White" Margin="0,0,0,50">
                 <StackLayout >
                     <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="250"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="260"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -151,7 +152,7 @@
                        </Grid>
                     <Label Text="{Binding ResistanceHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="ResChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="250"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="260"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -169,7 +170,7 @@
                        </Grid>
                     <Label Text="{Binding TemperatureHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="TempChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="250" Margin="0,0,0,40"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="260" Margin="0,0,0,0"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -185,6 +186,44 @@
                         <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="35" VerticalOptions="Center" HorizontalOptions="Center"/>
                         <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="15" VerticalOptions="Center" HorizontalOptions="Center"/>
                        </Grid>
+                        <StackLayout Margin="16, 8, 16, 0">
+    
+                            <Grid>
+                                <Button  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapViewTabularCommand}" Margin="0, 0, 0, 8"  Text="View Tabular Data" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button TextColor="Black" Text="" IsVisible="{Binding IsViewTabular}" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,8,0" HorizontalOptions="End" VerticalOptions="Center">
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                        FontFamily="{DynamicResource IconFont}"
+                                        Glyph="&#xf021b;"
+                                        Size="30"
+                                        Color="Green" />
+                                    </Button.ImageSource>
+                                </Button>
+                            </Grid>
+                            <Label x:Name="lbTitle" IsVisible="{Binding IsViewTabular}" HorizontalTextAlignment="Center" Grid.Column="2"  Text="{Binding StringName, StringFormat = '{0:F0} Resitance, Voltage, Temperature Trends'}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <syncfusion:SfDataGrid IsVisible="{Binding IsViewTabular}" x:Name="TabularGrid"
+                                        Margin="0, 0"
+                                        ColumnSizer="Star"
+                                        AutoGenerateColumns="False"
+                                        ItemsSource="{Binding UpsTabularData}">
+
+                                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                    <syncfusion:GridTextColumn HeaderText="String Name" 
+                                                               MappingName="StringName" />
+                                    <syncfusion:GridTextColumn HeaderText="Battery Id" 
+                                                               MappingName="BatteryId" />
+                                    <syncfusion:GridTextColumn HeaderText="Voltage"
+                                                               MappingName="Voltage" />
+                                    <syncfusion:GridTextColumn HeaderText="Resitance"
+                                                               MappingName="Resitance" />
+                                    <syncfusion:GridTextColumn HeaderText="Temperature"
+                                                               MappingName="Temperature" />
+                                    <syncfusion:GridTextColumn HeaderText="Date Time"
+                                                               MappingName="DateOfTime" />
+                                </syncfusion:SfDataGrid.Columns>
+                            </syncfusion:SfDataGrid>
+
+                            </StackLayout>
 
                  </StackLayout>
 

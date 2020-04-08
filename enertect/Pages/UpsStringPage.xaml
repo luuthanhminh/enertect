@@ -29,7 +29,7 @@
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
                         Glyph="&#xf0141;"
-                        Size="20"
+                        Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>

@@ -64,11 +64,17 @@ namespace enertect.UI.Pages
                         DockPosition = LegendPlacement.Top,
                         IconHeight = 10,
                         IconWidth = 10,
-                        ToggleSeriesVisibility = true
+                        ToggleSeriesVisibility = true,
                     };
+                    this.Chart.LegendItemClicked += Chart_LegendItemClicked;
                     this.Chart.Series.Add(columnSeries);
                 }
             }
+        }
+
+        private void Chart_LegendItemClicked(object sender, ChartLegendItemClickedEventArgs e)
+        {
+            
         }
 
         public async Task<bool> ExportExcel()
@@ -80,7 +86,8 @@ namespace enertect.UI.Pages
             workbook.SaveAs(stream);
             workbook.Close();
             excelEngine.Dispose();
-            return await DependencyService.Get<IExportToExcelService>().ExportAsExcel("DataGrid.xlsx", "application/msexcel", stream);
+            var fileName = $"{lbTitle.Text.ToLower().Replace(" ", "_").Replace(",", "")}_{DateTime.Now.ToString("HH_mm_MMM_dd_yyyy")}.xlsx";
+            return await DependencyService.Get<IExportToExcelService>().ExportAsExcel(fileName, "application/msexcel", stream);
         }
 
         public void ExportPDF()

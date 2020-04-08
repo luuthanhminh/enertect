@@ -11,6 +11,9 @@ using System.Linq;
 using enertect.Core.Helpers;
 using System.Collections.Generic;
 using MvvmCross.Commands;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 
 namespace enertect.Core.ViewModels
 {
@@ -19,6 +22,8 @@ namespace enertect.Core.ViewModels
         void BindingChart(IList<UpsItemViewModel> datas);
         void ShowStartDate();
         void ShowEndDate();
+        Task<bool> ExportExcel();
+        void ExportPDF();
     }
 
     public class HistoryUpInformationViewModel : BaseWithObjectViewModel<UpsItemViewModel>
@@ -40,6 +45,7 @@ namespace enertect.Core.ViewModels
         {
             UpID = parameter.UpsId;
             StringName = parameter.StringName;
+            _isViewTabular = false;
             _hasNoData = true;
             _upsName = $"{StringName} -> History";
             _homeTitle = $"{parameter.UpsName}";
@@ -55,6 +61,19 @@ namespace enertect.Core.ViewModels
         public int UpID { get; set; }
 
         public string StringName { get; set; }
+
+        private bool _isViewTabular;
+        public bool IsViewTabular
+        {
+            get
+            {
+                return _isViewTabular;
+            }
+            set
+            {
+                SetProperty(ref _isViewTabular, value);
+            }
+        }
 
         private string _homeTitle;
         public string HomeTitle
@@ -158,6 +177,19 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _upInfoHistory, value);
+            }
+        }
+
+        private ObservableCollection<UpsItemViewModel> _upsTabularData = new ObservableCollection<UpsItemViewModel>();
+        public ObservableCollection<UpsItemViewModel> UpsTabularData
+        {
+            get
+            {
+                return _upsTabularData;
+            }
+            set
+            {
+                SetProperty(ref _upsTabularData, value);
             }
         }
 
@@ -267,6 +299,11 @@ namespace enertect.Core.ViewModels
                                 {
                                     View.BindingChart(UpInfoHistory);
                                 }
+                                UpsTabularData = new ObservableCollection<UpsItemViewModel>();
+                                foreach (UpsItemViewModel up in UpInfoHistory)
+                                {
+                                    up.UpsHistoryTrendings.ToList().ForEach(UpsTabularData.Add);
+                                }
                                 HasNoData = false;
                             }
                         }
@@ -342,6 +379,39 @@ namespace enertect.Core.ViewModels
             if (View != null)
             {
                 View.ShowEndDate();
+            }
+        }
+
+        public IMvxCommand TapViewTabularCommand => new MvxCommand(ViewTabular);
+
+        private void ViewTabular()
+        {
+            IsViewTabular = !IsViewTabular;
+        }
+
+        public IMvxAsyncCommand TapExportExcel => new MvxAsyncCommand(ExportExcel);
+
+        public async Task ExportExcel()
+        {
+            if (View != null)
+            {
+                var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (storageStatus != PermissionStatus.Granted)
+                {
+                    var result = await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage);
+                    if (result)
+                    {
+                        await _dialogService.ShowMessage("Permission", "Need to access storage", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+
+                    storageStatus = results[Permission.Storage];
+                }
+                if (storageStatus == PermissionStatus.Granted)
+                {
+                    await View.ExportExcel();
+                }
             }
         }
 

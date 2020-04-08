@@ -42,6 +42,7 @@ namespace enertect.Core.ViewModels
 
         public override void Prepare(UpsItemViewModel parameter)
         {
+            _isViewTabular = false;
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
             _homeTitle = $"{parameter.UpsName}";
@@ -433,19 +434,7 @@ namespace enertect.Core.ViewModels
                 {
                     await View.ExportExcel();
                 }
-
-
-                    //if (storageStatus == PermissionStatus.Granted)
-                    //{
-                    //    var result = View.ExportExcel();
-                    //}
-                    //else
-                    //{
-                    //    await _dialogService.ShowMessage("Permissions Denied", "Unable to take photos.", "OK");
-                    //}
-                    //var re = View.ExportExcel();
-
-                }
+             }
         }
 
         #endregion
