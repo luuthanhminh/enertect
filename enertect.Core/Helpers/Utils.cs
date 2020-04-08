@@ -9,7 +9,7 @@ namespace enertect.Core.Helpers
         {
             if (ResolvedDate == null || AlarmDate == null) return "";
             TimeSpan t = new TimeSpan(ResolvedDate.Ticks - AlarmDate.Ticks);
-            var timeSpane = $"{t.Days.ToString()} days :{t.Hours.ToString()} months :{t.Minutes.ToString()} hours";
+            var timeSpane = $"{t.Days.ToString()} days :{t.Hours.ToString()} hours :{t.Minutes.ToString()} minutes";
             return timeSpane;
 
         }

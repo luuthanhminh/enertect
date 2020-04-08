@@ -134,7 +134,7 @@
                 <StackLayout >
                     <Label Text="{Binding VoltageHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="VolChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="260"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="280"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -152,7 +152,7 @@
                        </Grid>
                     <Label Text="{Binding ResistanceHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="ResChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="260"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="280"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -170,7 +170,7 @@
                        </Grid>
                     <Label Text="{Binding TemperatureHistory}" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="16,8,16,8" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
                     <chart:SfChart x:Name="TempChart" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Grid Padding="2" WidthRequest="260" Margin="0,0,0,0"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                    <Grid Padding="2" WidthRequest="280" Margin="0,0,0,0"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                         <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>

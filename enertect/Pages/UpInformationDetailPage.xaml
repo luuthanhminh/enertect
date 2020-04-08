@@ -379,7 +379,7 @@
                                 </chart:SfChart.Series>
                             </chart:SfChart>
                             <Label VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0" HorizontalOptions="Center" FontSize="Medium" Text="Battery No" TextColor="Gray"/>
-                            <Grid Padding="2" WidthRequest="240"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
+                            <Grid Padding="2" WidthRequest="260"  HorizontalOptions="Center" BackgroundColor="#25A2B7" >
                                     <Grid.ColumnDefinitions>
                                          <ColumnDefinition Width="*"/>
                                          <ColumnDefinition Width="*"/>
@@ -409,8 +409,13 @@
 
                                 
                             <Grid>
-                                <Button  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapViewTabularCommand}" Margin="0, 0, 0, 8"  Text="View Tabular Data" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Button TextColor="Black" Text="" IsVisible="{Binding IsViewTabular}" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,8,0" HorizontalOptions="End" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1"  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapViewTabularCommand}" Margin="0, 0, 0, 8"  Text="View Tabular Data" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button Grid.Column="2" TextColor="Black" Text="" IsVisible="{Binding IsViewTabular}" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,8,0" HorizontalOptions="End" VerticalOptions="Center">
                                     <Button.ImageSource>
                                         <FontImageSource
                                         FontFamily="{DynamicResource IconFont}"

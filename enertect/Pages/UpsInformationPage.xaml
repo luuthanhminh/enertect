@@ -38,13 +38,19 @@
                     </Button.ImageSource>
                 </Button>
             </Grid>
-            <Label Grid.Row="1" Margin="4,0" TextColor="Black"  Text="{Binding SiteName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Start" VerticalOptions="Center"/>
-            <Grid Grid.Row="2" Margin="4,0">
-                <Button BackgroundColor="Transparent" Command="{Binding AlarmDetailCommand}" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label Grid.Row="1" Margin="16,0" TextColor="Black"  Text="{Binding SiteName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Grid Grid.Row="2" Margin="16,0">
+
+                <Label BackgroundColor="Transparent" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AlarmDetailCommand}" NumberOfTapsRequired="1" />
+                      </Label.GestureRecognizers>
+                </Label>
             </Grid>
             
             <syncfusion:SfListView x:Name="lsVoucher"
                                    Grid.Row="3"
+                                   Margin="8,0"
                                    ItemSize="80"
                                    ItemSpacing="5"
                                    DragStartMode="None"
