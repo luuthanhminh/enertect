@@ -65,16 +65,11 @@ namespace enertect.UI.Pages
                         IconHeight = 10,
                         IconWidth = 10,
                         ToggleSeriesVisibility = true,
+                        AutomationId = i.ToString()
                     };
-                    this.Chart.LegendItemClicked += Chart_LegendItemClicked;
                     this.Chart.Series.Add(columnSeries);
                 }
             }
-        }
-
-        private void Chart_LegendItemClicked(object sender, ChartLegendItemClickedEventArgs e)
-        {
-            
         }
 
         public async Task<bool> ExportExcel()
