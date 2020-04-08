@@ -8,7 +8,7 @@ namespace enertect
     {
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjEzNDAzQDMxMzcyZTM0MmUzMFpETXVMYlNpMTEwa0dCSkhydjFjTzBWWjZTZStUTkFMclB2aXFLaWZvWGs9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjM1MTA0QDMxMzgyZTMxMmUzMFpDd2YwTkxabkhyS2ROSVdwWjVCV3Rta3NOeS84aStwM2tZdlJvWWhUSE09");
             InitializeComponent();
 
         }

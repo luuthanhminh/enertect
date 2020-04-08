@@ -8,6 +8,7 @@
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
     xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
     xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
     xmlns:local="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
     x:Class="enertect.UI.Pages.UpInformationDetailPage">
     <ContentPage.Resources>
@@ -392,18 +393,48 @@
                                     </Grid.RowDefinitions>
                                     <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="Small" Text="UpperLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="0" TextColor="White" FontSize="Small" Text="LowerLimit" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="Small" Text="Voltage(V)" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="1" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="1" TextColor="White" FontSize="Small" Text="{Binding UpLimit.VolDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="0" Grid.Row="2" TextColor="White" FontSize="Small" Text="IR" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="2" TextColor="White" FontSize="Small" Text="IR(Ω)" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="1" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="2" TextColor="White" FontSize="Small" Text="{Binding UpLimit.IrDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="0" Grid.Row="3" TextColor="White" FontSize="Small" Text="Temp(°c)" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="1" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding UpLimit.TempUp}" VerticalOptions="Center" HorizontalOptions="Center"/>
                                     <Label Grid.Column="2" Grid.Row="3" TextColor="White" FontSize="Small" Text="{Binding UpLimit.TempDown}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                             </Grid>
-                            <Button  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapHistoryCommand}" Margin="0, 8, 0, 40"  Text="Battery Trends" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Button Grid.Column="1"  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapHistoryCommand}" Margin="0, 8"  Text="Battery Trends" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Grid>
+                                <Button  BackgroundColor="#25A2B7" WidthRequest="160" HeightRequest="40"  Command="{Binding TapViewTabularCommand}" Margin="0, 0, 0, 8"  Text="View Tabular Data" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button TextColor="Black" Text="Excel" FontSize="16" BackgroundColor="Transparent" Command="{Binding TapExportExcel}" Margin="8,0,16,0" HorizontalOptions="End" VerticalOptions="Center">
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                        FontFamily="{DynamicResource IconFont}"
+                                        Glyph="&#xf0225;"
+                                        Size="30"
+                                        Color="Green" />
+                                    </Button.ImageSource>
+                                </Button>
+                            </Grid>
+                            <Label Grid.Column="2"  Text="{Binding StringName, StringFormat = '{0:F0} Resitance, Voltage, Temperature'}" FontSize="Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <syncfusion:SfDataGrid x:Name="TabularGrid"
+                                        Margin="16, 8, 16, 50"
+                                        ColumnSizer="Star"
+                                        AutoGenerateColumns="False"
+                                        ItemsSource="{Binding Ups}">
+
+                                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                    <syncfusion:GridTextColumn HeaderText="Battery Number" 
+                                                               MappingName="StringName" />
+                                    <syncfusion:GridTextColumn HeaderText="Voltage"
+                                                               MappingName="Voltage" />
+                                    <syncfusion:GridTextColumn HeaderText="Resitance"
+                                                               MappingName="Resitance" />
+                                    <syncfusion:GridTextColumn HeaderText="Temperature"
+                                                               MappingName="Temperature" />
+                                </syncfusion:SfDataGrid.Columns>
+                            </syncfusion:SfDataGrid>
                         </StackLayout>
                         </ScrollView>
                     </tabView:SfTabItem.Content>

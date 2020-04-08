@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using enertect.Core.ViewModels;
 using enertect.UI.Pages.Base;
+using enertect.UI.Services.Interfaces;
 using Syncfusion.SfChart.XForms;
+using Syncfusion.SfDataGrid.XForms.Exporting;
 using Xamarin.Forms;
 
 namespace enertect.UI.Pages
@@ -42,7 +46,7 @@ namespace enertect.UI.Pages
                         Color = color,
                         StrokeWidth = 1,
                         Label = value,
-                        LegendIcon = ChartLegendIcon.SeriesType,
+                        LegendIcon = ChartLegendIcon.Rectangle,
                         DataMarker = new ChartDataMarker()
                         {
                             ShowMarker = true,
@@ -54,20 +58,39 @@ namespace enertect.UI.Pages
                             MarkerHeight = 3
                         }
                     };
-
+                    this.Chart.Legend = new ChartLegend()
+                    {
+                        OverflowMode = ChartLegendOverflowMode.Wrap,
+                        DockPosition = LegendPlacement.Top,
+                        IconHeight = 10,
+                        IconWidth = 10,
+                        ToggleSeriesVisibility = true
+                    };
                     this.Chart.Series.Add(columnSeries);
                 }
-
             }
+        }
+
+        public async Task<bool> ExportExcel()
+        {
+            DataGridExcelExportingController excelExport = new DataGridExcelExportingController();
+            var excelEngine = excelExport.ExportToExcel(this.TabularGrid);
+            var workbook = excelEngine.Excel.Workbooks[0];
+            MemoryStream stream = new MemoryStream();
+            workbook.SaveAs(stream);
+            workbook.Close();
+            excelEngine.Dispose();
+            return await DependencyService.Get<IExportToExcelService>().ExportAsExcel("DataGrid.xlsx", "application/msexcel", stream);
+        }
+
+        public void ExportPDF()
+        {
         }
 
         protected override void OnViewModelSet()
         {
             base.OnViewModelSet();
             this.ViewModel.View = this;
-
-            //var viewModel = (UpInformationDetailViewModel)this.DataContext;
-            //this.Chart.BindingContext = viewModel;
         }
     }
 }

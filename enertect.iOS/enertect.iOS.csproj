@@ -69,6 +69,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Presenter\IosCustomPresenter.cs" />
+    <Compile Include="Services\ExportToExcelService.cs" />
+    <Compile Include="Views\PreviewControllerDS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -152,6 +154,8 @@
     <Folder Include="Presenter\" />
     <Folder Include="Assets.xcassets\ic_calendar.imageset\" />
     <Folder Include="Assets.xcassets\ic_fillter.imageset\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\materialdesignicons-webfont.ttf" />

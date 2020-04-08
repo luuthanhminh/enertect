@@ -11,12 +11,17 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 using enertect.Core.Helpers;
+using Plugin.Permissions.Abstractions;
+using Plugin.Permissions;
+using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 
 namespace enertect.Core.ViewModels
 {
     public interface ICallsView
     {
         void BindingChart();
+        Task<bool> ExportExcel();
+        void ExportPDF();
     }
 
     public class UpInformationDetailViewModel : BaseWithObjectViewModel<UpsItemViewModel>
@@ -39,9 +44,10 @@ namespace enertect.Core.ViewModels
         {
             _dateNow = DateTime.Now;
             _itemViewModel = parameter;
-            _upsName = $"{parameter.StringName} -> Dashboard";
             _homeTitle = $"{parameter.UpsName}";
             UpID = parameter.UpsId;
+            StringName = parameter.StringName;
+            _upsName = $"{parameter.StringName} -> Dashboard";
             if (parameter.Items.Count > 0)
             {
                 var up = parameter;
@@ -86,6 +92,8 @@ namespace enertect.Core.ViewModels
 
         public int UpID { get; set; }
 
+        public string StringName { get; set; }
+
         private UpsItemViewModel _itemViewModel;
         public UpsItemViewModel ItemViewModel
         {
@@ -109,6 +117,19 @@ namespace enertect.Core.ViewModels
             set
             {
                 SetProperty(ref _upLimit, value);
+            }
+        }
+
+        private bool _isViewTabular;
+        public bool IsViewTabular
+        {
+            get
+            {
+                return _isViewTabular;
+            }
+            set
+            {
+                SetProperty(ref _isViewTabular, value);
             }
         }
 
@@ -382,6 +403,50 @@ namespace enertect.Core.ViewModels
             await _navigationService.Navigate<HistoryUpInformationViewModel, UpsItemViewModel>(ItemViewModel);
         }
 
+        public IMvxCommand TapViewTabularCommand => new MvxCommand(ViewTabular);
+
+        private void ViewTabular()
+        {
+            IsViewTabular = !IsViewTabular;
+        }
+
+        public IMvxAsyncCommand TapExportExcel => new MvxAsyncCommand(ExportExcel);
+
+        public async Task ExportExcel()
+        {
+            if (View != null)
+            {
+                var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if ( storageStatus != PermissionStatus.Granted)
+                {
+                    var result = await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage);
+                    if (result)
+                    {
+                        await _dialogService.ShowMessage("Permission", "Need to access storage", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+
+                    storageStatus = results[Permission.Storage];
+                }
+                if (storageStatus == PermissionStatus.Granted)
+                {
+                    await View.ExportExcel();
+                }
+
+
+                    //if (storageStatus == PermissionStatus.Granted)
+                    //{
+                    //    var result = View.ExportExcel();
+                    //}
+                    //else
+                    //{
+                    //    await _dialogService.ShowMessage("Permissions Denied", "Unable to take photos.", "OK");
+                    //}
+                    //var re = View.ExportExcel();
+
+                }
+        }
 
         #endregion
     }
