@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using enertect.Core.Data.ItemViewModels;
+using enertect.Core.Helpers;
 using enertect.Core.Services.Interfaces;
 using enertect.Core.ViewModels.Base;
 using MvvmCross.Commands;
@@ -25,18 +28,60 @@ namespace enertect.Core.ViewModels
         }
 
         #region Properties
-        private string _username;
-        public string UserName
+
+        private OverviewItemViewModel _overview;
+        public OverviewItemViewModel Overview
         {
             get
             {
-                return _username;
+                return _overview;
             }
             set
             {
-                SetProperty(ref _username, value);
+                SetProperty(ref _overview, value);
             }
         }
+
+        private ObservableCollection<AlarmItemViewModel> _criticalAlarmsList = new ObservableCollection<AlarmItemViewModel>();
+        public ObservableCollection<AlarmItemViewModel> CriticalAlarmsList
+        {
+            get
+            {
+                return _criticalAlarmsList;
+            }
+            set
+            {
+                SetProperty(ref _criticalAlarmsList, value);
+            }
+        }
+
+        private AlarmsOverViewModel _alarmsOverView;
+        public AlarmsOverViewModel AlarmsOverView
+        {
+            get
+            {
+                return _alarmsOverView;
+            }
+            set
+            {
+                SetProperty(ref _alarmsOverView, value);
+            }
+        }
+
+        private ObservableCollection<UpsReadingItemViewModel> _upsReadingsList = new ObservableCollection<UpsReadingItemViewModel>();
+        public ObservableCollection<UpsReadingItemViewModel> UpsReadingsList
+        {
+            get
+            {
+                return _upsReadingsList;
+            }
+            set
+            {
+                SetProperty(ref _upsReadingsList, value);
+            }
+        }
+
+
         #endregion
 
         #region Methods
@@ -51,7 +96,10 @@ namespace enertect.Core.ViewModels
 
                     if (res.IsSuccess)
                     {
-                        
+                        Overview = res.ResponseObject.UpsOverview.ToOverviewModel();
+                        AlarmsOverView = res.ResponseObject.AlarmsOverView.ToAlarmsOverViewModel();
+                        CriticalAlarmsList = new ObservableCollection<AlarmItemViewModel>(res.ResponseObject.CriticalAlarmsList.Select(v => v.ToAlarmItemViewModel(null)));
+                        UpsReadingsList = new ObservableCollection<UpsReadingItemViewModel>(res.ResponseObject.UpsReadingsList.Select(v => v.ToUpsReadingItemViewModel()));
                     }
                     else
                     {

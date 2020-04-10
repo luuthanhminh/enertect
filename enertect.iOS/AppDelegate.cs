@@ -35,6 +35,7 @@ namespace enertect.iOS
             Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
             Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
             Syncfusion.SfDataGrid.XForms.iOS.SfDataGridRenderer.Init();
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

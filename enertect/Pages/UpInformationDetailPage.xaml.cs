@@ -58,6 +58,7 @@ namespace enertect.UI.Pages
                             MarkerHeight = 3
                         }
                     };
+                    //LabelContent.DataMarkerLabel
                     this.Chart.Legend = new ChartLegend()
                     {
                         OverflowMode = ChartLegendOverflowMode.Wrap,

@@ -9,7 +9,7 @@ namespace enertect.Core.Data.Models
         public bool ShowError { get; set; }
         public string BatteryName { get; set; }
         public int Upsid { get; set; }
-        //public bool Smssent { get; set; }
+        public string UpsName { get; set; }
         //public bool SentEmail { get; set; }
         public string AlertType { get; set; }
         public bool ProblemResolved { get; set; }

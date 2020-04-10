@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+
 namespace enertect.Core.Data.ItemViewModels
 {
     public class AlarmsOverViewModel: BaseItemViewModel
@@ -16,8 +18,8 @@ namespace enertect.Core.Data.ItemViewModels
             }
         }
 
-        private string _openAlarms;
-        public string OpenAlarms
+        private int _openAlarms;
+        public int OpenAlarms
         {
             get
             {
@@ -29,8 +31,8 @@ namespace enertect.Core.Data.ItemViewModels
             }
         }
 
-        private string _criticalAlarms;
-        public string CriticalAlarms
+        private int _criticalAlarms;
+        public int CriticalAlarms
         {
             get
             {
@@ -39,6 +41,19 @@ namespace enertect.Core.Data.ItemViewModels
             set
             {
                 SetProperty(ref _criticalAlarms, value);
+            }
+        }
+
+        private ObservableCollection<AlarmOverViewItemModel> _overviews = new ObservableCollection<AlarmOverViewItemModel>();
+        public ObservableCollection<AlarmOverViewItemModel> Overviews
+        {
+            get
+            {
+                return _overviews;
+            }
+            set
+            {
+                SetProperty(ref _overviews, value);
             }
         }
     }

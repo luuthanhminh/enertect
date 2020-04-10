@@ -3,21 +3,298 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:enertect.UI.Pages.Base;assembly=enertect.UI"
     xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:synlistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     x:TypeArguments="viewModels:HomePageViewModel"
                 x:Class="enertect.UI.Pages.HomePage">
+    <ContentPage.Resources> 
+            <ResourceDictionary> 
+                <chart:ChartColorCollection x:Key="Colors"> 
+                    <Color>#FF7665</Color>
+                    <Color>#6AD386</Color>
+              </chart:ChartColorCollection> 
+            </ResourceDictionary> 
+</ContentPage.Resources> 
     <ContentPage.Content>
         <Grid RowSpacing="20" BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
-                <RowDefinition Height="44"/>
-                <RowDefinition Height="44"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid BackgroundColor="White" Padding="0,30,0,0">
-                <Label Text="Home" FontSize="Title" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
+                <Label Text="Home" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
+            <ScrollView Grid.Row="1">
+                <StackLayout  VerticalOptions="Fill" HorizontalOptions="Fill" Margin="8">
+                    <border:SfBorder 
+                       BorderColor="DarkGray"
+                       HorizontalOptions="Fill" 
+                       VerticalOptions="Fill"
+                        CornerRadius="3"
+                       BorderWidth="1">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" HeightRequest="50">
+                            <Label 
+                                Text="{Binding Overview.SiteName}" 
+                                Margin="10"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                  Font="20"  />
+                            <border:SfBorder 
+                               BorderColor="Red"
+                               BackgroundColor="#00A3B7" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"
+                                CornerRadius="5"
+                               BorderWidth="0">
+                            <Label 
+                                Text="{Binding Overview.TotalUPS}" 
+                                Margin="4"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                              Font="15"  />
+                            </border:SfBorder>
+                        </StackLayout>
+                        <BoxView HeightRequest="0.5" BackgroundColor="DarkGray"/>
+                        <border:SfBorder 
+                           BorderColor="DarkGray"
+                           HorizontalOptions="Fill" 
+                           VerticalOptions="Fill"
+                            Margin="8"
+                           BorderWidth="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteLocation"/>
+                                <Label Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="EnertectModel"/>
+                                <Label Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteEmail"/>
+                                <Label Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteContact"/>
+                                <border:SfBorder
+                                    Grid.Column="0" Grid.Row="4"
+                                   BorderColor="Red"
+                                   BackgroundColor="#00A3B7" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"
+                                    CornerRadius="5"
+                                   BorderWidth="0">
+                                    <Label Margin="4" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.TotalStrings}"/>
+                                </border:SfBorder>
+                                <Label Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteLocation}"/>
+                                <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.EnertectModel}"/>
+                                <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteEmail}"/>
+                                <Label Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteContact}"/>
+                                <border:SfBorder
+                                    Grid.Column="1" Grid.Row="4"
+                                   BorderColor="Red"
+                                   BackgroundColor="#00A3B7" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"
+                                    CornerRadius="5"
+                                   BorderWidth="0">
+                                    <Label Margin="4" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.TotalBatteries}"/>
+                                </border:SfBorder>
+                            </Grid>
+                        </border:SfBorder>
+                    </StackLayout>
+                
+                </border:SfBorder>
+                    <border:SfBorder 
+                       BorderColor="#6696E9"
+                       HorizontalOptions="Fill" 
+                       VerticalOptions="Fill"
+                        CornerRadius="3"
+                        BackgroundColor="#6696E9"
+                       BorderWidth="1">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" HeightRequest="50">
+                            <Label 
+                                Text="Alarms OverView:" 
+                                Margin="10"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                TextColor="White"
+                                  Font="20"  />
+                            <border:SfBorder 
+                               BorderColor="Red"
+                               BackgroundColor="#00A3B7" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"
+                                CornerRadius="5"
+                               BorderWidth="0">
+                            <Label 
+                                Text="{Binding AlarmsOverView.TotalAlarms}" 
+                                Margin="4"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                              Font="15"  />
+                            </border:SfBorder>
+                        </StackLayout>
+                        <BoxView HeightRequest="0.5" BackgroundColor="White"/>
+                        <StackLayout>
+                            <chart:SfChart VerticalOptions="Center" HeightRequest="200">
+                                <chart:SfChart.PrimaryAxis>
+                                  <chart:CategoryAxis/>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.Legend>
+                                  <chart:ChartLegend>
+                                      <chart:ChartLegend.LabelStyle>
+			                                    <chart:ChartLegendLabelStyle TextColor="White"/>
+		                                    </chart:ChartLegend.LabelStyle>
+                                  </chart:ChartLegend>
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.SecondaryAxis>
+                                  <chart:NumericalAxis/>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Series>
+                                  <chart:PieSeries ItemsSource="{Binding AlarmsOverView.Overviews}" XBindingPath="OverViewName" YBindingPath="Value" CircularCoefficient="0.6" ConnectorLineType="Line" DataMarkerPosition="OutsideExtended">
+                                    <chart:PieSeries.DataMarker>
+                                      <chart:ChartDataMarker  LabelContent="Percentage">
+                                          
+                                      </chart:ChartDataMarker>
+                                    </chart:PieSeries.DataMarker>
+                                      <chart:PieSeries.ColorModel> 
+                        <chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource Colors}"/> 
+              </chart:PieSeries.ColorModel> 
+                                  </chart:PieSeries>
+                                </chart:SfChart.Series>
+                            </chart:SfChart>
+                        </StackLayout>
+                    </StackLayout>
+                </border:SfBorder>
+
+                    <border:SfBorder 
+                       BorderColor="#FFBF31"
+                       HorizontalOptions="Fill" 
+                       VerticalOptions="Fill"
+                        CornerRadius="3"
+                        BackgroundColor="#FFBF31"
+                       BorderWidth="1">
+                    <StackLayout>
+                        <Label 
+                            Text="Critical Alarms:" 
+                            Margin="10"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            TextColor="White"
+                                Font="20"  />
+                        <BoxView HeightRequest="0.5" BackgroundColor="White"/>
+                        
+                        <StackLayout Margin="8,0" >
+                            <syncfusion:SfDataGrid x:Name="TabularGrid"
+                                        Margin="0, 0"
+                                        ColumnSizer="Star"
+                                        QueryRowHeight="TabularGrid_QueryRowHeight"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="Fill"
+                                        MinimumHeightRequest="50"
+                                        AutoGenerateColumns="False"
+                                        ItemsSource="{Binding CriticalAlarmsList}">
+
+                                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                    <syncfusion:GridTextColumn HeaderText="Ups Name" 
+                                                               MappingName="UpsName" />
+                                    <syncfusion:GridTextColumn HeaderText="Alert Type" 
+                                                               MappingName="AlertType" />
+                                    <syncfusion:GridTextColumn HeaderText="Alert Value"
+                                                               MappingName="AlertValue" />
+                                    
+                                </syncfusion:SfDataGrid.Columns>
+                            </syncfusion:SfDataGrid>
+                            
+                        </StackLayout>
+                        <BoxView HeightRequest="0.5" BackgroundColor="White"/>
+                        <Label 
+                            Text="View All Alarms" 
+                            Margin="10"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            TextColor="#6696E9"
+                                Font="20"  />
+                    </StackLayout>
+                </border:SfBorder>
+
+                    <synlistview:SfListView x:Name="lsVoucher"
+                                   ItemSpacing="5"
+                                   DragStartMode="None"
+                                   BackgroundColor="Transparent"
+                                   SelectionMode="Single"
+                                    AutoFitMode="DynamicHeight"
+                                   SelectionGesture="Tap"
+                                            IsScrollingEnabled="False"
+                                   ItemsSource="{Binding UpsReadingsList}">
+                        <synlistview:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <border:SfBorder 
+                                           BorderColor="#FFBF31"
+                                           HorizontalOptions="Fill" 
+                                           VerticalOptions="Fill"
+                                            CornerRadius="3"
+                                            BackgroundColor="#687179">
+                                        <StackLayout>
+                                            <Label 
+                                                Text="{Binding UpsName}" 
+                                                Margin="10"
+                                                FontAttributes="Bold"
+                                                VerticalOptions="Center"
+                                                TextColor="White"
+                                                    Font="20"  />
+                                            <BoxView HeightRequest="0.5" BackgroundColor="White"/>
+                        
+                                            <StackLayout Margin="8,8" >
+                                                <syncfusion:SfDataGrid x:Name="TabularGrid"
+                                                            Margin="0, 0"
+                                                            ColumnSizer="Star"
+                                                            QueryRowHeight="TabularGrid_QueryRowHeight"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="Fill"
+                                                            MinimumHeightRequest="120"
+                                                            AutoGenerateColumns="False"
+                                                            ItemsSource="{Binding UpsReadings}">
+
+                                                    <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                                                        <syncfusion:GridTextColumn HeaderText="StringName" 
+                                                                                   MappingName="StringName" />
+                                                        <syncfusion:GridTextColumn HeaderText="SVoltage" 
+                                                                                   MappingName="StringVoltage" />
+                                                        <syncfusion:GridTextColumn HeaderText="SResistance"
+                                                                                   MappingName="StringIR" />
+                                                        <syncfusion:GridTextColumn HeaderText="STemperature"
+                                                                                   MappingName="StringTemperature" />
+                                                        <syncfusion:GridTextColumn HeaderText="AlarmingValues"
+                                                                                   MappingName="AlarmsReadings" />
+                                    
+                                                    </syncfusion:SfDataGrid.Columns>
+                                                </syncfusion:SfDataGrid>
+                            
+                                            </StackLayout>
+                                            
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </synlistview:SfListView.ItemTemplate>
+                    </synlistview:SfListView>
+
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

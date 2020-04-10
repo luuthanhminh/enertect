@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace enertect.Core.Data.ItemViewModels
 {
-    public class UpsRedingItemViewModel:BaseItemViewModel
+    public class UpsReadingItemViewModel : BaseItemViewModel
     {
         private string _upsName;
         public string UpsName

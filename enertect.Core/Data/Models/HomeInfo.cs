@@ -9,6 +9,6 @@ namespace enertect.Core.Data.Models
         public OverView UpsOverview { get; set; }
         public IList<Alarm> CriticalAlarmsList { get; set; }
         public AlarmsOverView AlarmsOverView { get; set; }
-        public IList<UpsReadingsList> upsReadingsList { get; set; }
+        public IList<UpsReadingsList> UpsReadingsList { get; set; }
     }
 }
