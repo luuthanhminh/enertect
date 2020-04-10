@@ -88,47 +88,27 @@
                            HorizontalOptions="Fill" 
                            VerticalOptions="Fill"
                             Margin="8"
-                           BorderWidth="1">
+                           BorderWidth="0.5">
                            
                             
-                            <Grid ColumnSpacing="0" RowSpacing="0">
+                            <Grid BackgroundColor="DarkGray" ColumnSpacing="0.5" RowSpacing="0.5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40"/>
-                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
-                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
-                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
-                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.5"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <BoxView Grid.Column="0" Grid.Row="1" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="0" Grid.Row="3" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="0" Grid.Row="5" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="0" Grid.Row="7" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="2" Grid.Row="1" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="2" Grid.Row="3" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="2" Grid.Row="5" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="2" Grid.Row="7" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-
-                                <BoxView Grid.Column="1" Grid.Row="0" BackgroundColor="DarkGray" HorizontalOptions="Fill"/>
-                                <BoxView Grid.Column="1" Grid.Row="2" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="1" Grid.Row="4" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="1" Grid.Row="6" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-                                <BoxView Grid.Column="1" Grid.Row="8" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
-
-                                <Label Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteLocation"/>
-                                <Label Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="EnertectModel"/>
-                                <Label Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteEmail"/>
-                                <Label Grid.Column="0" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteContact"/>
+                                <Label Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="SiteLocation"/>
+                                <Label Grid.Column="0" Grid.Row="1" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="EnertectModel"/>
+                                <Label Grid.Column="0" Grid.Row="2" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="SiteEmail"/>
+                                <Label Grid.Column="0" Grid.Row="3" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="SiteContact"/>
+                                <Grid BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0" Grid.Row="4">
                                 <border:SfBorder
-                                    Grid.Column="0" Grid.Row="8"
                                    BorderColor="Red"
                                    BackgroundColor="#00A3B7" 
                                    HorizontalOptions="Center" 
@@ -137,20 +117,23 @@
                                    BorderWidth="0">
                                     <Label Margin="4" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.TotalStrings}"/>
                                 </border:SfBorder>
-                                <Label Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteLocation}"/>
-                                <Label Grid.Column="2" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.EnertectModel}"/>
-                                <Label Grid.Column="2" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteEmail}"/>
-                                <Label Grid.Column="2" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteContact}"/>
+                                    </Grid>
+                                <Label Grid.Column="1" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="{Binding Overview.SiteLocation}"/>
+                                <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="{Binding Overview.EnertectModel}"/>
+                                <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="{Binding Overview.SiteEmail}"/>
+                                <Label Grid.Column="1" Grid.Row="3" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" Text="{Binding Overview.SiteContact}"/>
+                                <Grid BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="1" Grid.Row="4">
                                 <border:SfBorder
-                                    Grid.Column="2" Grid.Row="8"
                                    BorderColor="Red"
                                    BackgroundColor="#00A3B7" 
                                    HorizontalOptions="Center" 
                                    VerticalOptions="Center"
+                                    
                                     CornerRadius="5"
                                    BorderWidth="0">
                                     <Label Margin="4" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.TotalBatteries}"/>
                                 </border:SfBorder>
+                                    </Grid>
                             </Grid>
                         </border:SfBorder>
                     </StackLayout>
