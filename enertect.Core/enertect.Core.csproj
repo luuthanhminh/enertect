@@ -24,5 +24,10 @@
     <Folder Include="Data\Models\" />
     <Folder Include="Data\Models\Ups\" />
     <Folder Include="Data\ItemViewModels\" />
+    <Folder Include="Data\Models\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Models\Home\UpReading.cs" />
+    <Compile Remove="Data\Models\Home\UpsReading.cs" />
   </ItemGroup>
 </Project>

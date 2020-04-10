@@ -29,7 +29,7 @@ namespace enertect.UI
             }
             else
             {
-                RegisterCustomAppStart<CustomMvxAppStart<UpsInformationViewModel>>();
+                RegisterCustomAppStart<CustomMvxAppStart<HomePageViewModel>>();//UpsInformationViewModel
             }
 
             FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(20));

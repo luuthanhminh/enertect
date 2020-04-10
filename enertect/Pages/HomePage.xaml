@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:enertect.UI.Pages.Base;assembly=enertect.UI"
+    xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+    x:TypeArguments="viewModels:HomePageViewModel"
+                x:Class="enertect.UI.Pages.HomePage">
+    <ContentPage.Content>
+        <Grid RowSpacing="20" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="White" Padding="0,30,0,0">
+                <Label Text="Home" FontSize="Title" TextColor="#6696E9" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>

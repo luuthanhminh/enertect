@@ -25,6 +25,7 @@ namespace enertect.Core.Services
         const string HISTORY_ENDPOINT = "upsinformations/GetTrendingHistory?date=01/12/2019&endDate=01/03/2020&upsId=1";
         const string ALARM_ENDPOINT = "alarms/Get";
         const string SITE_DETAIL_ENDPOINT = "upsinformations/GetSiteDetails";
+        const string HOME_PAGE_INFO_ENDPOINT = "Dashboard/GetHomepageInfo";
         const string SIGN_IN_ENDPOINT = AppConstant.API_ENDPOINT + "auth/login";
         #endregion
 
@@ -41,6 +42,11 @@ namespace enertect.Core.Services
         public async Task<ApiResponse<Site>> getSiteDetail()
         {
             return await DoGet<Site>($"{EndPoint}{SITE_DETAIL_ENDPOINT}");
+        }
+
+        public async Task<ApiResponse<HomeInfo>> getHomepageInfo()
+        {
+            return await DoGet<HomeInfo>($"{EndPoint}{HOME_PAGE_INFO_ENDPOINT}");
         }
 
         public async Task<ApiResponse<UpsInformation>> getHistoryUpsInfornations(int upID, DateTimeOffset start, DateTimeOffset end)

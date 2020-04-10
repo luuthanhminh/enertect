@@ -15,5 +15,6 @@ namespace enertect.Core.Services.Interfaces
         Task<ApiResponse<UpLimit>> getUpLimit(int upID);
         Task<ApiResponse<AlarmsInfo>> getAlarms();
         Task<ApiResponse<Site>> getSiteDetail();
+        Task<ApiResponse<HomeInfo>> getHomepageInfo();
     }
 }

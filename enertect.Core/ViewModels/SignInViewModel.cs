@@ -78,7 +78,7 @@ namespace enertect.Core.ViewModels
                         {
                             var user = JsonConvert.SerializeObject(res.ResponseObject);
                             Preferences.Set(AppConstant.USER_TOKEN, user);
-                            await ClearStackAndNavigateToPage<UpsInformationViewModel>();
+                            await ClearStackAndNavigateToPage<HomePageViewModel>();//UpsInformationViewModel
                         }
                         else
                         {
