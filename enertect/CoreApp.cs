@@ -29,6 +29,7 @@ namespace enertect.UI
             }
             else
             {
+                //HomePageViewModel
                 RegisterCustomAppStart<CustomMvxAppStart<HomePageViewModel>>();//UpsInformationViewModel
             }
 

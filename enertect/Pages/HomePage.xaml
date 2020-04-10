@@ -14,7 +14,13 @@
                 <chart:ChartColorCollection x:Key="Colors"> 
                     <Color>#FF7665</Color>
                     <Color>#6AD386</Color>
-              </chart:ChartColorCollection> 
+              </chart:ChartColorCollection>
+              <OnPlatform x:TypeArguments="x:String"
+                    x:Key="IconFont">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android"
+                    Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+                </OnPlatform>
             </ResourceDictionary> 
 </ContentPage.Resources> 
     <ContentPage.Content>
@@ -25,7 +31,25 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Label Text="Home" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding TapGotoUpsCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf035c;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
+                <Label Text="Home" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                 <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf0fc5;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
             </Grid>
             <ScrollView Grid.Row="1">
                 <StackLayout  VerticalOptions="Fill" HorizontalOptions="Fill" Margin="8">
@@ -65,24 +89,46 @@
                            VerticalOptions="Fill"
                             Margin="8"
                            BorderWidth="1">
-                            <Grid>
+                           
+                            
+                            <Grid ColumnSpacing="0" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40"/>
+                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
+                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
+                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="40"/>
+                                    <RowDefinition Height="0.5"/>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
+                                <BoxView Grid.Column="0" Grid.Row="1" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="0" Grid.Row="3" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="0" Grid.Row="5" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="0" Grid.Row="7" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="2" Grid.Row="1" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="2" Grid.Row="3" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="2" Grid.Row="5" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="2" Grid.Row="7" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+
+                                <BoxView Grid.Column="1" Grid.Row="0" BackgroundColor="DarkGray" HorizontalOptions="Fill"/>
+                                <BoxView Grid.Column="1" Grid.Row="2" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="1" Grid.Row="4" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="1" Grid.Row="6" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+                                <BoxView Grid.Column="1" Grid.Row="8" BackgroundColor="DarkGray" VerticalOptions="Fill"/>
+
                                 <Label Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteLocation"/>
-                                <Label Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="EnertectModel"/>
-                                <Label Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteEmail"/>
-                                <Label Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteContact"/>
+                                <Label Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="EnertectModel"/>
+                                <Label Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteEmail"/>
+                                <Label Grid.Column="0" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" Text="SiteContact"/>
                                 <border:SfBorder
-                                    Grid.Column="0" Grid.Row="4"
+                                    Grid.Column="0" Grid.Row="8"
                                    BorderColor="Red"
                                    BackgroundColor="#00A3B7" 
                                    HorizontalOptions="Center" 
@@ -91,12 +137,12 @@
                                    BorderWidth="0">
                                     <Label Margin="4" TextColor="White"  VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.TotalStrings}"/>
                                 </border:SfBorder>
-                                <Label Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteLocation}"/>
-                                <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.EnertectModel}"/>
-                                <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteEmail}"/>
-                                <Label Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteContact}"/>
+                                <Label Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteLocation}"/>
+                                <Label Grid.Column="2" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.EnertectModel}"/>
+                                <Label Grid.Column="2" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteEmail}"/>
+                                <Label Grid.Column="2" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Overview.SiteContact}"/>
                                 <border:SfBorder
-                                    Grid.Column="1" Grid.Row="4"
+                                    Grid.Column="2" Grid.Row="8"
                                    BorderColor="Red"
                                    BackgroundColor="#00A3B7" 
                                    HorizontalOptions="Center" 
@@ -224,7 +270,11 @@
                             FontAttributes="Bold"
                             VerticalOptions="Center"
                             TextColor="#6696E9"
-                                Font="20"  />
+                                Font="20">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AlarmDetailCommand}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                 </border:SfBorder>
 

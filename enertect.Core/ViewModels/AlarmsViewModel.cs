@@ -19,7 +19,7 @@ namespace enertect.Core.ViewModels
         void ShowAlarmDate();
     }
 
-    public class AlarmsViewModel: BaseWithObjectViewModel<UpsViewModel>
+    public class AlarmsViewModel: BaseViewModel
     {
         readonly IApiService _apiService;
 
@@ -41,12 +41,14 @@ namespace enertect.Core.ViewModels
             ResolveValue = "";
             AlarmDateValue = "";
             ResolvedDateValue = "";
+
+            LoadUps();
             LoadData();
         }
 
-        public override void Prepare(UpsViewModel parameter)
+        public override void Prepare()
         {
-            Ups = parameter.Ups.ToList();
+            //Ups = parameter.Ups.ToList();
         }
 
         #region Properties
@@ -241,11 +243,51 @@ namespace enertect.Core.ViewModels
 
         #region Methods
 
+        async Task LoadUps()
+        {
+            try
+            {
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    // Connection to internet is available
+                    HasNoData = false;
+                    ShowLoading();
+
+                    var res = await _apiService.getUpsInfornations();
+
+                    if (res.IsSuccess)
+                    {
+                        var ups = res.ResponseListObject;
+                        this.Ups = new ObservableCollection<UpsItemViewModel>(ups.Select(v => v.ToItemViewModel()));
+                    }
+                    else
+                    {
+                        await _dialogService.ShowMessage("Error", String.Join(Environment.NewLine, res.Errors), "Close");
+                    }
+                }
+                else
+                {
+                    await _dialogService.ShowMessage("Error", "No internet access", "Close");
+                }
+                HasNoData = this.Ups.Count == 0;
+
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowMessage("Error", ex.Message, "Close");
+            }
+            finally
+            {
+                HideLoading();
+
+            }
+
+        }
+
         async Task LoadData()
         {
             try
             {
-
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
                     // Connection to internet is available

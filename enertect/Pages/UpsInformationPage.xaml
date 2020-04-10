@@ -27,19 +27,19 @@
                 
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Label  Text="Ups Informations" FontSize="Title" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button BackgroundColor="Transparent" WidthRequest="50" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
+                <Label  Text="Ups Informations" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button BackgroundColor="Transparent" Text="Home" Command="{Binding CloseCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
-                        Glyph="&#xf0fc5;"
+                        Glyph="&#xf0141;"
                         Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
             </Grid>
-            <Label Grid.Row="1" Margin="16,0" TextColor="Black"  Text="{Binding SiteName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Start" VerticalOptions="Center"/>
-            <Grid Grid.Row="2" Margin="16,0">
+            <!--<Label Grid.Row="1" Margin="16,0" TextColor="Black"  Text="{Binding SiteName, StringFormat='Site Name: {0:F0}'}" FontSize="Subtitle" HorizontalOptions="Start" VerticalOptions="Center"/>-->
+            <Grid Grid.Row="1" Margin="16,0">
 
                 <Label BackgroundColor="Transparent" Text="ALARM INFO" FontSize="Medium" TextColor="#6696E9" HorizontalOptions="Start" VerticalOptions="Center">
                     <Label.GestureRecognizers>
@@ -49,7 +49,7 @@
             </Grid>
             
             <syncfusion:SfListView x:Name="lsVoucher"
-                                   Grid.Row="3"
+                                   Grid.Row="2"
                                    Margin="8,0"
                                    ItemSize="80"
                                    ItemSpacing="5"
@@ -110,10 +110,10 @@
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
             
-            <Label Grid.Row="3" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
+            <Label Grid.Row="2" Text="No Data" TextColor="Gray" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="{Binding HasNoData}"/>
             
             <ActivityIndicator
-                Grid.Row="3"
+                Grid.Row="2"
                                Color="#6696E9"  
                                HorizontalOptions="Center" 
                                VerticalOptions="Center" 

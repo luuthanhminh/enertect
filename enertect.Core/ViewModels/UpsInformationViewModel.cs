@@ -78,7 +78,6 @@ namespace enertect.Core.ViewModels
         {
             try
             {
-
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
                     // Connection to internet is available
@@ -91,7 +90,7 @@ namespace enertect.Core.ViewModels
                     if (res.IsSuccess)
                     {
                         var ups = res.ResponseListObject;
-                        this.Ups = new ObservableCollection<UpsItemViewModel>(ups.Select(v => v.ToItemViewModel(this)));
+                        this.Ups = new ObservableCollection<UpsItemViewModel>(ups.Select(v => v.ToItemViewModel()));
                     }
                     else
                     {
@@ -184,7 +183,7 @@ namespace enertect.Core.ViewModels
         private async Task GoToAlarm()
         {
             var ViewModel = new UpsViewModel() { Ups = this.Ups };
-            await _navigationService.Navigate<AlarmsViewModel, UpsViewModel>(ViewModel);
+            await _navigationService.Navigate<AlarmsViewModel>();
         }
 
         #endregion

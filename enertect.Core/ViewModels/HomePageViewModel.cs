@@ -123,11 +123,27 @@ namespace enertect.Core.ViewModels
 
         #region Commands
 
-        public IMvxAsyncCommand TapHistoryCommand => new MvxAsyncCommand(GoToHistory);
+        public IMvxAsyncCommand SignOutCommand => new MvxAsyncCommand(SignOut);
 
-        async Task GoToHistory()
+        private async Task SignOut()
         {
-            //await _navigationService.Navigate<HistoryUpInformationViewModel, UpsItemViewModel>(ItemViewModel);
+            Preferences.Set(AppConstant.USER_TOKEN, "");
+
+            await ClearStackAndNavigateToPage<SignInViewModel>();
+        }
+
+        public IMvxAsyncCommand AlarmDetailCommand => new MvxAsyncCommand(GoToAlarm);
+
+        private async Task GoToAlarm()
+        {
+            await _navigationService.Navigate<AlarmsViewModel>();
+        }
+
+        public IMvxAsyncCommand TapGotoUpsCommand => new MvxAsyncCommand(GotoUps);
+
+        private async Task GotoUps()
+        {
+            await _navigationService.Navigate<UpsInformationViewModel>();
         }
 
         #endregion

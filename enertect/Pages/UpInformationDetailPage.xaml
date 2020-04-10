@@ -45,7 +45,7 @@
                 <Label Grid.Column="1"  Text="{Binding HomeTitle}" FontSize="Small" TextColor="White" VerticalOptions="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CloseCommand}" NumberOfTapsRequired="1" />
-                      </Label.GestureRecognizers>
+                    </Label.GestureRecognizers>
                 </Label>
                 <Label Grid.Column="2"  Text="{Binding UpsName}" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
 

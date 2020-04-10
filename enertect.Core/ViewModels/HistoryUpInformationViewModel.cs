@@ -274,6 +274,7 @@ namespace enertect.Core.ViewModels
 
         }
 
+
         async Task GetHistory(int UpId, DateTimeOffset start, DateTimeOffset end)
         {
             _voltageHistory = $"Voltage History from - {start.ToString("dd MMM yyyy")} - {end.ToString("dd MMM yyyy")}";

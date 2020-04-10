@@ -12,7 +12,7 @@ namespace enertect.Core.Helpers
 {
     public static class DataMappingExtensions
     {
-        public static UpsItemViewModel ToItemViewModel(this UpsInformation item, BaseViewModel viewModel = null)
+        public static UpsItemViewModel ToItemViewModel(this UpsInformation item)
         {
             string StringName = item.StringName;
             if (item.Items != null  && item.Items.Any() && item.UpsName == StringName)
