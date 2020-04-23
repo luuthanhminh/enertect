@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using enertect.Core.Data.ItemViewModels;
 using enertect.Core.Data.Models;
 using enertect.Core.Helpers;
 using enertect.Core.Services;
@@ -23,15 +27,24 @@ namespace enertect.UI
 
             var user_pre= Preferences.Get(AppConstant.USER_TOKEN, "");
             User user = JsonConvert.DeserializeObject<User>(user_pre);
+          
             if (user == null)
             {
                 RegisterCustomAppStart<CustomMvxAppStart<SignInViewModel>>();
             }
+            else if (user.SitesEndPoints.Count > 1)
+            {
+                RegisterCustomAppStart<CustomMvxAppStart<SitesViewModel>>();
+            }
+            else if (user.SitesEndPoints.Count == 1)
+            {
+                RegisterCustomAppStart<CustomMvxAppStart<HomePageViewModel>>();
+            }
             else
             {
-                //HomePageViewModel
-                RegisterCustomAppStart<CustomMvxAppStart<HomePageViewModel>>();//UpsInformationViewModel
+                RegisterCustomAppStart<CustomMvxAppStart<SignInViewModel>>();
             }
+                
 
             FlurlHttp.Configure(settings => settings.Timeout = TimeSpan.FromSeconds(20));
 

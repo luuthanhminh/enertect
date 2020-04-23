@@ -31,21 +31,21 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding TapGotoUpsCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
+                <Button Text="Sites" FontSize="16" BackgroundColor="Transparent" Command="{Binding CloseCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
-                        Glyph="&#xf035c;"
+                        Glyph="&#xf0141;"
                         Size="24"
                         Color="White" />
                     </Button.ImageSource>
                 </Button>
                 <Label Text="Home" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                 <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
+                 <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding TapGotoUpsCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"
-                        Glyph="&#xf0fc5;"
+                        Glyph="&#xf035c;"
                         Size="24"
                         Color="White" />
                     </Button.ImageSource>

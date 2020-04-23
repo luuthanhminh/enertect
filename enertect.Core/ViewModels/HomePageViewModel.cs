@@ -129,7 +129,7 @@ namespace enertect.Core.ViewModels
         {
             Preferences.Set(AppConstant.USER_TOKEN, "");
 
-            await ClearStackAndNavigateToPage<SignInViewModel>();
+            await ClearStackAndNavigateToPage<SitesViewModel>();
         }
 
         public IMvxAsyncCommand AlarmDetailCommand => new MvxAsyncCommand(GoToAlarm);

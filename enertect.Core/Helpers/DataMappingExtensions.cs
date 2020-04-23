@@ -6,7 +6,6 @@ using enertect.Core.Data.ItemViewModels;
 using enertect.Core.Data.Models;
 using enertect.Core.Data.Models.Home;
 using enertect.Core.Data.Models.Ups;
-using enertect.Core.ViewModels.Base;
 
 namespace enertect.Core.Helpers
 {
@@ -82,6 +81,15 @@ namespace enertect.Core.Helpers
                 EnertectModel = overView.EnertectModel,
                 SiteEmail = overView.SiteEmail,
                 SiteContact = overView.SiteContact
+            };
+        }
+
+        public static SiteItemViewModel ToSiteItemViewModel(this Site site)
+        {
+            return new SiteItemViewModel()
+            {
+                SiteName = site.SiteName,
+                SiteUrl = site.SiteUrl
             };
         }
 

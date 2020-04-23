@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using enertect.Core.Data.ItemViewModels;
 using enertect.Core.Helpers;
 using enertect.Core.Services.Interfaces;
 using enertect.Core.ViewModels.Base;
@@ -76,9 +80,18 @@ namespace enertect.Core.ViewModels
 
                         if (res.IsSuccess)
                         {
-                            var user = JsonConvert.SerializeObject(res.ResponseObject);
-                            Preferences.Set(AppConstant.USER_TOKEN, user);
-                            await ClearStackAndNavigateToPage<HomePageViewModel>();//UpsInformationViewModel
+                            var user = res.ResponseObject;
+                            Preferences.Set(AppConstant.USER_TOKEN, JsonConvert.SerializeObject(user));
+                            if(user.SitesEndPoints.Count > 1)
+                            {
+                                await _navigationService.Navigate<SitesViewModel>();
+                            }
+                            else if (user.SitesEndPoints.Count == 1)
+                            {
+                                Preferences.Set(AppConstant.SITE_URL, user.SitesEndPoints.First().SiteUrl);
+                                await ClearStackAndNavigateToPage<HomePageViewModel>();//UpsInformationViewModel
+                            }
+                            
                         }
                         else
                         {
@@ -107,6 +120,9 @@ namespace enertect.Core.ViewModels
             }
 
         }
+
+
+
         #endregion
     }
 }

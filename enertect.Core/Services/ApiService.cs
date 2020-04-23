@@ -37,6 +37,12 @@ namespace enertect.Core.Services
                 this.User = JsonConvert.DeserializeObject<User>(userPre);
                 this.EndPoint = User.ApiEndpoint;
             }
+
+            var sitePre = Preferences.Get(AppConstant.SITE_URL, "");
+            if (sitePre.Length > 0)
+            {
+                this.EndPoint = sitePre;
+            }
         }
 
         public async Task<ApiResponse<Site>> getSiteDetail()

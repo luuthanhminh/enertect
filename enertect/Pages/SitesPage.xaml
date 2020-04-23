@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:enertect.UI.Pages.Base;assembly=enertect.UI"
+                xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
+                x:TypeArguments="viewModels:SitesViewModel"
+                xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                x:Class="enertect.UI.Pages.SitesPage">
+    <ContentPage.Resources> 
+            <ResourceDictionary> 
+              <OnPlatform x:TypeArguments="x:String"
+                    x:Key="IconFont">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android"
+                    Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+                </OnPlatform>
+            </ResourceDictionary> 
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="20" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
+                <Button Text="Home" FontSize="16" BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf0141;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
+                <Label Text="Sites" FontSize="Subtitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                 <Button BackgroundColor="Transparent" WidthRequest="40" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="End" VerticalOptions="Center">
+                    <Button.ImageSource>
+                        <FontImageSource
+                        FontFamily="{DynamicResource IconFont}"
+                        Glyph="&#xf0fc5;"
+                        Size="24"
+                        Color="White" />
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+            <syncfusion:SfListView x:Name="lsVoucher"
+                                   Grid.Row="1"
+                                   ItemSize="50"
+                                   Margin="8, 0"
+                                   ItemSpacing="5"
+                                   DragStartMode="None"
+                                   BackgroundColor="Transparent"
+                                   SelectionMode="Single"
+                                   SelectionGesture="Tap" 
+                                   ItemsSource="{Binding Sites}">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Frame BorderColor="Transparent"
+                                       Padding="5,2"
+                                       HasShadow="False"
+                                       
+                                       CornerRadius="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.TapItemCommand,
+                                            Source={x:Reference lsVoucher}}"
+                                            CommandParameter="{Binding .}"
+                                             />
+                                    </Frame.GestureRecognizers>
+                                    <Grid VerticalOptions="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="0.5"/>
+                                        </Grid.RowDefinitions>
+                                        <Label VerticalOptions="Center" FontSize="Subtitle"  LineBreakMode="TailTruncation" Text="{Binding SiteName}" TextColor="#6696E9"/>
+                                        <BoxView Grid.Row="1" BackgroundColor="Gray" HeightRequest="0.5" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                                    </Grid>
+
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>

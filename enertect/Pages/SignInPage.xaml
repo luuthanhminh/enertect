@@ -6,6 +6,7 @@
     xmlns:viewModels="clr-namespace:enertect.Core.ViewModels;assembly=enertect.Core"
     x:TypeArguments="viewModels:SignInViewModel"
     x:Class="enertect.UI.Pages.SignInPage">
+
     <ContentPage.Content>
         <Grid RowSpacing="20" BackgroundColor="White">
             <Grid.RowDefinitions>
