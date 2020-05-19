@@ -83,9 +83,9 @@
 			Property="LineBreakMode"
 			Value="TailTruncation" />
 
-        <Setter
+        <!--<Setter
 			Property="FontFamily"
-			Value="{ StaticResource AppBoldFontFamily }" />
+			Value="{ StaticResource AppBoldFontFamily }" />-->
         <Setter
 			Property="FontAttributes"
 			Value="Bold" />
@@ -120,8 +120,7 @@
 
     <Style
 		x:Key="CustomActionSheetIconStyle"
-		TargetType="Label"
-		BasedOn="{StaticResource FontIcon}">
+		TargetType="Label">
         <Setter
 			Property="FontSize"
 			Value="{ StaticResource CustomActionSheetFontSize }" />

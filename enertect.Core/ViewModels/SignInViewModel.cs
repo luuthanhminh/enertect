@@ -21,7 +21,7 @@ namespace enertect.Core.ViewModels
         {
             _apiService = apiService;
             //this.UserName = "admin@123";
-            //this.Password = "admin@123";
+            //this.Password = "admin";
         }
 
         #region Properties
@@ -120,8 +120,6 @@ namespace enertect.Core.ViewModels
             }
 
         }
-
-
 
         #endregion
     }

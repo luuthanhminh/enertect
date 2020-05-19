@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             
              mc:Ignorable="d"
              x:Class="enertect.App">
     <Application.Resources>
@@ -56,6 +57,203 @@
                 <Color>#436F87</Color>
                 
             </chart:ChartColorCollection>
+            <x:Double
+				x:Key="BaseFontSize">14</x:Double>
+             <Style
+				x:Key="BlurredShadow"
+				TargetType="VisualElement">
+                <!--<Setter
+					Property="grial:Effects.Shadow"
+					Value="True" />
+                <Setter
+					Property="grial:Effects.ShadowSize"
+					Value="14" />
+                <Setter
+					Property="grial:Effects.ShadowIOSColor"
+					Value="#77000000" />-->
+            </Style>
+            <Style
+				x:Key="FontIcon"
+				TargetType="Label">
+                <!--<Setter
+					Property="FontFamily"
+					Value="{ DynamicResource IconsFontFamily }" />-->
+            </Style>
+            <Style
+				x:Key="FontIconFill"
+				TargetType="Label">
+                <!--<Setter
+					Property="FontFamily"
+					Value="{ StaticResource GrialIconsFill }" />-->
+            </Style>
+            <Style
+				x:Key="LabelBoldStyle"
+				TargetType="Label">
+                <!--<Setter
+					Property="FontFamily"
+					Value="{StaticResource AppBoldFontFamily}" />-->
+                <Setter
+					Property="FontAttributes"
+					Value="Bold" />
+            </Style>
+            <Style
+				x:Key="RoundedButtonStyle"
+				TargetType="Button">
+                <Setter
+					Property="FontSize"
+					Value="{StaticResource BaseFontSize}" />
+                <Setter
+					Property="CornerRadius"
+					Value="{DynamicResource BaseButtonCornerRadius}" />
+                <Setter
+					Property="HeightRequest"
+					Value="{DynamicResource BaseButtonHeight}" />
+            </Style>
+            <Style
+				x:Key="PrimaryActionButtonStyle"
+				TargetType="Button"
+				BasedOn="{ StaticResource RoundedButtonStyle }">
+                <Setter
+					Property="BackgroundColor"
+					Value="{ DynamicResource PrimaryActionButtonStartColor }" />
+                <Setter
+					Property="BorderColor"
+					Value="{ DynamicResource PrimaryActionButtonStartColor }" />
+                <Setter
+					Property="TextColor"
+					Value="{ DynamicResource OverImageTextColor }" />
+                <!--<Setter
+					Property="grial:Effects.BackgroundGradient"
+					Value="{DynamicResource PrimaryButtonGradient}" />-->
+            </Style>
+            <Style
+				x:Key="SecondaryActionButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource RoundedButtonStyle}">
+                <Setter
+					Property="BackgroundColor"
+					Value="{DynamicResource ComplementColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource ComplementColor}" />
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource OverImageTextColor}" />
+            </Style>
+            <Style
+				x:Key="SaveButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource RoundedButtonStyle}">
+                <Setter
+					Property="BackgroundColor"
+					Value="{DynamicResource SaveButtonColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource SaveButtonColor}" />
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource OverImageTextColor}" />
+                <Setter
+					Property="HeightRequest"
+					Value="{DynamicResource BaseButtonHeight}" />
+            </Style>
+            <Style
+				x:Key="DeleteButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource RoundedButtonStyle}">
+                <Setter
+					Property="BackgroundColor"
+					Value="{DynamicResource DeleteButtonColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource DeleteButtonColor}" />
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource OverImageTextColor}" />
+                <Setter
+					Property="HeightRequest"
+					Value="{DynamicResource BaseButtonHeight}" />
+            </Style>
+            <Style
+				x:Key="OutlineInverseButtonStyle"
+				TargetType="Button">
+                <Setter
+					Property="BackgroundColor"
+					Value="Transparent" />
+                <Setter
+					Property="BorderWidth"
+					Value="1" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource InverseTextColor}" />
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource InverseTextColor}" />
+            </Style>
+            <Style
+				x:Key="OutlineButtonStyle"
+				TargetType="Button">
+                <Setter
+					Property="BackgroundColor"
+					Value="Transparent" />
+                <Setter
+					Property="BorderWidth"
+					Value="1" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource BaseTextColor}" />
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource BaseTextColor}" />
+            </Style>
+
+            <Style
+				x:Key="PrimaryActionOutlineButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource OutlineButtonStyle}">
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource AccentColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource AccentColor}" />
+            </Style>
+
+            <Style
+				x:Key="SecondaryActionOutlineButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource OutlineButtonStyle}">
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource ComplementColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource ComplementColor}" />
+            </Style>
+
+            <Style
+				x:Key="SaveOutlineButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource OutlineButtonStyle}">
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource SaveButtonColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource SaveButtonColor}" />
+            </Style>
+
+            <Style
+				x:Key="DeleteOutlineButtonStyle"
+				TargetType="Button"
+				BasedOn="{StaticResource OutlineButtonStyle}">
+                <Setter
+					Property="TextColor"
+					Value="{DynamicResource DeleteButtonColor}" />
+                <Setter
+					Property="BorderColor"
+					Value="{DynamicResource DeleteButtonColor}" />
+            </Style>
          </ResourceDictionary>
     </Application.Resources>
 </Application>

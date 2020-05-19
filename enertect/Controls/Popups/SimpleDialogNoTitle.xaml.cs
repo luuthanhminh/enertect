@@ -18,6 +18,7 @@ namespace enertect.UI.Controls.Popups
         private void OnClose(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync();
+            (this.BindingContext as DialogViewModel).CompletionSource.SetResult("");
         }
     }
 }

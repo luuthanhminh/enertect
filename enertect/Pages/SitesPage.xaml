@@ -23,7 +23,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid BackgroundColor="#6696E9" Padding="0,30,0,0">
-                <Button Text="Home" FontSize="16" BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
+                <Button Text="Home" FontSize="14" BackgroundColor="Transparent" Command="{Binding SignOutCommand}" Margin="0,0,8,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center">
                     <Button.ImageSource>
                         <FontImageSource
                         FontFamily="{DynamicResource IconFont}"

@@ -8,6 +8,7 @@ using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
+using UXDivers.Grial;
 
 namespace enertect.iOS
 {
@@ -28,6 +29,8 @@ namespace enertect.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            Rg.Plugins.Popup.Popup.Init();
+            //GrialKit.Init(new ThemeColors(), "APIIndia.iOS.GrialLicense");
             SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
             SfTextInputLayoutRenderer.Init();

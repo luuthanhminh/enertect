@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:local="clr-namespace:enertect.UI.Controls.Popups.Resources"
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:enertect.UI.Controls.Popups.Resources"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 x:Class="enertect.UI.Controls.Popups.SimpleDialogNoTitle">
+    x:Class="enertect.UI.Controls.Popups.SimpleDialogNoTitle"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    BackgroundColor="{DynamicResource DialogsShimBackgroundColor}"
+	CloseWhenBackgroundIsClicked="{StaticResource DialogsCloseWhenBackgroundIsClicked}">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,8 +20,12 @@
 		Margin="20"
 		Style="{StaticResource BlurredShadow}"
 		VerticalOptions="{DynamicResource DialogsVerticalPositioning}">
+        <border:SfBorder 
+                       BorderColor="White"
+                        CornerRadius="4">
         <Grid
-			RowSpacing="0">
+			RowSpacing="0"
+			BackgroundColor="White">
 
             <Grid.RowDefinitions>
                 <RowDefinition
@@ -28,10 +36,8 @@
 					Height="64" />
             </Grid.RowDefinitions>
 
-            <!--TITLE AND ICON-->
             <Grid
 				Grid.Row="0"
-				BackgroundColor="Transparent"
 				Padding="14,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
@@ -42,12 +48,12 @@
 						Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- ICON CLOSE -->
+                 
                 <Label
 					Grid.Column="2"
 					Margin="0"
 					FontSize="{StaticResource DialogsIconsSize}"
-					TextColor="{DynamicResource OverImageTextColor}"
+					TextColor="{DynamicResource BaseTextColor}"
 					Style="{StaticResource FontIconFill}"
 					VerticalTextAlignment="Center"
 					HorizontalTextAlignment="End">
@@ -58,12 +64,11 @@
                 </Label>
             </Grid>
 
-            <!-- CONTENT -->
+              
             <StackLayout
 				Margin="30,0,30,30"
 				Grid.Row="1"
 				Spacing="30">
-
                 <Grid
 					ColumnSpacing="10">
 
@@ -74,50 +79,54 @@
 							Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--<Label
+                    <Label
 						Grid.Row="0"
 						Grid.Column="0"
-						Text="{x:Static local:GrialIconsFont.MessageSquare}"
-						TextColor="{DynamicResource OverImageTextColor}"
+						TextColor="{DynamicResource BaseTextColor}"
 						Style="{StaticResource FontIcon}"
 						VerticalTextAlignment="Center"
-						FontSize="24" />-->
+						FontSize="24" />
 
                     <Label
 						Grid.Row="0"
 						Grid.Column="1"
 						Text="{Binding Title}"
-						TextColor="{ DynamicResource OverImageTextColor }"
+						TextColor="{DynamicResource BaseTextColor}"
 						FontSize="{
                                 OnPlatform 
                                     iOS=24,
                                     Android=22}"
-						Style="{ StaticResource LabelBoldStyle }"
-                         HorizontalOptions="Center"
+						Style="{StaticResource LabelBoldStyle}"
+                        HorizontalOptions="Center"
 						LineBreakMode="TailTruncation" />
 
                 </Grid>
 
-                <!-- BODY -->
                 <Label
 					FontSize="{StaticResource DialogsBodyFontSize}"
 					HorizontalTextAlignment="Center"
 					Text="{Binding Message}"
-					TextColor="{DynamicResource OverImageTextColor}" />
+					TextColor="{DynamicResource BaseTextColor}" />
             </StackLayout>
 
-            <!--FOOTER-->
+             
             <FlexLayout
 				Margin="20,0"
 				Grid.Row="2"
 				JustifyContent="Center">
                 <Button
-					Style="{StaticResource DialogOutlineInverseButtonStyle}"
+                    BackgroundColor="#6696E9"
+                    TextColor="White"
+                    HeightRequest="44"
+                    WidthRequest="120"
+					Style="{StaticResource DialogPrimaryActionButtonStyle}"
 					Text="{Binding CloseText}"
 					Clicked="OnClose" />
 
             </FlexLayout>
 
         </Grid>
+            </border:SfBorder>
+
     </Grid>
 </pages:PopupPage>

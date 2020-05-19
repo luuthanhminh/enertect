@@ -71,6 +71,7 @@
     <Compile Include="Presenter\IosCustomPresenter.cs" />
     <Compile Include="Services\ExportToExcelService.cs" />
     <Compile Include="Views\PreviewControllerDS.cs" />
+    <Compile Include="ThemeColors.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -138,6 +139,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView.IOS">
       <Version>17.4.0.55</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

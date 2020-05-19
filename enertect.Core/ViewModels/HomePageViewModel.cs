@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using enertect.Core.Data.ItemViewModels;
+using enertect.Core.Data.Models;
 using enertect.Core.Helpers;
 using enertect.Core.Services.Interfaces;
 using enertect.Core.ViewModels.Base;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 
 namespace enertect.Core.ViewModels
@@ -24,10 +26,29 @@ namespace enertect.Core.ViewModels
         public override async Task Initialize()
         {
             await base.Initialize();
+            var user_pre = Preferences.Get(AppConstant.USER_TOKEN, "");
+            User user = JsonConvert.DeserializeObject<User>(user_pre);
+            this.IsSiteHome = user.SitesEndPoints.Count > 1;
+            this.Title = this.IsSiteHome ? "Sites" : "Back";
             GetHomeInfo();
         }
 
         #region Properties
+
+        public bool IsSiteHome { get; set; }
+
+        private string _title;
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                SetProperty(ref _title, value);
+            }
+        }
 
         private OverviewItemViewModel _overview;
         public OverviewItemViewModel Overview
@@ -144,6 +165,21 @@ namespace enertect.Core.ViewModels
         private async Task GotoUps()
         {
             await _navigationService.Navigate<UpsInformationViewModel>();
+        }
+
+        public IMvxAsyncCommand TapHomeCommand => new MvxAsyncCommand(GoToHome);
+
+        private async Task GoToHome()
+        {
+            if (this.IsSiteHome)
+            {
+                this.CloseCommand.Execute();
+            }
+            else
+            {
+                Preferences.Set(AppConstant.USER_TOKEN, "");
+                await ClearStackAndNavigateToPage<SignInViewModel>();
+            }  
         }
 
         #endregion

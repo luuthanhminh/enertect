@@ -10,7 +10,7 @@ namespace enertect.Core.Services.Interfaces
 
         Task<string> ShowMultipleSelection(string title, DialogAction[] options);
 
-        Task ShowMessage(string title, string message, string buttonCloseText);
+        Task<string> ShowMessage(string title, string message, string buttonCloseText);
 
         Task ShowMessage(string message);
     }

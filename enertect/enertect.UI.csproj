@@ -22,6 +22,8 @@
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.55" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.1.0.43" />
     <PackageReference Include="Syncfusion.Xamarin.DataGridExport" Version="18.1.0.43" />
+    <PackageReference Include="UXDivers.Effects" Version="0.6.3" />
+    <PackageReference Include="UXDivers.Grial" Version="3.0.60" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\enertect.Core\enertect.Core.csproj" />
@@ -35,5 +37,7 @@
     <Folder Include="Controls\Popups\" />
     <Folder Include="Controls\Popups\Resources\" />
     <Folder Include="Services\Interfaces\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\Fonts\" />
   </ItemGroup>
 </Project>

@@ -29,23 +29,32 @@ namespace enertect.UI.Services
             }
         }
 
-        public async Task ShowMessage(string title, string message, string buttonCloseText)
+        public async Task<string> ShowMessage(string title, string message, string buttonCloseText)
         {
             try
             {
-                var simpleDialog = new SimpleDialogNoTitle(new DialogViewModel()
+                var model = new DialogViewModel()
                 {
                     Title = title,
                     Message = message,
                     CloseText = buttonCloseText
-                });
+                };
+
+                model.CompletionSource = new TaskCompletionSource<string>();
+
+                var simpleDialog = new SimpleDialogNoTitle(model);
 
                 await PopupNavigation.Instance.PushAsync(simpleDialog);
+
+                var result = await model.CompletionSource.Task;
+
+                return result;
 
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                return null;
             }
 
         }
